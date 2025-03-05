@@ -1,6 +1,9 @@
+import os
+
 import requests
 import json
 import re
+from dotenv import load_dotenv
 
 difficulty_levels = {
     "легкий": "простой вопрос",
@@ -8,7 +11,7 @@ difficulty_levels = {
     "сложный": "сложный и нестандартный вопрос"
 }
 
-TOKEN = "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"
+TOKEN = os.getenv('TOKEN')
 
 QWEN_URL = "https://openrouter.ai/api/v1/chat/completions"
 QWEN_HEADERS = {

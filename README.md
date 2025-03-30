@@ -2,3 +2,26 @@
 Гибридная игра "Defense & Discover"
 # Описание проекта
 "Defense & Discover" — гибридная веб-игра, сочетающая механику Tower Defense и викторину (quiz). Игроку необходимо отбить как можно больше волн врагов. Чтобы построить новую башню или улучшить существующую, игрок должен ответить на вопрос викторины.  
+# Команда
+[Филозоп Софья Александровна](https://github.com/SoniaFilozop) – Team Lead, Promt Engineer, Machine Learning
+
+[Гурьева Анна Михайловна](https://github.com/anya-ananasss) – Project Manager, технический писатель
+
+[Токарев Дмитрий Сергеевич](https://github.com/IdealIdealIdeal) – дизайнер
+
+[Ащеулов Дмитрий Станиславович](https://github.com/deni10000), [Валяльщиков Дмитрий Алексеевич](https://github.com/valyalshikovd), [Желудько Александр Сергеевич] – Full-Stack Developers
+
+# Сервисы
+[Trello](https://trello.com/b/nXiWHh2D/tp-defense)
+# Документация
+Предпроектное исследование [.docx](https://github.com/anya-ananasss/Defense-Discover/blob/main/Documentation/%D0%9F%D1%80%D0%B5%D0%B4%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%BD%D0%BE%D0%B5%20%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5.docx) [.pdf](https://github.com/anya-ananasss/Defense-Discover/blob/main/Documentation/%D0%9F%D1%80%D0%B5%D0%B4%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%BD%D0%BE%D0%B5%20%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5.pdf)
+
+Техническое задание [.docx](https://github.com/anya-ananasss/Defense-Discover/blob/main/Documentation/%D0%A2%D0%B5%D1%85%D0%BD%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5.docx) [.pdf](https://github.com/anya-ananasss/Defense-Discover/blob/main/Documentation/%D0%A2%D0%B5%D1%85%D0%BD%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B5%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5.pdf)
+
+Презенатация технического задания [.pptx]() [.pdf]() [видео](https://drive.google.com/file/d/1ndDcHXR8mOY3htLtQ4NY1S_28J5mnuEP/view?usp=sharing)
+
+[User Stories](https://github.com/anya-ananasss/Defense-Discover/tree/main/Documentation/User%20Stories)
+
+[UML-диаграммы](https://github.com/anya-ananasss/Defense-Discover/tree/main/Documentation/Diagrams)
+
+[Схема API](https://github.com/anya-ananasss/Defense-Discover/blob/main/Documentation/api.json)

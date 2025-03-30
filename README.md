@@ -34,9 +34,9 @@
 
 # Оценки от других команд
 
-7 группа, 2 команда [Git](https://github.com/Vlad-gw/task-planner-app) [Чек-лист]()
+7 группа, 2 команда [Git](https://github.com/orgs/ReflectAppTP) [Чек-лист]()
 
-7 группа, 3 команда [Git](https://github.com/orgs/ReflectAppTP) [Чек-лист]()
+7 группа, 3 команда [Git](https://github.com/Vlad-gw/task-planner-app) [Чек-лист]()
 
 4 группа 1 команда [Git](https://publictransport2025.github.io/) [Чек-лист](https://docs.google.com/spreadsheets/d/1HykMUZnbwDM_4M6yXX6ubWmZNCqc3tGkh4k-YAq8fiY/edit?usp=sharing)
 

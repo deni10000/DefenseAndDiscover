@@ -38,6 +38,6 @@
 
 7 группа, 3 команда [Git](https://github.com/Vlad-gw/task-planner-app) [Чек-лист]()
 
-4 группа 1 команда [Git](https://publictransport2025.github.io/) [Чек-лист](https://docs.google.com/spreadsheets/d/1HykMUZnbwDM_4M6yXX6ubWmZNCqc3tGkh4k-YAq8fiY/edit?usp=sharing)
+4 группа 1 команда [Git](https://publictransport2025.github.io/) [Чек-лист](https://github.com/PublicTransport2025/Docs/blob/main/%D0%9A%D1%80%D0%BE%D1%81%D1%81-%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%BA%D0%B8.pdf)
 
-4 группа 2 команда [Git]() [Чек-лист]()
+4 группа 2 команда [Git](https://github.com/I-want-pizza/QWality) [Чек-лист]()

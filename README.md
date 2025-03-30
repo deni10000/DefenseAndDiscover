@@ -27,3 +27,13 @@
 [Схема API](https://github.com/anya-ananasss/Defense-Discover/blob/main/Documentation/api.json)
 
 [Брендбук](https://github.com/anya-ananasss/Defense-Discover/blob/main/Documentation/Brandbook.pdf)
+
+# Чек-листы
+
+[Чек-лист](https://docs.google.com/spreadsheets/d/19U0xC5gOdm_mPT1klIKZZq4wTx75BGbTmwrbDNzqY9o/edit?gid=116236438#gid=116236438)
+
+# Оценки от других команд
+
+7 группа, 2 команда [Git](https://github.com/Vlad-gw/task-planner-app) [Чек-лист]()
+
+7 группа, 3 команда [Git](https://github.com/orgs/ReflectAppTP) [Чек-лист]()

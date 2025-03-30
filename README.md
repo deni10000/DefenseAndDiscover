@@ -40,4 +40,4 @@
 
 4 группа 1 команда [Git](https://publictransport2025.github.io/) [Чек-лист](https://github.com/PublicTransport2025/Docs/blob/main/%D0%9A%D1%80%D0%BE%D1%81%D1%81-%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%BA%D0%B8.pdf)
 
-4 группа 2 команда [Git](https://github.com/I-want-pizza/QWality) [Чек-лист]()
+4 группа 2 команда [Git](https://github.com/I-want-pizza/QWality) [Чек-лист](https://github.com/I-want-pizza/QWality/blob/db488a1e794473a015df8cb8fc7b1416ed381151/docs/teams_score/%D0%A7%D0%B5%D0%BA%D0%BB%D0%B8%D1%81%D1%82_1_%D1%8D%D1%82%D0%B0%D0%BF.pdf)

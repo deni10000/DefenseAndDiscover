@@ -9,7 +9,7 @@
 
 [Токарев Дмитрий Сергеевич](https://github.com/IdealIdealIdeal) – дизайнер
 
-[Ащеулов Дмитрий Станиславович](https://github.com/deni10000), [Валяльщиков Дмитрий Алексеевич](https://github.com/valyalshikovd), [Желудько Александр Сергеевич] – Full-Stack Developers
+[Ащеулов Дмитрий Станиславович](https://github.com/deni10000), [Валяльщиков Дмитрий Алексеевич](https://github.com/valyalshikovd), [Желудько Александр Сергеевич](https://github.com/zheludkos) – Full-Stack Developers
 
 # Сервисы
 [Trello](https://trello.com/b/nXiWHh2D/tp-defense)

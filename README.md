@@ -7,7 +7,7 @@
 
 [Гурьева Анна Михайловна](https://github.com/anya-ananasss) – Project Manager, технический писатель
 
-[Токарев Дмитрий Сергеевич](https://github.com/IdealIdealIdeal) – дизайнер
+[Токарев Даниил Сергеевич](https://github.com/IdealIdealIdeal) – дизайнер
 
 [Ащеулов Дмитрий Станиславович](https://github.com/deni10000), [Валяльщиков Дмитрий Алексеевич](https://github.com/valyalshikovd), [Желудько Александр Сергеевич](https://github.com/zheludkos) – Full-Stack Developers
 

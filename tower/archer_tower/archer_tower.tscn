@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://dblmp648wldnf"]
+
+[ext_resource type="PackedScene" uid="uid://cn2hos3800cij" path="res://tower/base/tower.tscn" id="1_bd0id"]
+[ext_resource type="Script" uid="uid://f5rjfmrux455" path="res://tower/archer_tower/archer_tower.gd" id="2_b6m70"]
+[ext_resource type="SpriteFrames" uid="uid://30xal2d5v48x" path="res://tower/archer_tower/archer_tower.tres" id="3_vstve"]
+
+[sub_resource type="Shader" id="Shader_t748c"]
+code = "shader_type canvas_item;
+
+uniform float strength = 0.0;
+
+void fragment() {
+    COLOR = texture(TEXTURE, UV);
+    COLOR.rgb += vec3(strength);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vstve"]
+resource_local_to_scene = true
+shader = SubResource("Shader_t748c")
+shader_parameter/strength = 0.0
+
+[node name="ArcherTower" instance=ExtResource("1_bd0id")]
+script = ExtResource("2_b6m70")
+
+[node name="AttackArea" parent="." index="1"]
+scale = Vector2(3, 3)
+
+[node name="TowerSprite" parent="." index="2"]
+material = SubResource("ShaderMaterial_vstve")
+sprite_frames = ExtResource("3_vstve")
+
+[node name="Arrows" type="Node2D" parent="." index="3"]
+
+[node name="AttackTimer" type="Timer" parent="." index="4"]
+wait_time = 0.594
+one_shot = true

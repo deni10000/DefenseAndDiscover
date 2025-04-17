@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://cn2hos3800cij"]
+
+[ext_resource type="Script" uid="uid://b2heyk0ka434b" path="res://tower/base/tower.gd" id="1_sqydd"]
+[ext_resource type="Texture2D" uid="uid://123rymbcyjiy" path="res://asset/circle-svgrepo-com.svg" id="2_laowu"]
+[ext_resource type="Shader" uid="uid://cblr7c7vfb6pu" path="res://tower/base/tower.gdshader" id="2_t748c"]
+[ext_resource type="Shader" uid="uid://dlg0qflsyfl6j" path="res://tower/base/tower_lightning.gdshader" id="4_vis6u"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f2g6t"]
+radius = 50.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vis6u"]
+shader = ExtResource("2_t748c")
+shader_parameter/border_width = 0.013
+shader_parameter/fill_color = Color(1, 0.2, 0.2, 0.1)
+shader_parameter/border_color = Color(1, 0.4, 0, 0.6)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ci6ta"]
+radius = 100.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ghsb4"]
+resource_local_to_scene = true
+shader = ExtResource("4_vis6u")
+shader_parameter/strength = 0.0
+
+[node name="Tower" type="Node2D"]
+script = ExtResource("1_sqydd")
+
+[node name="DescriptionArea" type="Area2D" parent="."]
+process_mode = 3
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DescriptionArea"]
+shape = SubResource("CircleShape2D_f2g6t")
+
+[node name="AttackArea" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="Circle-svgrepo-com" type="Sprite2D" parent="AttackArea"]
+visible = false
+modulate = Color(1, 0.643137, 0.372549, 0.196078)
+z_index = 1
+material = SubResource("ShaderMaterial_vis6u")
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_laowu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource("CircleShape2D_ci6ta")
+one_way_collision_margin = 0.0
+
+[node name="TowerSprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_ghsb4")
+position = Vector2(0, -30)
+
+[connection signal="mouse_entered" from="DescriptionArea" to="." method="_on_description_area_mouse_entered"]
+[connection signal="mouse_exited" from="DescriptionArea" to="." method="_on_description_area_mouse_exited"]

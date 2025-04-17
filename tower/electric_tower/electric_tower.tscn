@@ -1,0 +1,202 @@
+[gd_scene load_steps=23 format=3 uid="uid://sqp3gbqgta6a"]
+
+[ext_resource type="PackedScene" uid="uid://cn2hos3800cij" path="res://tower/base/tower.tscn" id="1_xx6cv"]
+[ext_resource type="Script" uid="uid://cgoa3ntw3pfvy" path="res://tower/electric_tower/electric_tower.gd" id="2_7o06c"]
+[ext_resource type="SpriteFrames" uid="uid://l153cjpsc6ot" path="res://tower/electric_tower/electric_tower.tres" id="3_wiw85"]
+[ext_resource type="Texture2D" uid="uid://dvn00pq2gd05j" path="res://tower/electric_tower/Retro Impact Effect Pack 5 C.png" id="4_31j0h"]
+[ext_resource type="Texture2D" uid="uid://bwtyanqfu2equ" path="res://tower/electric_tower/attack2.png" id="5_oemvy"]
+
+[sub_resource type="Shader" id="Shader_t748c"]
+code = "shader_type canvas_item;
+
+uniform float strength = 0.0;
+
+void fragment() {
+    COLOR = texture(TEXTURE, UV);
+    COLOR.rgb += vec3(strength);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oemvy"]
+resource_local_to_scene = true
+shader = SubResource("Shader_t748c")
+shader_parameter/strength = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oemvy"]
+atlas = ExtResource("4_31j0h")
+region = Rect2(512, 1280, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b2ddg"]
+atlas = ExtResource("4_31j0h")
+region = Rect2(448, 1280, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eq68b"]
+atlas = ExtResource("4_31j0h")
+region = Rect2(384, 1280, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s2cms"]
+atlas = ExtResource("4_31j0h")
+region = Rect2(320, 1280, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_usvkp"]
+atlas = ExtResource("4_31j0h")
+region = Rect2(256, 1280, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ytvba"]
+atlas = ExtResource("4_31j0h")
+region = Rect2(192, 1280, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_456vd"]
+atlas = ExtResource("4_31j0h")
+region = Rect2(128, 1280, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cayk1"]
+atlas = ExtResource("4_31j0h")
+region = Rect2(256, 1280, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lppe7"]
+atlas = ExtResource("4_31j0h")
+region = Rect2(192, 1280, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ovpod"]
+atlas = ExtResource("4_31j0h")
+region = Rect2(128, 1280, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j8ejx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oemvy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b2ddg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eq68b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s2cms")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_usvkp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ytvba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_456vd")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cayk1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lppe7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ovpod")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 12.0
+}]
+
+[sub_resource type="Animation" id="Animation_b2ddg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Attack:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_eq68b"]
+resource_name = "attacking"
+length = 0.28
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Attack:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.07, 0.14, 0.21),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_oemvy"]
+resource_name = "start_attack"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Attack:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [5, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eq68b"]
+_data = {
+&"RESET": SubResource("Animation_b2ddg"),
+&"attacking": SubResource("Animation_eq68b"),
+&"start_attack": SubResource("Animation_oemvy")
+}
+
+[node name="ElectricTower" instance=ExtResource("1_xx6cv")]
+script = ExtResource("2_7o06c")
+
+[node name="AttackArea" parent="." index="1"]
+unique_name_in_owner = true
+scale = Vector2(3, 3)
+
+[node name="TowerSprite" parent="." index="2"]
+material = SubResource("ShaderMaterial_oemvy")
+sprite_frames = ExtResource("3_wiw85")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." index="3"]
+visible = false
+texture_repeat = 2
+position = Vector2(133, -34)
+rotation = -1.92483
+sprite_frames = SubResource("SpriteFrames_j8ejx")
+animation = &"new_animation"
+frame_progress = 0.240652
+
+[node name="Attack" type="Sprite2D" parent="." index="4"]
+unique_name_in_owner = true
+visible = false
+z_index = -2
+texture_repeat = 2
+position = Vector2(0, -56)
+texture = ExtResource("5_oemvy")
+centered = false
+offset = Vector2(-32, 15)
+hframes = 7
+frame = 4
+region_enabled = true
+region_rect = Rect2(0, 0, 448, 512)
+
+[node name="AttackAnimation" type="AnimationPlayer" parent="." index="5"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_eq68b")
+}
+next/start_attack = &"attacking"

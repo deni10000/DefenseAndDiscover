@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://hv3egs3sqtm6"]
+
+[ext_resource type="PackedScene" uid="uid://dy4r1ip5lxp2r" path="res://enemy/base/enemy.tscn" id="1_e8y4p"]
+[ext_resource type="Script" uid="uid://5hqiptnii46q" path="res://enemy/red_slime/red_slime.gd" id="2_bajju"]
+[ext_resource type="SpriteFrames" uid="uid://co3d5v8qtw82u" path="res://enemy/red_slime/red_slime.tres" id="3_xvdis"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yj8uq"]
+radius = 9.0
+
+[node name="RedSlime" instance=ExtResource("1_e8y4p")]
+script = ExtResource("2_bajju")
+max_hp = 200.0
+
+[node name="HpBar" parent="." index="0"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -26.0
+offset_right = 35.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body" index="0"]
+shape = SubResource("CircleShape2D_yj8uq")
+
+[node name="Texture" parent="." index="2"]
+scale = Vector2(1, 0.969)
+sprite_frames = ExtResource("3_xvdis")
+animation = &"move"
+autoplay = "move"
+frame_progress = 0.410632

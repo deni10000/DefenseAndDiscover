@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://dy4r1ip5lxp2r"]
+
+[ext_resource type="Script" uid="uid://dhennyynwt7tv" path="res://enemy/base/enemy.gd" id="1_1fxkx"]
+[ext_resource type="Script" uid="uid://bq6qckk15x2xp" path="res://enemy/base/body.gd" id="2_2aqp0"]
+
+[sub_resource type="Gradient" id="Gradient_1jw52"]
+colors = PackedColorArray(1, 0, 0, 1, 0.984314, 0.00392157, 0.00392157, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tgjqm"]
+gradient = SubResource("Gradient_1jw52")
+width = 70
+height = 8
+
+[node name="Enemy" type="PathFollow2D" node_paths=PackedStringArray("texture", "lightning") groups=["Enemy"]]
+y_sort_enabled = true
+rotates = false
+loop = false
+script = ExtResource("1_1fxkx")
+texture = NodePath("Texture")
+lightning = NodePath("Texture/Lightning")
+
+[node name="HpBar" type="TextureProgressBar" parent="."]
+offset_left = 18.0
+offset_top = 4.0
+offset_right = 124.0
+offset_bottom = 68.0
+value = 100.0
+texture_progress = SubResource("GradientTexture2D_tgjqm")
+metadata/_edit_lock_ = true
+
+[node name="Body" type="Area2D" parent="."]
+script = ExtResource("2_2aqp0")
+
+[node name="Texture" type="AnimatedSprite2D" parent="."]
+
+[node name="Lightning" type="AnimatedSprite2D" parent="Texture"]

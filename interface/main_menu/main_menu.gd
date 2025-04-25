@@ -79,3 +79,16 @@ func _on_check_statistic_pressed() -> void:
 
 func _on_statistic_cross_button_pressed() -> void:
 	%StatisticMenu.visible = false
+
+
+func _on_volume_slider_value_changed(value: float) -> void:
+	Global.volume = value
+	
+
+
+func _on_settings_cross_button_pressed() -> void:
+	%Settings.visible = false
+
+
+func _on_settings_button_pressed() -> void:
+	%Settings.visible = true

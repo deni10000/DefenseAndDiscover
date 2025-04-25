@@ -3,6 +3,8 @@ extends Node
 enum Types {ELECTRIC, ARCHER, ART, TREE}
 
 signal gold_changed
+signal start_question(type: Types)
+signal question_completed(is_successful: bool)
 
 var gold : int:
 	set(v):
@@ -19,6 +21,7 @@ var arrow := preload("uid://d2bj3yntbkiuu")
 var tree_tower := preload("uid://6a7dry2en0la")
 var level_scene := preload("uid://mahg2nbldblf")
 var java_script := JavaScriptBridge.get_interface("window")
+var volume: float = 0.5
 
 class Properties:
 	var power: int

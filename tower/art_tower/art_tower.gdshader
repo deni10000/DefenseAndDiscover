@@ -1,9 +1,9 @@
 shader_type canvas_item;
 
-uniform vec2 center = vec2(0.5, 0.5); 
-uniform float speed = 1.0;     
-uniform float frequency = 10.0; 
-uniform float thickness = 0.05; 
+uniform vec2 center = vec2(0.5, 0.5);
+uniform float speed = 1.0;
+uniform float frequency = 10.0;
+uniform float thickness = 0.05;
 
 void fragment() {
     float dist = distance(UV, center);

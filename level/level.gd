@@ -6,6 +6,8 @@ const CAMERA_ZOOM_MIN : Vector2 = Vector2(0.6, 0.6)
 const CAMERA_ZOOM_MAX : Vector2 = Vector2(3.0, 3.0)
 const CAMERA_TWEEN_DURATION : float = 0.3
 const CAMERA_SPEED = 400
+var MAX_RATIO = 16 / 9
+var MIN_RATIO = 16 / 9
 
 @onready var viewport_size = get_viewport().size
 @export var camera: Camera2D; 
@@ -19,9 +21,23 @@ var hp:
 
 var camera_tween: Tween = null 
 func _ready() -> void:
+	get_viewport().size_changed.connect(center_field)
 	Global.gold_changed.connect(update_gold_label)
 	%GoldInput.text = str(Global.gold)
 	hp = 30
+
+
+func center_field():
+	var screen_size = get_viewport().get_visible_rect().size
+	print(screen_size)
+	camera.limit_right = 1920 + (screen_size.x - 1920) / 2
+	camera.limit_bottom = 1080 + (screen_size.y - 1080) / 2
+	var aspect = screen_size.x / screen_size.y
+	var viewport := get_viewport()
+	if aspect > MAX_RATIO:
+		ProjectSettings.set_setting("display/window/stretch/aspect", "keep")
+	elif aspect < MIN_RATIO:
+		ProjectSettings.set_setting("display/window/stretch/aspect", "keep")
 	
 
 var waves = [

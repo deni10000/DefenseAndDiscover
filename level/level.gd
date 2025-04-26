@@ -107,3 +107,7 @@ func _on_wave_generator_add_enemy(enemy: Enemy) -> void:
 
 func _on_wave_generator_wave_ended() -> void:
 	%Control/StartWave.visible = true
+
+
+func _on_button_2_pressed() -> void:
+	%Question.start_question("agaga", ["0", "1", "2", "3"] as Array[String], 0)

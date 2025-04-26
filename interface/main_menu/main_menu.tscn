@@ -1,6 +1,6 @@
 [gd_scene load_steps=47 format=3 uid="uid://dgd30hd5wxqbf"]
 
-[ext_resource type="Theme" uid="uid://h1f7iqhh7ycb" path="res://theme/kenneyUI-yellow.tres" id="1_dftu7"]
+[ext_resource type="Theme" uid="uid://bbr70t6gbgc2m" path="res://theme/maintheme.tres" id="1_7piqx"]
 [ext_resource type="Texture2D" uid="uid://d1vg4wf0s8br8" path="res://interface/main_menu/background_upscale.png" id="2_rahlh"]
 [ext_resource type="Script" uid="uid://cu8e2j7nnhfvx" path="res://interface/main_menu/main_menu.gd" id="2_wwcsp"]
 [ext_resource type="Shader" uid="uid://cwge4y7tj8vrt" path="res://interface/main_menu/blur.gdshader" id="3_rahlh"]
@@ -468,7 +468,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_dftu7")
+theme = ExtResource("1_7piqx")
 script = ExtResource("2_wwcsp")
 
 [node name="TextureRect" type="TextureRect" parent="."]

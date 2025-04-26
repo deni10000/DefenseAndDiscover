@@ -1,0 +1,7 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://b60dsl3pkqj70"]
+
+[ext_resource type="Texture2D" uid="uid://nft0hupjmydc" path="res://theme/menu block panel.png" id="1_odkeq"]
+
+[resource]
+texture = ExtResource("1_odkeq")
+region_rect = Rect2(8, 1, 108, 124)

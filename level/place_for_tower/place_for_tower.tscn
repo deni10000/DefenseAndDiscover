@@ -27,8 +27,9 @@ offset_left = -0.458008
 offset_top = -174.733
 offset_right = -0.458008
 offset_bottom = -174.733
+theme = ExtResource("2_8yj58")
 
-[node name="MenuPanel" type="Panel" parent="Control"]
+[node name="MenuPanel" type="PanelContainer" parent="Control"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -37,67 +38,45 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -236.5
-offset_top = -99.5
-offset_right = 236.5
-offset_bottom = 99.5
+offset_left = -172.0
+offset_top = -111.5
+offset_right = 172.0
+offset_bottom = 111.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-theme = ExtResource("2_8yj58")
 
-[node name="Menu" type="HBoxContainer" parent="Control/MenuPanel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -206.0
-offset_top = -92.0
-offset_right = 206.0
-offset_bottom = 92.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="MarginContainer" type="MarginContainer" parent="Control/MenuPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="Menu" type="HBoxContainer" parent="Control/MenuPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
 metadata/_edit_lock_ = true
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/MenuPanel/Menu"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="ArcherTowerCard" parent="Control/MenuPanel/Menu/MarginContainer" instance=ExtResource("2_f7jdn")]
+[node name="ArcherTowerCard" parent="Control/MenuPanel/MarginContainer/Menu" instance=ExtResource("2_f7jdn")]
 unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("3_i8p77")
 
-[node name="MarginContainer2" type="MarginContainer" parent="Control/MenuPanel/Menu"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="ArtTowerCard" parent="Control/MenuPanel/Menu/MarginContainer2" instance=ExtResource("2_f7jdn")]
+[node name="ArtTowerCard" parent="Control/MenuPanel/MarginContainer/Menu" instance=ExtResource("2_f7jdn")]
 unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("6_k7vnn")
 
-[node name="MarginContainer3" type="MarginContainer" parent="Control/MenuPanel/Menu"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="TreeTowerCard" parent="Control/MenuPanel/Menu/MarginContainer3" instance=ExtResource("2_f7jdn")]
+[node name="TreeTowerCard" parent="Control/MenuPanel/MarginContainer/Menu" instance=ExtResource("2_f7jdn")]
 unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("5_i8p77")
 
-[node name="MarginContainer4" type="MarginContainer" parent="Control/MenuPanel/Menu"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="ElectricTowerCard" parent="Control/MenuPanel/Menu/MarginContainer4" instance=ExtResource("2_f7jdn")]
+[node name="ElectricTowerCard" parent="Control/MenuPanel/MarginContainer/Menu" instance=ExtResource("2_f7jdn")]
 unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("4_4bv7a")
 
-[node name="UpdatePanel" type="Panel" parent="Control"]
+[node name="UpdatePanel" type="PanelContainer" parent="Control"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -106,43 +85,31 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -124.0
-offset_top = -92.0
-offset_right = 141.0
-offset_bottom = 92.0
+offset_left = -152.0
+offset_top = -108.0
+offset_right = 152.0
+offset_bottom = 108.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="Update" type="HBoxContainer" parent="Control/UpdatePanel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -132.0
-offset_top = -92.0
-offset_right = 132.0
-offset_bottom = 92.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="MarginContainer" type="MarginContainer" parent="Control/UpdatePanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+
+[node name="Update" type="HBoxContainer" parent="Control/UpdatePanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
 alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/UpdatePanel/Update"]
-custom_minimum_size = Vector2(130, 0)
-layout_mode = 2
-
-[node name="UpdateCard" parent="Control/UpdatePanel/Update/MarginContainer" instance=ExtResource("2_f7jdn")]
+[node name="UpdateCard" parent="Control/UpdatePanel/MarginContainer/Update" instance=ExtResource("2_f7jdn")]
 unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("8_wxjlh")
 
-[node name="MarginContainer2" type="MarginContainer" parent="Control/UpdatePanel/Update"]
-custom_minimum_size = Vector2(130, 0)
-layout_mode = 2
-
-[node name="RemoveCard" parent="Control/UpdatePanel/Update/MarginContainer2" instance=ExtResource("2_f7jdn")]
+[node name="RemoveCard" parent="Control/UpdatePanel/MarginContainer/Update" instance=ExtResource("2_f7jdn")]
 unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("9_3xuer")
@@ -162,12 +129,12 @@ texture = ExtResource("7_7tcvd")
 
 [connection signal="mouse_entered" from="Control" to="." method="_on_control_mouse_entered"]
 [connection signal="mouse_exited" from="Control" to="." method="_on_control_mouse_exited"]
-[connection signal="cardPressed" from="Control/MenuPanel/Menu/MarginContainer/ArcherTowerCard" to="." method="_on_archer_tower_card_card_pressed"]
-[connection signal="cardPressed" from="Control/MenuPanel/Menu/MarginContainer2/ArtTowerCard" to="." method="_on_art_tower_card_card_pressed"]
-[connection signal="cardPressed" from="Control/MenuPanel/Menu/MarginContainer3/TreeTowerCard" to="." method="_on_tree_tower_card_card_pressed"]
-[connection signal="cardPressed" from="Control/MenuPanel/Menu/MarginContainer4/ElectricTowerCard" to="." method="_on_electric_tower_card_card_pressed"]
-[connection signal="cardPressed" from="Control/UpdatePanel/Update/MarginContainer/UpdateCard" to="." method="_on_update_card_card_pressed"]
-[connection signal="cardPressed" from="Control/UpdatePanel/Update/MarginContainer2/RemoveCard" to="." method="_on_remove_card_card_pressed"]
+[connection signal="cardPressed" from="Control/MenuPanel/MarginContainer/Menu/ArcherTowerCard" to="." method="_on_archer_tower_card_card_pressed"]
+[connection signal="cardPressed" from="Control/MenuPanel/MarginContainer/Menu/ArtTowerCard" to="." method="_on_art_tower_card_card_pressed"]
+[connection signal="cardPressed" from="Control/MenuPanel/MarginContainer/Menu/TreeTowerCard" to="." method="_on_tree_tower_card_card_pressed"]
+[connection signal="cardPressed" from="Control/MenuPanel/MarginContainer/Menu/ElectricTowerCard" to="." method="_on_electric_tower_card_card_pressed"]
+[connection signal="cardPressed" from="Control/UpdatePanel/MarginContainer/Update/UpdateCard" to="." method="_on_update_card_card_pressed"]
+[connection signal="cardPressed" from="Control/UpdatePanel/MarginContainer/Update/RemoveCard" to="." method="_on_remove_card_card_pressed"]
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

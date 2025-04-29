@@ -1,12 +1,18 @@
-[gd_scene load_steps=10 format=3 uid="uid://mahg2nbldblf"]
+[gd_scene load_steps=13 format=3 uid="uid://mahg2nbldblf"]
 
 [ext_resource type="Script" uid="uid://dc256idbg6umu" path="res://level/level.gd" id="1_dbc2d"]
 [ext_resource type="Theme" uid="uid://bbr70t6gbgc2m" path="res://theme/maintheme.tres" id="2_44x8d"]
 [ext_resource type="PackedScene" uid="uid://b8kf561rc3uea" path="res://interface/question_panel/question.tscn" id="3_44x8d"]
 [ext_resource type="PackedScene" uid="uid://c0rltbdwa65jf" path="res://level/place_for_tower/place_for_tower.tscn" id="3_qohg2"]
 [ext_resource type="Texture2D" uid="uid://coxkud27kxx4r" path="res://level/map2.png" id="3_vkbyq"]
+[ext_resource type="Shader" uid="uid://cwge4y7tj8vrt" path="res://interface/main_menu/blur.gdshader" id="4_0v1st"]
 [ext_resource type="PackedScene" uid="uid://b0dgarfasdp6i" path="res://level/map/map.tscn" id="4_ivpvi"]
 [ext_resource type="Script" uid="uid://m1vo0myw6iol" path="res://level/wave_generator/wave_generator.gd" id="4_vkbyq"]
+[ext_resource type="PackedScene" uid="uid://dmmbux1y4e8bw" path="res://interface/main_menu/cross_button.tscn" id="5_6gtgk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6gtgk"]
+shader = ExtResource("4_0v1st")
+shader_parameter/lod = 2.0
 
 [sub_resource type="Curve2D" id="Curve2D_qohg2"]
 _data = {
@@ -34,92 +40,73 @@ position_smoothing_enabled = true
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 unique_name_in_owner = true
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -4.0
-offset_right = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 mouse_filter = 2
 theme = ExtResource("2_44x8d")
 
-[node name="Panel" type="Panel" parent="CanvasLayer/Control"]
+[node name="Panel" type="PanelContainer" parent="CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.998
+anchor_top = -0.0111111
 anchor_right = 0.998
+anchor_bottom = -0.0111111
 offset_left = -348.16
 offset_right = -0.160034
 offset_bottom = 276.0
-metadata/_edit_group_ = true
 metadata/_edit_use_anchors_ = true
 
-[node name="GoldInput" type="Label" parent="CanvasLayer/Control/Panel"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.231
-anchor_bottom = 0.231
-offset_left = 124.0
-offset_top = -42.756
-offset_right = 332.0
-offset_bottom = 40.244
-vertical_alignment = 1
-autowrap_mode = 3
-text_overrun_behavior = 3
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 12
 
-[node name="HpInput" type="Label" parent="CanvasLayer/Control/Panel"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.535
-anchor_bottom = 0.535
-offset_left = 124.0
-offset_top = -47.16
-offset_right = 188.0
-offset_bottom = 35.84
-vertical_alignment = 1
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
 
-[node name="Hp" type="Label" parent="CanvasLayer/Control/Panel"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.535
-anchor_bottom = 0.535
-offset_left = 24.0
-offset_top = -41.16
-offset_right = 106.0
-offset_bottom = 41.84
-theme_override_font_sizes/font_size = 60
-text = "♥️"
-
-[node name="Gold" type="Label" parent="CanvasLayer/Control/Panel"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.231
-anchor_bottom = 0.231
-offset_left = 24.0
-offset_top = -39.756
-offset_right = 106.0
-offset_bottom = 43.244
+[node name="Gold" type="Label" parent="CanvasLayer/Control/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 60
 text = "💰"
 
-[node name="Button" type="Button" parent="CanvasLayer/Control/Panel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -88.0
-offset_top = 49.3745
-offset_right = 88.0
-offset_bottom = 112.626
-grow_horizontal = 2
-grow_vertical = 2
+[node name="GoldInput" type="Label" parent="CanvasLayer/Control/Panel/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 0.85098, 0.282353, 1)
+theme_override_constants/outline_size = 5
+autowrap_mode = 3
+text_overrun_behavior = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Control/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Hp" type="Label" parent="CanvasLayer/Control/Panel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 60
+text = "♥️"
+
+[node name="HpInput" type="Label" parent="CanvasLayer/Control/Panel/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.972549, 0.25098, 0.243137, 1)
+theme_override_constants/outline_size = 5
+
+[node name="MenuButton" type="Button" parent="CanvasLayer/Control/Panel/VBoxContainer"]
+layout_mode = 2
 theme_override_font_sizes/font_size = 28
 text = "Меню"
 
@@ -149,17 +136,6 @@ offset_bottom = 84.251
 grow_horizontal = 2
 text = "Начать волну"
 
-[node name="Menu" type="Control" parent="CanvasLayer/Control"]
-visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Question" parent="CanvasLayer/Control" instance=ExtResource("3_44x8d")]
-unique_name_in_owner = true
-visible = false
-layout_mode = 1
-
 [node name="Button2" type="Button" parent="CanvasLayer/Control"]
 layout_mode = 0
 offset_left = 292.0
@@ -167,6 +143,82 @@ offset_top = 24.0
 offset_right = 440.324
 offset_bottom = 84.251
 text = "Вопрос"
+
+[node name="Question" parent="CanvasLayer/Control" instance=ExtResource("3_44x8d")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="Menu" type="Control" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control/Menu"]
+material = SubResource("ShaderMaterial_6gtgk")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.560784)
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control/Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -226.5
+offset_top = -131.0
+offset_right = 226.5
+offset_bottom = 131.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/Menu/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="HBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Menu/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Menu/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Меню"
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/Menu/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "Настройки"
+
+[node name="Button2" type="Button" parent="CanvasLayer/Control/Menu/PanelContainer/MarginContainer/HBoxContainer"]
+self_modulate = Color(0.737255, 0.137255, 0.137255, 1)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "На главный экран"
+
+[node name="MenuCrossButton" parent="CanvasLayer/Control/Menu" instance=ExtResource("5_6gtgk")]
+layout_mode = 1
+offset_left = 173.0
+offset_top = -144.0
+offset_right = 243.0
+offset_bottom = -74.0001
+scale = Vector2(0.86, 0.86)
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer"]
 visible = false
@@ -243,9 +295,11 @@ unique_name_in_owner = true
 script = ExtResource("4_vkbyq")
 metadata/_custom_type_script = "uid://m1vo0myw6iol"
 
+[connection signal="pressed" from="CanvasLayer/Control/Panel/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/StartWave" to="." method="start_wave"]
 [connection signal="pressed" from="CanvasLayer/Control/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Menu/MenuCrossButton" to="." method="_on_menu_cross_button_pressed"]
 [connection signal="timeout" from="Level/EnemyTimer" to="." method="next_enemy"]
 [connection signal="area_entered" from="Level/Home" to="." method="_on_home_area_entered"]
 [connection signal="add_enemy" from="Level/Wave_generator" to="." method="_on_wave_generator_add_enemy"]

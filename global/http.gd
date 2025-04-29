@@ -1,7 +1,7 @@
 extends Node
 
-var base_url := "https://example.com"
-var token := "laglagl"
+var base_url := "http://127.0.0.1:8000"
+var token := ''
 var cookie_time = 30
 
 const TIMEOUT_SECONDS := 4.0
@@ -27,37 +27,39 @@ func _send_request(http_request: HTTPRequest, method: int, url: String, data: Di
 	var error := http_request.request(base_url + url, headers, method, body)
 	if error != OK:
 		http_request.queue_free()
-		return {}
+		return {'error':''}
 
 	var result = await http_request.request_completed
 	http_request.queue_free()
 	if result[0] != HTTPRequest.Result.RESULT_SUCCESS:
-		return {}
+		return {'error':''}
 	var response_code = result[1]
 	var response_body = result[3].get_string_from_utf8()
 	
 	if response_code == 403:
 		token = ''
 		if OS.get_name() == 'Web':
-			Global.java_script.setCookie("token", "", cookie_time)
+			Global.java_script.setCookie("token", "", 0)
 	
-	if response_code in [200, 201]:
+	if response_code / 100 == 2:
 		var json = JSON.parse_string(response_body)
 		return json if typeof(json) == TYPE_DICTIONARY else {}
-	return {}
+	return {'error':''}
 
 # ========== AUTH ==========
 
-func register_user(email: String, password: String) -> Dictionary:
+func register_user(email: String, login:String, password: String) -> Dictionary:
 	return await _send_request(_create_http_request(), HTTPClient.METHOD_POST, "/api/regUser", {
 		"email": email,
-		"password": password
+		"password": password,
+		"login": login
 	})
 
-func confirm_user(email: String, code: int) -> Dictionary:
-	var response := await _send_request(_create_http_request(), HTTPClient.METHOD_POST, "/api/confirmation", {
+func confirm_user(email: String, login:String, password: String, code: String) -> Dictionary:
+	var response := await _send_request(_create_http_request(), HTTPClient.METHOD_POST, "/api/confirmation/" + str(code), {
 		"email": email,
-		"code": code
+		"password": password,
+		"login": login
 	})
 	if response.has("token"):
 		token = response["token"]

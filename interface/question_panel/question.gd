@@ -19,6 +19,7 @@ func start_question(question: String, answers: Array[String], correct_answer_ind
 	if len(answers) != 4 or correct_answer_index > 3 or correct_answer_index < 0:
 		incorrect_answer.emit()
 		return
+	#get_tree().paused = true
 	visible = true
 	for i in range(len(children)):
 		var button: Button = children[i]
@@ -27,6 +28,7 @@ func start_question(question: String, answers: Array[String], correct_answer_ind
 	var prev_color = filling.bg_color
 	var tween := get_tree().create_tween()
 	tween.set_parallel()
+	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	
 	tween.finished.connect(_on_any_button_pressed.bind(-1))
 	tween.tween_property(%ProgressBar,  "value", 0, question_time).from(%ProgressBar.max_value)
@@ -54,6 +56,7 @@ func start_question(question: String, answers: Array[String], correct_answer_ind
 		correct_answer.emit()
 	await timer.timeout
 	visible = false
+	get_tree().paused = false
 	filling.bg_color = prev_color
 	for i in range(len(children)):
 		children[i].modulate = Color.WHITE

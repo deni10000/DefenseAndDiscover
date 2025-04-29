@@ -111,3 +111,13 @@ func _on_wave_generator_wave_ended() -> void:
 
 func _on_button_2_pressed() -> void:
 	%Question.start_question("agaga", ["0", "1", "2", "3"] as Array[String], 0)
+
+
+func _on_menu_cross_button_pressed() -> void:
+	%Menu.visible = false
+	get_tree().paused = false
+
+
+func _on_menu_button_pressed() -> void:
+	%Menu.visible = true 
+	get_tree().paused = true

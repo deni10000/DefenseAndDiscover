@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://mahg2nbldblf"]
+[gd_scene load_steps=14 format=3 uid="uid://mahg2nbldblf"]
 
 [ext_resource type="Script" uid="uid://dc256idbg6umu" path="res://level/level.gd" id="1_dbc2d"]
 [ext_resource type="Theme" uid="uid://bbr70t6gbgc2m" path="res://theme/maintheme.tres" id="2_44x8d"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b0dgarfasdp6i" path="res://level/map/map.tscn" id="4_ivpvi"]
 [ext_resource type="Script" uid="uid://m1vo0myw6iol" path="res://level/wave_generator/wave_generator.gd" id="4_vkbyq"]
 [ext_resource type="PackedScene" uid="uid://dmmbux1y4e8bw" path="res://interface/main_menu/cross_button.tscn" id="5_6gtgk"]
+[ext_resource type="PackedScene" uid="uid://dj334r3yagshk" path="res://interface/settings_panel/settings.tscn" id="6_cw150"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6gtgk"]
 shader = ExtResource("4_0v1st")
@@ -40,7 +41,6 @@ position_smoothing_enabled = true
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 unique_name_in_owner = true
-process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -55,9 +55,9 @@ theme = ExtResource("2_44x8d")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.998
-anchor_top = -0.0111111
+anchor_top = 0.00277779
 anchor_right = 0.998
-anchor_bottom = -0.0111111
+anchor_bottom = 0.0490741
 offset_left = -348.16
 offset_right = -0.160034
 offset_bottom = 276.0
@@ -71,11 +71,19 @@ theme_override_constants/separation = 12
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="Gold" type="Label" parent="CanvasLayer/Control/Panel/VBoxContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/Panel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_constants/outline_size = 6
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_right = 6
+
+[node name="Gold" type="Label" parent="CanvasLayer/Control/Panel/VBoxContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 0
 theme_override_font_sizes/font_size = 60
 text = "💰"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="GoldInput" type="Label" parent="CanvasLayer/Control/Panel/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
@@ -93,9 +101,11 @@ theme_override_constants/separation = 5
 
 [node name="Hp" type="Label" parent="CanvasLayer/Control/Panel/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-theme_override_constants/outline_size = 6
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 60
 text = "♥️"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HpInput" type="Label" parent="CanvasLayer/Control/Panel/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
@@ -110,6 +120,12 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 28
 text = "Меню"
 
+[node name="StartWave" type="Button" parent="CanvasLayer/Control/Panel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Начать волну"
+
 [node name="Button" type="Button" parent="CanvasLayer/Control"]
 process_mode = 3
 layout_mode = 1
@@ -123,18 +139,6 @@ grow_horizontal = 2
 grow_vertical = 2
 keep_pressed_outside = true
 text = "Пауза"
-
-[node name="StartWave" type="Button" parent="CanvasLayer/Control"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -316.0
-offset_top = 24.0
-offset_right = -166.676
-offset_bottom = 84.251
-grow_horizontal = 2
-text = "Начать волну"
 
 [node name="Button2" type="Button" parent="CanvasLayer/Control"]
 layout_mode = 0
@@ -199,13 +203,13 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Меню"
 
-[node name="Button" type="Button" parent="CanvasLayer/Control/Menu/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="SettingsButton" type="Button" parent="CanvasLayer/Control/Menu/PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 40
 text = "Настройки"
 
-[node name="Button2" type="Button" parent="CanvasLayer/Control/Menu/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="ExitButton" type="Button" parent="CanvasLayer/Control/Menu/PanelContainer/MarginContainer/HBoxContainer"]
 self_modulate = Color(0.737255, 0.137255, 0.137255, 1)
 layout_mode = 2
 size_flags_vertical = 0
@@ -219,6 +223,73 @@ offset_top = -144.0
 offset_right = 243.0
 offset_bottom = -74.0001
 scale = Vector2(0.86, 0.86)
+
+[node name="Settings" parent="CanvasLayer/Control/Menu" instance=ExtResource("6_cw150")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="DefeatMenu" type="Control" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control/DefeatMenu"]
+material = SubResource("ShaderMaterial_6gtgk")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.560784)
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control/DefeatMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/DefeatMenu/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/DefeatMenu/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/DefeatMenu/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_constants/outline_size = 10
+text = "Вы прогиграли!"
+horizontal_alignment = 1
+
+[node name="RestartButton" type="Button" parent="CanvasLayer/Control/DefeatMenu/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Начать заново"
+
+[node name="ExitButton" type="Button" parent="CanvasLayer/Control/DefeatMenu/PanelContainer/MarginContainer/VBoxContainer"]
+modulate = Color(0.694118, 0.0941176, 0.027451, 1)
+layout_mode = 2
+text = "Выйти "
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer"]
 visible = false
@@ -296,10 +367,14 @@ script = ExtResource("4_vkbyq")
 metadata/_custom_type_script = "uid://m1vo0myw6iol"
 
 [connection signal="pressed" from="CanvasLayer/Control/Panel/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Panel/VBoxContainer/StartWave" to="." method="start_wave"]
 [connection signal="pressed" from="CanvasLayer/Control/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/StartWave" to="." method="start_wave"]
 [connection signal="pressed" from="CanvasLayer/Control/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Menu/PanelContainer/MarginContainer/HBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Menu/PanelContainer/MarginContainer/HBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Menu/MenuCrossButton" to="." method="_on_menu_cross_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/DefeatMenu/PanelContainer/MarginContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/DefeatMenu/PanelContainer/MarginContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="timeout" from="Level/EnemyTimer" to="." method="next_enemy"]
 [connection signal="area_entered" from="Level/Home" to="." method="_on_home_area_entered"]
 [connection signal="add_enemy" from="Level/Wave_generator" to="." method="_on_wave_generator_add_enemy"]

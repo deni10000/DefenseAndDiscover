@@ -105,11 +105,6 @@ func _on_volume_slider_value_changed(value: float) -> void:
 	Global.volume = value
 	
 
-
-func _on_settings_cross_button_pressed() -> void:
-	%Settings.visible = false
-
-
 func _on_settings_button_pressed() -> void:
 	%Settings.visible = true
 
@@ -151,3 +146,7 @@ func _on_authorization_button_pressed() -> void:
 	if 'error' not in ret:
 		%Authorization.visible =false
 	disable_waiting()
+
+
+func _on_recover_password_button_pressed() -> void:
+	%GetPassword.visible = true

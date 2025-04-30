@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://d00ws7wljnit4" path="res://theme/UIpack_vector.svg" id="1"]
 [ext_resource type="Texture2D" uid="uid://cukb4mqk7d2wo" path="res://interface/new_compressed_texture_2d.tres" id="1_jexus"]
-[ext_resource type="FontFile" uid="uid://br1gar1biyjq1" path="res://theme/pixelcyr_normal.ttf" id="1_r2224"]
+[ext_resource type="FontFile" uid="uid://cb5ifriwne1qf" path="res://theme/pixelcyr_normal.ttf" id="1_r2224"]
 [ext_resource type="FontFile" uid="uid://3rbcosvdyhmd" path="res://theme/kenvector_future.ttf" id="2"]
 [ext_resource type="FontFile" uid="uid://1qmoiwwfgi76" path="res://theme/alagard-12px-unicode.ttf" id="3_ybv40"]
 [ext_resource type="StyleBox" uid="uid://qvbqayxaithc" path="res://theme/button_texture.tres" id="4_u4boy"]
@@ -356,6 +356,7 @@ HSlider/styles/slider = SubResource("17")
 Label/colors/font_color = Color(0, 0, 0, 1)
 Label/font_sizes/font_size = 49
 Label/fonts/font = ExtResource("1_r2224")
+LineEdit/colors/caret_color = Color(0, 0, 0, 1)
 LineEdit/colors/clear_button_color = Color(0.88, 0.88, 0.88, 1)
 LineEdit/colors/clear_button_color_pressed = Color(1, 1, 1, 1)
 LineEdit/colors/cursor_color = Color(0.34902, 0.34902, 0.34902, 1)

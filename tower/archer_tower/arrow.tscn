@@ -1,6 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://d2bj3yntbkiuu"]
 
 [ext_resource type="Script" uid="uid://d3qkkeoo1sgw4" path="res://tower/archer_tower/arrow.gd" id="1_b6v0w"]
+[ext_resource type="Texture2D" uid="uid://vvk26y8jombr" path="res://tower/archer_tower/arrow.png" id="2_84xuu"]
 [ext_resource type="PackedScene" uid="uid://so0m1tucs74d" path="res://tower/archer_tower/node_2d.tscn" id="3_5f6xn"]
 
 [sub_resource type="Curve2D" id="Curve2D_84xuu"]
@@ -9,10 +10,6 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -377.983, 46.5636)
 }
 point_count = 1
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_h6xkx"]
-resource_local_to_scene = true
-load_path = "res://.godot/imported/pixel-art-arrow-item-game-bit-white-background_360488-156 (1) (1).png-06fa655092eb1ed6c57439c9b300c45e.ctex"
 
 [node name="Arrow" type="Path2D"]
 y_sort_enabled = true
@@ -27,7 +24,7 @@ loop = false
 [node name="Arrow" type="Sprite2D" parent="PathFollow2D"]
 rotation = 0.785398
 scale = Vector2(0.05, 0.05)
-texture = SubResource("CompressedTexture2D_h6xkx")
+texture = ExtResource("2_84xuu")
 
 [node name="Node2D" parent="." instance=ExtResource("3_5f6xn")]
 visible = false

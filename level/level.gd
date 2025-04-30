@@ -18,6 +18,9 @@ var hp:
 	set(value):
 		%HpInput.text = str(value)
 		hp = value
+		if hp <= 0:
+			get_tree().paused = true
+			%DefeatMenu.visible = true
 
 var camera_tween: Tween = null 
 func _ready() -> void:
@@ -74,7 +77,7 @@ func update_gold_label():
 
 func start_wave():
 	enemy_count = 0
-	%Control/StartWave.visible = false
+	%StartWave.visible = false
 	%Wave_generator.start_wave()
 	
 
@@ -106,7 +109,7 @@ func _on_wave_generator_add_enemy(enemy: Enemy) -> void:
 
 
 func _on_wave_generator_wave_ended() -> void:
-	%Control/StartWave.visible = true
+	%StartWave.visible = true
 
 
 func _on_button_2_pressed() -> void:
@@ -121,3 +124,17 @@ func _on_menu_cross_button_pressed() -> void:
 func _on_menu_button_pressed() -> void:
 	%Menu.visible = true 
 	get_tree().paused = true
+
+
+func _on_settings_button_pressed() -> void:
+	%Settings.visible = true
+
+
+func _on_exit_button_pressed() -> void:
+	get_tree().paused = false
+	get_tree().change_scene_to_packed(Global.main_menu_scene)
+
+
+func _on_restart_button_pressed() -> void:
+	get_tree().paused = false
+	get_tree().change_scene_to_packed(Global.level_scene)

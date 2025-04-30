@@ -1,0 +1,94 @@
+[gd_scene load_steps=5 format=3 uid="uid://dj334r3yagshk"]
+
+[ext_resource type="Script" uid="uid://biexh1gc8w687" path="res://interface/settings_panel/settings.gd" id="1_wnk05"]
+[ext_resource type="Shader" uid="uid://cwge4y7tj8vrt" path="res://interface/main_menu/blur.gdshader" id="1_yrhoc"]
+[ext_resource type="PackedScene" uid="uid://dmmbux1y4e8bw" path="res://interface/main_menu/cross_button.tscn" id="2_bc6wm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wwcsp"]
+shader = ExtResource("1_yrhoc")
+shader_parameter/lod = 2.0
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wnk05")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_wwcsp")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.560784)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -302.0
+offset_top = -224.0
+offset_right = 302.0
+offset_bottom = 224.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="VolumeLabel" type="Label" parent="Panel/Control"]
+layout_mode = 0
+offset_left = -228.0
+offset_top = 28.0
+offset_right = 128.0
+offset_bottom = 111.0
+theme_override_font_sizes/font_size = 60
+text = "Громкость:"
+
+[node name="VolumeSlider" type="HSlider" parent="Panel/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -236.0
+offset_top = 122.0
+offset_right = 116.0
+offset_bottom = 164.0
+max_value = 1.0
+step = 0.1
+tick_count = 11
+ticks_on_borders = true
+
+[node name="SettingsCrossButton" parent="Panel/Control" instance=ExtResource("2_bc6wm")]
+layout_mode = 1
+offset_left = 216.0
+offset_top = -24.0
+offset_right = 286.0
+offset_bottom = 46.0
+
+[connection signal="pressed" from="Panel/Control/SettingsCrossButton" to="." method="_on_settings_cross_button_pressed"]

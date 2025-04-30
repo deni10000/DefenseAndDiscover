@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://d1vg4wf0s8br8" path="res://interface/main_menu/background_upscale.png" id="2_rahlh"]
 [ext_resource type="Script" uid="uid://cu8e2j7nnhfvx" path="res://interface/main_menu/main_menu.gd" id="2_wwcsp"]
 [ext_resource type="Shader" uid="uid://cwge4y7tj8vrt" path="res://interface/main_menu/blur.gdshader" id="3_rahlh"]
-[ext_resource type="FontFile" uid="uid://b1pv7bun8boir" path="res://theme/Abaddon Bold.ttf" id="5_7piqx"]
+[ext_resource type="FontFile" uid="uid://hu66wi2qdxpl" path="res://theme/Abaddon Bold.ttf" id="5_7piqx"]
 [ext_resource type="PackedScene" uid="uid://dmmbux1y4e8bw" path="res://interface/main_menu/cross_button.tscn" id="5_x3w8v"]
 [ext_resource type="PackedScene" uid="uid://dpivg3l2hiaup" path="res://interface/main_menu/statistic_line.tscn" id="6_7piqx"]
 [ext_resource type="Texture2D" uid="uid://cukb4mqk7d2wo" path="res://interface/new_compressed_texture_2d.tres" id="6_hm0ms"]
@@ -472,7 +472,6 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-focus_mode = 1
 script = ExtResource("2_wwcsp")
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -542,6 +541,7 @@ offset_right = -423.0
 offset_bottom = -89.749
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 1
 text = "Начать игру"
 
 [node name="SettingsButton" type="Button" parent="."]
@@ -557,6 +557,7 @@ offset_right = -423.0
 offset_bottom = 50.251
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 1
 text = "Настройки"
 
 [node name="ProfileButton" type="Button" parent="."]
@@ -572,11 +573,11 @@ offset_right = -423.0
 offset_bottom = 190.251
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 1
 text = "Профиль"
 
 [node name="Authorization" type="Control" parent="."]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -632,6 +633,7 @@ theme_override_constants/margin_right = -16
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
+focus_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="Authorization/Panel"]
 layout_mode = 2
@@ -681,6 +683,7 @@ theme_override_constants/margin_top = 10
 [node name="AuthorizationButton" type="Button" parent="Authorization/Panel/MarginContainer/Control/MarginContainer5"]
 layout_mode = 2
 size_flags_horizontal = 4
+focus_mode = 1
 theme_override_font_sizes/font_size = 44
 text = "   Войти   "
 language = "en"
@@ -693,11 +696,13 @@ theme_override_constants/margin_bottom = -16
 [node name="RecoverPasswordButton" type="LinkButton" parent="Authorization/Panel/MarginContainer/Control/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+focus_mode = 1
 text = "Восстановить пароль?"
 
 [node name="CreateAccount" type="LinkButton" parent="Authorization/Panel/MarginContainer/Control"]
 layout_mode = 2
 size_flags_horizontal = 4
+focus_mode = 1
 text = "Создать аккаунт?"
 
 [node name="GetPassword" type="Control" parent="."]
@@ -741,6 +746,7 @@ theme_override_constants/margin_right = -16
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
+focus_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="GetPassword/Panel"]
 layout_mode = 2
@@ -773,6 +779,7 @@ theme_override_constants/margin_top = 10
 
 [node name="Button" type="Button" parent="GetPassword/Panel/MarginContainer/Control/MarginContainer2"]
 layout_mode = 2
+focus_mode = 1
 theme_override_font_sizes/font_size = 40
 text = "Получить пароль"
 
@@ -833,6 +840,7 @@ theme_override_constants/margin_right = -16
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
+focus_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="Registration/Panel"]
 layout_mode = 2
@@ -857,7 +865,6 @@ text = "Email"
 [node name="EmailLineEdit" type="LineEdit" parent="Registration/Panel/MarginContainer/Control"]
 unique_name_in_owner = true
 layout_mode = 2
-max_length = 20
 
 [node name="MarginContainer2" type="MarginContainer" parent="Registration/Panel/MarginContainer/Control"]
 layout_mode = 2
@@ -896,6 +903,7 @@ theme_override_constants/margin_top = 10
 
 [node name="RegistrationButton" type="Button" parent="Registration/Panel/MarginContainer/Control/MarginContainer4"]
 layout_mode = 2
+focus_mode = 1
 theme_override_font_sizes/font_size = 44
 text = "Зарегистрироваться"
 language = "en"
@@ -903,6 +911,7 @@ language = "en"
 [node name="LoginButton" type="LinkButton" parent="Registration/Panel/MarginContainer/Control"]
 layout_mode = 2
 size_flags_horizontal = 4
+focus_mode = 1
 text = "Уже есть аккаунт? Войти?"
 
 [node name="ConfirmationMenu" type="Control" parent="."]
@@ -995,6 +1004,7 @@ offset_left = -141.0
 offset_top = 144.0
 offset_right = 141.0
 offset_bottom = 200.0
+focus_mode = 1
 text = "Отправить"
 
 [node name="ConfirmationCrossButton" parent="ConfirmationMenu/Panel/Control" instance=ExtResource("5_x3w8v")]
@@ -1005,6 +1015,7 @@ offset_right = 215.0
 offset_bottom = 37.5
 scale = Vector2(0.6, 0.6)
 pivot_offset = Vector2(35, 35)
+focus_mode = 1
 
 [node name="LinkButton" type="LinkButton" parent="ConfirmationMenu/Panel/Control"]
 layout_mode = 0
@@ -1012,11 +1023,13 @@ offset_left = -139.0
 offset_top = 204.0
 offset_right = 139.0
 offset_bottom = 235.0
+focus_mode = 1
 theme_override_font_sizes/font_size = 22
 text = "Получить код повторно"
 
 [node name="Profile" type="Control" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1132,6 +1145,7 @@ offset_right = 294.0
 offset_bottom = 119.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 1
 theme_override_font_sizes/font_size = 44
 text = "Посмотреть статистику"
 
@@ -1148,6 +1162,7 @@ offset_right = 294.0
 offset_bottom = 226.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 1
 theme_override_font_sizes/font_size = 44
 text = "Сменить пароль"
 
@@ -1157,6 +1172,7 @@ offset_left = 295.0
 offset_top = -371.0
 offset_right = 365.0
 offset_bottom = -301.0
+focus_mode = 1
 
 [node name="ExitButton" type="Button" parent="Profile/Panel/Control"]
 self_modulate = Color(0.737255, 0.137255, 0.137255, 1)
@@ -1165,6 +1181,7 @@ offset_left = -274.0
 offset_top = 278.0
 offset_right = 316.0
 offset_bottom = 353.0
+focus_mode = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 44
 text = "Выйти"
@@ -1175,6 +1192,7 @@ offset_left = -274.0
 offset_top = 385.0
 offset_right = 314.0
 offset_bottom = 460.0
+focus_mode = 1
 theme_override_font_sizes/font_size = 44
 text = "Удалить аккаунт"
 
@@ -1225,7 +1243,7 @@ vertical_alignment = 1
 [node name="EmailLine" type="LineEdit" parent="Profile/TabContainer/MarginContainer/VBoxContainer/MarginContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "deni.1000@ya.rummmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmssgagagS"
+text = "deni.1000@ya.ru"
 editable = false
 
 [node name="MarginContainer4" type="MarginContainer" parent="Profile/TabContainer/MarginContainer/VBoxContainer"]
@@ -1258,12 +1276,14 @@ theme_override_constants/margin_top = 10
 
 [node name="ChangePassword" type="Button" parent="Profile/TabContainer/MarginContainer/VBoxContainer/MarginContainer5"]
 layout_mode = 2
+focus_mode = 1
 theme_override_font_sizes/font_size = 44
 text = "Сменить пароль"
 
 [node name="ExitButton" type="Button" parent="Profile/TabContainer/MarginContainer/VBoxContainer"]
 self_modulate = Color(0.737255, 0.137255, 0.137255, 1)
 layout_mode = 2
+focus_mode = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 44
 text = "Выйти"
@@ -1274,6 +1294,7 @@ layout_mode = 2
 [node name="DeleteButton" type="LinkButton" parent="Profile/TabContainer/MarginContainer/VBoxContainer/CenterContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+focus_mode = 1
 theme_override_colors/font_color = Color(0.85098, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 32
@@ -1307,6 +1328,7 @@ offset_right = 335.0
 offset_bottom = -222.0
 grow_horizontal = 1
 grow_vertical = 1
+focus_mode = 1
 
 [node name="StatisticMenu" type="Control" parent="."]
 unique_name_in_owner = true
@@ -1340,6 +1362,7 @@ offset_left = 467.0
 offset_top = -388.0
 offset_right = 537.0
 offset_bottom = -318.0
+focus_mode = 1
 
 [node name="WaitingScreen" type="ColorRect" parent="."]
 visible = false

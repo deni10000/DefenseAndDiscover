@@ -113,7 +113,7 @@ func _on_wave_generator_wave_ended() -> void:
 
 
 func _on_button_2_pressed() -> void:
-	%Question.start_question("agaga", ["0", "1", "2", "3"] as Array[String], 0)
+	%Question.start_question("math", 1)
 
 
 func _on_menu_cross_button_pressed() -> void:

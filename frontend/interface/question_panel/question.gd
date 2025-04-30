@@ -20,6 +20,8 @@ func start_question(category: String, difficulty: int):
 	var http_res = await Http.get_question(category, difficulty)
 	if http_res == null:
 		question_completed.emit(Results.ConnectionProblem)
+		get_tree().paused = false
+		visible = false
 		return
 	http_res = http_res as Http.QuestionDto
 	visible = true
@@ -44,11 +46,13 @@ func start_question(category: String, difficulty: int):
 	var res = await button_pressed
 	var choosen_question = ''
 	if res != -1:
-		http_res.option[res] 
+		choosen_question = http_res.options[res] 
 	tween.stop()
 	http_res = await Http.post_answer(http_res.qeustion_id, choosen_question)
 	if http_res == null:
 		question_completed.emit(Results.ConnectionProblem)
+		get_tree().paused = false
+		visible = false
 		return
 	http_res = http_res as Http.AnswerDto
 	var timer := get_tree().create_timer(await_time)

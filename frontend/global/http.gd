@@ -15,6 +15,7 @@ func  _ready() -> void:
 
 func _create_http_request() -> HTTPRequest:
 	var http_request := HTTPRequest.new()
+	http_request.process_mode =Node.PROCESS_MODE_ALWAYS
 	add_child(http_request)
 	http_request.timeout = TIMEOUT_SECONDS
 	return http_request
@@ -97,11 +98,11 @@ func update_user(email: String, password: String) -> Dictionary:
 class QuestionDto:
 	var qeustion_id: String
 	var question: String
-	var options: Array[String]
+	var options: Array
 	func _init(dct: Dictionary):
 		qeustion_id = dct['questionId']
 		question = dct['question']
-		options = dct['options']
+		options = dct['options'] 
 
 func get_question(category: String, difficulty: int):
 	if user_name == '' and token != '':

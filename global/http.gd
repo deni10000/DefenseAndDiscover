@@ -2,6 +2,7 @@ extends Node
 
 var base_url := "http://127.0.0.1:8000"
 var token := ''
+var user_name := ''
 var cookie_time = 30
 
 const TIMEOUT_SECONDS := 4.0
@@ -93,17 +94,47 @@ func update_user(email: String, password: String) -> Dictionary:
 	}, true)
 
 # ========== QUIZ ==========
+class QuestionDto:
+	var qeustion_id: String
+	var question: String
+	var options: Array[String]
+	func _init(dct: Dictionary):
+		qeustion_id = dct['questionId']
+		question = dct['question']
+		options = dct['options']
 
-func get_question(category: String) -> Dictionary:
-	return await _send_request(_create_http_request(), HTTPClient.METHOD_POST, "/api/getQuestion", {
-		"category": category
+func get_question(category: String, difficulty: int):
+	if user_name == '' and token != '':
+		var res = await get_user()
+		if 'error' not in res:
+			user_name = res['login']
+	var dct = await _send_request(_create_http_request(), HTTPClient.METHOD_POST, "/api/getQuestion", {
+		'username': user_name,
+		'prompt': {
+			"topic": category,
+			"difficulty": str(difficulty),
+			"keyWords": []
+		}
 	})
+	if 'error' in dct:
+		return null
+	return QuestionDto.new(dct)
 
-func send_stat(category: String, correct_answers: int) -> Dictionary:
-	return await _send_request(_create_http_request(), HTTPClient.METHOD_POST, "/api/stat", {
-		"category": category,
-		"correctAnswers": correct_answers
-	}, true)
-
-func get_stat() -> Dictionary:
-	return await _send_request(_create_http_request(), HTTPClient.METHOD_GET, "/api/stat", {}, true)
+class AnswerDto:
+	var user_name: String
+	var is_correct: bool
+	var correct_answer: String
+	func _init(dct: Dictionary):
+		user_name = dct['userName']
+		is_correct = dct['isCorrect']
+		correct_answer = dct['correctAnswer']
+	
+func post_answer(question_id: String, answer: String):
+	var res = await _send_request(_create_http_request(), HTTPClient.METHOD_POST, "/api/postAnswer", {
+		'username': user_name,
+		'questionId': question_id,
+		'answer': answer
+	})
+	if 'error' in res:
+		return null
+	return AnswerDto.new(res)

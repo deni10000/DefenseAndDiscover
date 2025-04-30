@@ -33,5 +33,5 @@ sprite_frames = ExtResource("3_vstve")
 [node name="Arrows" type="Node2D" parent="." index="3"]
 
 [node name="AttackTimer" type="Timer" parent="." index="4"]
-wait_time = 0.594
+wait_time = 0.5
 one_shot = true

@@ -1,9 +1,9 @@
 extends Control
 var question_time = 7
 var await_time = 2
-signal correct_answer
-signal incorrect_answer
+signal question_completed(result: Results)
 signal button_pressed(i) 
+enum Results {Correct, Incorrect, ConnectionProblem}
 
 @onready var children = %GridContainer.get_children()
 @onready var filling: StyleBoxFlat = %ProgressBar.get_theme_stylebox("fill")
@@ -15,16 +15,18 @@ func _ready() -> void:
 	for i in range(len(children)):
 		children[i].pressed.connect(_on_any_button_pressed.bind(i))
 
-func start_question(question: String, answers: Array[String], correct_answer_index: int):
-	if len(answers) != 4 or correct_answer_index > 3 or correct_answer_index < 0:
-		incorrect_answer.emit()
+func start_question(category: String, difficulty: int):
+	get_tree().paused = true
+	var http_res = await Http.get_question(category, difficulty)
+	if http_res == null:
+		question_completed.emit(Results.ConnectionProblem)
 		return
-	#get_tree().paused = true
+	http_res = http_res as Http.QuestionDto
 	visible = true
 	for i in range(len(children)):
 		var button: Button = children[i]
-		button.text = answers[i]
-	%Label.text = question
+		button.text = http_res.options[i]
+	%Label.text = http_res.question
 	var prev_color = filling.bg_color
 	var tween := get_tree().create_tween()
 	tween.set_parallel()
@@ -40,20 +42,31 @@ func start_question(question: String, answers: Array[String], correct_answer_ind
 	tween.tween_subtween(modulate_tween)
 	
 	var res = await button_pressed
+	var choosen_question = ''
+	if res != -1:
+		http_res.option[res] 
 	tween.stop()
+	http_res = await Http.post_answer(http_res.qeustion_id, choosen_question)
+	if http_res == null:
+		question_completed.emit(Results.ConnectionProblem)
+		return
+	http_res = http_res as Http.AnswerDto
 	var timer := get_tree().create_timer(await_time)
-	children[correct_answer_index].modulate = Color.GREEN
-	if res == -1 or res != correct_answer_index:
-		incorrect_answer.emit()
+	for x: Button in children:
+		if x.text == http_res.correct_answer:
+			x.modulate = Color.GREEN
+	
+	if !http_res.is_correct:
+		question_completed.emit(Results.Incorrect)
 		if res != -1:
 			children[res].modulate = Color.INDIAN_RED
 		else:
-			for i in range(len(children)):
-				if i != correct_answer_index:
-					children[i].modulate = Color.INDIAN_RED
+			for x: Button in children:
+				if x.text != http_res.correct_answer:
+					x.modulate = Color.INDIAN_RED
 					
 	else:
-		correct_answer.emit()
+		question_completed.emit(Results.Correct)
 	await timer.timeout
 	visible = false
 	get_tree().paused = false

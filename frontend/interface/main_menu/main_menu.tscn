@@ -1,9 +1,10 @@
-[gd_scene load_steps=48 format=3 uid="uid://dgd30hd5wxqbf"]
+[gd_scene load_steps=49 format=3 uid="uid://dgd30hd5wxqbf"]
 
 [ext_resource type="Texture2D" uid="uid://d1vg4wf0s8br8" path="res://interface/main_menu/background_upscale.png" id="2_rahlh"]
 [ext_resource type="Script" uid="uid://cu8e2j7nnhfvx" path="res://interface/main_menu/main_menu.gd" id="2_wwcsp"]
 [ext_resource type="Shader" uid="uid://cwge4y7tj8vrt" path="res://interface/main_menu/blur.gdshader" id="3_rahlh"]
 [ext_resource type="FontFile" uid="uid://hu66wi2qdxpl" path="res://theme/Abaddon Bold.ttf" id="5_7piqx"]
+[ext_resource type="LabelSettings" uid="uid://ci6a0b63tao2b" path="res://theme/error_text.tres" id="5_qt2eg"]
 [ext_resource type="PackedScene" uid="uid://dmmbux1y4e8bw" path="res://interface/main_menu/cross_button.tscn" id="5_x3w8v"]
 [ext_resource type="PackedScene" uid="uid://dpivg3l2hiaup" path="res://interface/main_menu/statistic_line.tscn" id="6_7piqx"]
 [ext_resource type="Texture2D" uid="uid://cukb4mqk7d2wo" path="res://interface/new_compressed_texture_2d.tres" id="6_hm0ms"]
@@ -578,6 +579,7 @@ text = "Профиль"
 
 [node name="Authorization" type="Control" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -622,19 +624,6 @@ offset_bottom = 287.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer2" type="MarginContainer" parent="Authorization/Panel"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-theme_override_constants/margin_top = -25
-theme_override_constants/margin_right = -16
-
-[node name="CrossButton" parent="Authorization/Panel/MarginContainer2" instance=ExtResource("5_x3w8v")]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-focus_mode = 1
-
 [node name="MarginContainer" type="MarginContainer" parent="Authorization/Panel"]
 layout_mode = 2
 theme_override_constants/margin_left = 6
@@ -658,6 +647,7 @@ text = "Email:"
 [node name="EmailLineEdit2" type="LineEdit" parent="Authorization/Panel/MarginContainer/Control"]
 unique_name_in_owner = true
 layout_mode = 2
+context_menu_enabled = false
 language = "en"
 
 [node name="MarginContainer3" type="MarginContainer" parent="Authorization/Panel/MarginContainer/Control"]
@@ -673,8 +663,22 @@ text = "Пароль:"
 unique_name_in_owner = true
 layout_mode = 2
 max_length = 20
+context_menu_enabled = false
 emoji_menu_enabled = false
 secret = true
+
+[node name="MarginContainer4" type="MarginContainer" parent="Authorization/Panel/MarginContainer/Control"]
+layout_mode = 2
+theme_override_constants/margin_top = -16
+theme_override_constants/margin_bottom = -12
+
+[node name="ErrorAutharizationLabel" type="Label" parent="Authorization/Panel/MarginContainer/Control/MarginContainer4"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_7piqx")
+label_settings = ExtResource("5_qt2eg")
+horizontal_alignment = 1
 
 [node name="MarginContainer5" type="MarginContainer" parent="Authorization/Panel/MarginContainer/Control"]
 layout_mode = 2
@@ -704,6 +708,18 @@ layout_mode = 2
 size_flags_horizontal = 4
 focus_mode = 1
 text = "Создать аккаунт?"
+
+[node name="MarginContainer2" type="MarginContainer" parent="Authorization/Panel"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+mouse_filter = 0
+theme_override_constants/margin_top = -25
+theme_override_constants/margin_right = -16
+
+[node name="CrossButton" parent="Authorization/Panel/MarginContainer2" instance=ExtResource("5_x3w8v")]
+layout_mode = 2
+focus_mode = 1
 
 [node name="GetPassword" type="Control" parent="."]
 unique_name_in_owner = true
@@ -771,6 +787,7 @@ text = "Email:"
 [node name="LineEdit" type="LineEdit" parent="GetPassword/Panel/MarginContainer/Control"]
 layout_mode = 2
 max_length = 20
+context_menu_enabled = false
 language = "en"
 
 [node name="MarginContainer2" type="MarginContainer" parent="GetPassword/Panel/MarginContainer/Control"]
@@ -829,19 +846,6 @@ offset_bottom = 353.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer2" type="MarginContainer" parent="Registration/Panel"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-theme_override_constants/margin_top = -25
-theme_override_constants/margin_right = -16
-
-[node name="CrossButton" parent="Registration/Panel/MarginContainer2" instance=ExtResource("5_x3w8v")]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-focus_mode = 1
-
 [node name="MarginContainer" type="MarginContainer" parent="Registration/Panel"]
 layout_mode = 2
 theme_override_constants/margin_left = 6
@@ -865,6 +869,7 @@ text = "Email"
 [node name="EmailLineEdit" type="LineEdit" parent="Registration/Panel/MarginContainer/Control"]
 unique_name_in_owner = true
 layout_mode = 2
+context_menu_enabled = false
 
 [node name="MarginContainer2" type="MarginContainer" parent="Registration/Panel/MarginContainer/Control"]
 layout_mode = 2
@@ -880,6 +885,7 @@ metadata/_edit_use_anchors_ = true
 unique_name_in_owner = true
 layout_mode = 2
 max_length = 20
+context_menu_enabled = false
 emoji_menu_enabled = false
 
 [node name="MarginContainer3" type="MarginContainer" parent="Registration/Panel/MarginContainer/Control"]
@@ -895,7 +901,20 @@ text = "Пароль"
 unique_name_in_owner = true
 layout_mode = 2
 max_length = 20
+context_menu_enabled = false
 secret = true
+
+[node name="MarginContainer5" type="MarginContainer" parent="Registration/Panel/MarginContainer/Control"]
+layout_mode = 2
+theme_override_constants/margin_top = -16
+theme_override_constants/margin_bottom = -12
+
+[node name="Label" type="Label" parent="Registration/Panel/MarginContainer/Control/MarginContainer5"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_7piqx")
+label_settings = ExtResource("5_qt2eg")
+horizontal_alignment = 1
 
 [node name="MarginContainer4" type="MarginContainer" parent="Registration/Panel/MarginContainer/Control"]
 layout_mode = 2
@@ -913,6 +932,19 @@ layout_mode = 2
 size_flags_horizontal = 4
 focus_mode = 1
 text = "Уже есть аккаунт? Войти?"
+
+[node name="MarginContainer2" type="MarginContainer" parent="Registration/Panel"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/margin_top = -25
+theme_override_constants/margin_right = -16
+
+[node name="CrossButton" parent="Registration/Panel/MarginContainer2" instance=ExtResource("5_x3w8v")]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+focus_mode = 1
 
 [node name="ConfirmationMenu" type="Control" parent="."]
 visible = false
@@ -996,6 +1028,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 40
 alignment = 1
 max_length = 4
+context_menu_enabled = false
 
 [node name="ConfirmationButton" type="Button" parent="ConfirmationMenu/Panel/Control"]
 unique_name_in_owner = true
@@ -1245,6 +1278,7 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "deni.1000@ya.ru"
 editable = false
+context_menu_enabled = false
 
 [node name="MarginContainer4" type="MarginContainer" parent="Profile/TabContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -1269,6 +1303,7 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "deni1000"
 editable = false
+context_menu_enabled = false
 
 [node name="MarginContainer5" type="MarginContainer" parent="Profile/TabContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -1292,6 +1327,7 @@ text = "Выйти"
 layout_mode = 2
 
 [node name="DeleteButton" type="LinkButton" parent="Profile/TabContainer/MarginContainer/VBoxContainer/CenterContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 1
@@ -1397,13 +1433,13 @@ layout_mode = 1
 [connection signal="pressed" from="StartGameButton" to="." method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="ProfileButton" to="." method="_on_profile_button_pressed"]
-[connection signal="pressed" from="Authorization/Panel/MarginContainer2/CrossButton" to="." method="_on_cross_button_pressed"]
 [connection signal="pressed" from="Authorization/Panel/MarginContainer/Control/MarginContainer5/AuthorizationButton" to="." method="_on_authorization_button_pressed"]
 [connection signal="pressed" from="Authorization/Panel/MarginContainer/Control/MarginContainer/RecoverPasswordButton" to="." method="_on_recover_password_button_pressed"]
 [connection signal="pressed" from="Authorization/Panel/MarginContainer/Control/CreateAccount" to="." method="_on_create_account_pressed"]
-[connection signal="pressed" from="Registration/Panel/MarginContainer2/CrossButton" to="." method="_on_cross_button_pressed"]
+[connection signal="pressed" from="Authorization/Panel/MarginContainer2/CrossButton" to="." method="_on_cross_button_pressed"]
 [connection signal="pressed" from="Registration/Panel/MarginContainer/Control/MarginContainer4/RegistrationButton" to="." method="_on_registration_button_pressed"]
 [connection signal="pressed" from="Registration/Panel/MarginContainer/Control/LoginButton" to="." method="_on_login_button_pressed"]
+[connection signal="pressed" from="Registration/Panel/MarginContainer2/CrossButton" to="." method="_on_cross_button_pressed"]
 [connection signal="pressed" from="ConfirmationMenu/Panel/Control/ConfirmationButton" to="." method="_on_confirmation_button_pressed"]
 [connection signal="pressed" from="ConfirmationMenu/Panel/Control/ConfirmationCrossButton" to="." method="_on_confirmation_cross_button_pressed"]
 [connection signal="pressed" from="Profile/Panel/Control/CheckStatistic" to="." method="_on_check_statistic_pressed"]

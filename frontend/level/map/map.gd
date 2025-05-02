@@ -1,0 +1,44 @@
+extends Node2D
+var viewport_width = ProjectSettings.get_setting("display/window/size/viewport_width")
+var viewport_height = ProjectSettings.get_setting("display/window/size/viewport_height")
+var layers: Array[TileMapLayer]
+
+func is_filled(vec):
+	for x: TileMapLayer in layers:
+		if x.get_cell_source_id(vec) != -1:
+			return true
+	return false
+
+func filling():
+	var tile_set: TileSet = $object2.tile_set
+	var pattern1 = tile_set.get_pattern(1)
+	var pattern2 = tile_set.get_pattern(2)
+	var pattern3 = tile_set.get_pattern(3)
+	var view_size = get_viewport().get_visible_rect().size
+	var tile_size =  tile_set.tile_size
+	var map_size = Vector2i(view_size.x / tile_size.x, view_size.y / tile_size.y) 
+	var mn_x = -((view_size.x - viewport_width) / 2 / tile_size.x) - 1
+	var mx_x = (view_size.x + viewport_width) / 2 / tile_size.x
+	var mn_y = -((view_size.y - viewport_height) / 2 / tile_size.y) - 1
+	var mx_н = (view_size.y + viewport_height) / 2 / tile_size.y
+	for i in range(mn_x - 1, mx_x + 1):
+		for j in range(map_size.y + 1):
+			var vec1 = Vector2i(i, j + 1)
+			var vec2 = Vector2i(i, j)
+			var vec3 = Vector2i(i, j - 1)
+			if not is_filled(vec2) and ((abs(j) % 3 == 2 and abs(i) % 2 == 0) or (abs(j) % 3 == 1 and abs(i) % 2 == 1)):
+				var hsh = hash(vec2)
+				if 	hsh % 4 != 0:
+					%object.set_pattern(vec1, pattern1)
+					%object2.set_pattern(vec2,pattern2)
+					%object3.set_pattern(vec3,pattern3)
+				if hsh % 5 != 0:
+					%object4.set_cell(vec2, 2, Vector2i(6, 4))
+			if not is_filled(vec2):
+				$grass.set_cell(vec2, 2, Vector2i(11, 1))
+func _ready() -> void:
+	for x in get_children():
+		if x is TileMapLayer:
+			layers.append(x)
+	filling()
+	get_viewport().size_changed.connect(filling)

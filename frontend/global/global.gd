@@ -21,6 +21,7 @@ var arrow := preload("uid://d2bj3yntbkiuu")
 var tree_tower := preload("uid://6a7dry2en0la")
 var level_scene := preload("uid://mahg2nbldblf")
 var main_menu_scene := preload("uid://dgd30hd5wxqbf")
+var place_for_tower_control_scene := preload('uid://dp7m0dcsucwl3')
 var java_script := JavaScriptBridge.get_interface("window")
 var volume: float = 0.5
 

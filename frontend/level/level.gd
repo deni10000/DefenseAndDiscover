@@ -1,13 +1,16 @@
 extends Node2D
-const CAMERA_MOVEMENT_SPEED : float = 20
+const CAMERA_MOVEMENT_SPEED : float = 60
 const CAMERA_ZOOM_SPEED : Vector2 = Vector2(0.2, 0.2)
 const CAMERA_ZOOM_DEFAULT : Vector2 = Vector2(1.0, 1.0)
-const CAMERA_ZOOM_MIN : Vector2 = Vector2(0.6, 0.6)
+const CAMERA_ZOOM_MIN : Vector2 = Vector2(1, 1)
 const CAMERA_ZOOM_MAX : Vector2 = Vector2(3.0, 3.0)
 const CAMERA_TWEEN_DURATION : float = 0.3
 const CAMERA_SPEED = 400
+var viewport_width = ProjectSettings.get_setting("display/window/size/viewport_width")
+var viewport_height = ProjectSettings.get_setting("display/window/size/viewport_height")
 var MAX_RATIO = 16 / 9
 var MIN_RATIO = 16 / 9
+
 
 @onready var viewport_size = get_viewport().size
 @export var camera: Camera2D; 
@@ -24,6 +27,9 @@ var hp:
 
 var camera_tween: Tween = null 
 func _ready() -> void:
+	for place in %Places.get_children():
+		%Control.add_child(place.place_for_tower_control)
+	center_field()
 	get_viewport().size_changed.connect(center_field)
 	Global.gold_changed.connect(update_gold_label)
 	%GoldInput.text = str(Global.gold)
@@ -32,17 +38,9 @@ func _ready() -> void:
 
 func center_field():
 	var screen_size = get_viewport().get_visible_rect().size
-	print(screen_size)
-	camera.limit_right = 1920 + (screen_size.x - 1920) / 2
-	camera.limit_bottom = 1080 + (screen_size.y - 1080) / 2
-	var aspect = screen_size.x / screen_size.y
-	var viewport := get_viewport()
-	if aspect > MAX_RATIO:
-		ProjectSettings.set_setting("display/window/stretch/aspect", "keep")
-	elif aspect < MIN_RATIO:
-		ProjectSettings.set_setting("display/window/stretch/aspect", "keep")
+	camera.limit_right = (viewport_width + screen_size.x) / 2
+	camera.limit_top = (viewport_height - screen_size.y) / 2
 	
-
 var waves = [
 	[Global.Enemies.SLIME, Global.Enemies.SLIME],
 	[Global.Enemies.SLIME, Global.Enemies.SLIME, Global.Enemies.SLIME, Global.Enemies.SLIME, Global.Enemies.SLIME, Global.Enemies.SLIME, Global.Enemies.SLIME, Global.Enemies.SLIME, Global.Enemies.SLIME ]
@@ -138,3 +136,7 @@ func _on_exit_button_pressed() -> void:
 func _on_restart_button_pressed() -> void:
 	get_tree().paused = false
 	get_tree().change_scene_to_packed(Global.level_scene)
+
+
+func _on_place_for_tower_return_menu(control: Control) -> void:
+	%Control.add_child(control)

@@ -1,6 +1,10 @@
 extends Control
 
 const ALLOWED_SPECIALS = "!@#$%^&*()_+-=[]{}|;:'\",.<>?/ "
+const NOT_ALLOWED_EMAIL_ERROR = "Неверный адресс электронной почты" 
+var email_regex :=  RegEx.new() 
+
+
 var email: String:
 	set(value):
 		%EmailInput.text = value
@@ -19,6 +23,7 @@ func _ready():
 	%TabContainer.set_tab_title(1, 'Статистика')
 	var tab_bar: TabBar = %TabContainer.get_tab_bar()
 	tab_bar.max_tab_width
+	email_regex.compile(r"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$")
 
 	
 	for node in get_tree().get_nodes_in_group("text_fields") + find_children("", "LineEdit"):
@@ -139,8 +144,15 @@ func _on_exit_button_pressed() -> void:
 		Global.java_script.setCookie("token", "", 0)
 	%Profile.visible = false
 
+func is_valid_email(email: String) -> bool:
+	var res :=  email_regex.search(email)
+	return res != null and res.get_end() == email.length()
 
 func _on_authorization_button_pressed() -> void:
+	if not is_valid_email(%EmailLineEdit2.text):
+		%ErrorAutharizationLabel.text = NOT_ALLOWED_EMAIL_ERROR
+		return
+	
 	enable_waiting()
 	var ret = await Http.login_user(%EmailLineEdit2.text, %PasswordLineEdit2.text)
 	if 'error' not in ret:

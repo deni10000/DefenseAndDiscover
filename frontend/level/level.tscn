@@ -1,10 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://mahg2nbldblf"]
+[gd_scene load_steps=12 format=3 uid="uid://mahg2nbldblf"]
 
 [ext_resource type="Script" uid="uid://dc256idbg6umu" path="res://level/level.gd" id="1_dbc2d"]
 [ext_resource type="Theme" uid="uid://bbr70t6gbgc2m" path="res://theme/maintheme.tres" id="2_44x8d"]
 [ext_resource type="PackedScene" uid="uid://b8kf561rc3uea" path="res://interface/question_panel/question.tscn" id="3_44x8d"]
 [ext_resource type="PackedScene" uid="uid://c0rltbdwa65jf" path="res://level/place_for_tower/place_for_tower.tscn" id="3_qohg2"]
-[ext_resource type="Texture2D" uid="uid://coxkud27kxx4r" path="res://level/map2.png" id="3_vkbyq"]
 [ext_resource type="Shader" uid="uid://cwge4y7tj8vrt" path="res://interface/main_menu/blur.gdshader" id="4_0v1st"]
 [ext_resource type="PackedScene" uid="uid://b0dgarfasdp6i" path="res://level/map/map.tscn" id="4_ivpvi"]
 [ext_resource type="Script" uid="uid://m1vo0myw6iol" path="res://level/wave_generator/wave_generator.gd" id="4_vkbyq"]
@@ -14,12 +13,6 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6gtgk"]
 shader = ExtResource("4_0v1st")
 shader_parameter/lod = 2.0
-
-[sub_resource type="Curve2D" id="Curve2D_qohg2"]
-_data = {
-"points": PackedVector2Array(0.811934, 0.479215, -0.811934, -0.479215, 1058.44, 1285.58, 10.3547, 16.5611, -10.3547, -16.5611, 1035.95, 1212.36, 34.1032, 23.8404, -34.1032, -23.8404, 980.363, 1165.14, 33.411, 9.49215, -33.411, -9.49215, 754.981, 1121.75, 44.6448, 32.5666, -44.6448, -32.5666, 582.154, 1041.35, 6.02834, 21.6731, -6.02834, -21.6731, 502.391, 904.805, 32.9983, 50.2068, -32.9983, -50.2068, 468.957, 722.31, 0, 0, 0, 0, 361.825, 644.464, 20.8819, 12.6562, -20.8819, -12.6562, 249.639, 597.246, 28.4193, 21.6731, -28.4193, -21.6731, 148.571, 525.78, 0.647026, 28.4958, -0.647026, -28.4958, 110.165, 408.373, -25.1324, 28.5967, 25.1324, -28.5967, 162.72, 293.518, -34.4792, -1.43656, 34.4792, 1.43656, 301.184, 245.024, -50.2648, -12.8966, 50.2648, 12.8966, 506.353, 322.87, -35.827, 12.8966, 35.827, -12.8966, 652.902, 321.594, -56.6816, 8.4108, 56.6816, -8.4108, 891.423, 98.2648, 0, 0, 0, 0, 1049.61, 95.6508, -55.8902, -23.0456, 55.8902, 23.0456, 1194.61, 130.027, -6.41678, -33.0825, 6.41678, 33.0825, 1281.61, 229.188, 17.1114, -29.1574, -17.1114, 29.1574, 1271.52, 349.503, 29.4103, -17.3823, -29.4103, 17.3823, 1162.29, 451.763, 29.4103, -12.8966, -29.4103, 12.8966, 951.054, 520.676, 21.3519, -27.1388, -21.3519, 27.1388, 829.771, 594.693, -16.1756, -48.1714, 16.1756, 48.1714, 793.652, 738.215, -14.1997, -13.7109, 14.1997, 13.7109, 853.017, 826.956, -36.8805, -10.8555, 36.8805, 10.8555, 968.235, 878.002, -28.4691, 24.425, 28.4691, -24.425, 1288.62, 848.651, -40.1156, -18.3187, 40.1156, 18.3187, 1515.02, 863.965, 0.647026, -51.5638, -0.647026, 51.5638, 1604.97, 971.162, 33.0653, -4.59834, -33.0653, 4.59834, 1458.42, 1140.89, 0, 0, 0, 0, 1373.65, 1272.36)
-}
-point_count = 31
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oem8r"]
 radius = 100.005
@@ -129,6 +122,7 @@ text = "Начать волну"
 
 [node name="Button" type="Button" parent="CanvasLayer/Control"]
 process_mode = 3
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -142,6 +136,7 @@ keep_pressed_outside = true
 text = "Пауза"
 
 [node name="Button2" type="Button" parent="CanvasLayer/Control"]
+visible = false
 layout_mode = 0
 offset_left = 292.0
 offset_top = 24.0
@@ -310,25 +305,7 @@ render_target_update_mode = 0
 position = Vector2(-960, -540)
 
 [node name="map" parent="Level" instance=ExtResource("4_ivpvi")]
-visible = false
-
-[node name="ChatGptImage8Апр_2025Г_,033356" type="Sprite2D" parent="Level"]
-z_index = -100
-scale = Vector2(1.25, 1.05469)
-texture = ExtResource("3_vkbyq")
-centered = false
-metadata/_edit_lock_ = true
-
-[node name="2Forest-Stage" type="Sprite2D" parent="Level"]
-visible = false
-z_index = -10
-centered = false
-
-[node name="Path2D" type="Path2D" parent="Level"]
-unique_name_in_owner = true
-position = Vector2(3, 89)
-scale = Vector2(0.989429, 0.783597)
-curve = SubResource("Curve2D_qohg2")
+scale = Vector2(1.5, 1.5)
 
 [node name="EnemyTimer" type="Timer" parent="Level"]
 
@@ -340,27 +317,28 @@ position = Vector2(78.0699, 11.47)
 shape = SubResource("CircleShape2D_oem8r")
 
 [node name="Places" type="Node2D" parent="Level"]
+unique_name_in_owner = true
 
 [node name="PlaceForTower" parent="Level/Places" instance=ExtResource("3_qohg2")]
-position = Vector2(426, 863)
+position = Vector2(232, 808)
 
 [node name="PlaceForTower2" parent="Level/Places" instance=ExtResource("3_qohg2")]
-position = Vector2(585, 437)
+position = Vector2(536, 464)
 
 [node name="PlaceForTower3" parent="Level/Places" instance=ExtResource("3_qohg2")]
-position = Vector2(995, 842)
+position = Vector2(1304, 1008)
 
 [node name="PlaceForTower4" parent="Level/Places" instance=ExtResource("3_qohg2")]
-position = Vector2(120, 591)
+position = Vector2(240, 488)
 
 [node name="PlaceForTower5" parent="Level/Places" instance=ExtResource("3_qohg2")]
-position = Vector2(661, 1004)
+position = Vector2(520, 1008)
 
 [node name="PlaceForTower6" parent="Level/Places" instance=ExtResource("3_qohg2")]
-position = Vector2(1022, 257)
+position = Vector2(880, 280)
 
 [node name="PlaceForTower7" parent="Level/Places" instance=ExtResource("3_qohg2")]
-position = Vector2(702, 595)
+position = Vector2(736, 560)
 
 [node name="Wave_generator" type="Node" parent="Level"]
 unique_name_in_owner = true

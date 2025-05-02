@@ -1,0 +1,10 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://ci6a0b63tao2b"]
+
+[ext_resource type="FontFile" uid="uid://1qmoiwwfgi76" path="res://theme/alagard-12px-unicode.ttf" id="1_fnxpt"]
+
+[resource]
+font = ExtResource("1_fnxpt")
+font_size = 22
+font_color = Color(0.85098, 0, 0, 1)
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)

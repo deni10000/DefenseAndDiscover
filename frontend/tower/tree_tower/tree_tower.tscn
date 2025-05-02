@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://6a7dry2en0la"]
+[gd_scene load_steps=8 format=3 uid="uid://6a7dry2en0la"]
 
 [ext_resource type="PackedScene" uid="uid://cn2hos3800cij" path="res://tower/base/tower.tscn" id="1_resfc"]
 [ext_resource type="Script" uid="uid://bkci5mcww6bxj" path="res://tower/tree_tower/tree_tower.gd" id="2_bf1au"]
 [ext_resource type="SpriteFrames" uid="uid://1tgd3y81imq2" path="res://tower/tree_tower/tree_tower.tres" id="3_bf1au"]
+[ext_resource type="SpriteFrames" uid="uid://dox12qyfk2f7p" path="res://tower/tree_tower/rott_animation.tres" id="4_pa3rh"]
 
 [sub_resource type="Shader" id="Shader_t748c"]
 code = "shader_type canvas_item;
@@ -21,7 +22,7 @@ shader = SubResource("Shader_t748c")
 shader_parameter/strength = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bf1au"]
-radius = 70.0
+radius = 50.0
 
 [node name="TreeTower" instance=ExtResource("1_resfc")]
 script = ExtResource("2_bf1au")
@@ -41,6 +42,30 @@ collision_layer = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack" index="0"]
 shape = SubResource("CircleShape2D_bf1au")
 
+[node name="Sprites" type="Node2D" parent="Attack" index="1"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Attack/Sprites" index="0"]
+unique_name_in_owner = true
+position = Vector2(8, -12)
+sprite_frames = ExtResource("4_pa3rh")
+frame = 15
+frame_progress = 1.0
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Attack/Sprites" index="1"]
+unique_name_in_owner = true
+position = Vector2(-26, -36)
+sprite_frames = ExtResource("4_pa3rh")
+frame = 15
+frame_progress = 1.0
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="Attack/Sprites" index="2"]
+unique_name_in_owner = true
+position = Vector2(16, -55)
+sprite_frames = ExtResource("4_pa3rh")
+frame = 15
+frame_progress = 1.0
+
 [node name="AttackTimer" type="Timer" parent="." index="4"]
 unique_name_in_owner = true
+wait_time = 1.5
 one_shot = true

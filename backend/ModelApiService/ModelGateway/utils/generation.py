@@ -1,8 +1,8 @@
-from ModelGateway.llm_config.config import Config
-from ModelGateway.llm_config.constants import difficulty_levels
-from ModelGateway.llm_config.prompts import quiz_prompt
-from ModelGateway.llm_config.qwen_llm import QwenLLM
-from ModelGateway.utils.quiz_json_parser import QuizJSONParser
+from backend.ModelApiService.ModelGateway.llm_config.config import Config
+from backend.ModelApiService.ModelGateway.llm_config.constants import difficulty_levels
+from backend.ModelApiService.ModelGateway.llm_config.prompts import quiz_prompt
+from backend.ModelApiService.ModelGateway.llm_config.qwen_llm import QwenLLM
+from backend.ModelApiService.ModelGateway.utils.quiz_json_parser import QuizJSONParser
 
 
 def generate_quiz(topic: str, num_questions: int = 5, difficulty: str = "средний", key_words=None):

@@ -3,7 +3,7 @@ class_name Enemy
 @export var texture: AnimatedSprite2D
 @export var lightning: AnimatedSprite2D
 
-@export var speed = 0.2
+@export var speed = 80
 var slow_time: float
 var slowing := 0.7
 var prev_pos := Vector2.ZERO
@@ -64,11 +64,11 @@ func calculate_offset_vector():
 
 func mooving(delta):
 	slow_time = max(0, slow_time - delta)
-	var ds =  delta * speed * 0.1
+	var ds =  delta * speed
 	if slow_time > 0:
-		progress_ratio += ds * slowing
+		progress += ds * slowing
 	else:
-		progress_ratio += ds
+		progress += ds
 	calculate_offset_vector()
 	
 	if (prev_pos - global_position).x > 0:

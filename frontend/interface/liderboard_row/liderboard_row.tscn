@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://da306r6rg5ck5"]
+
+[ext_resource type="Script" uid="uid://bfunqtvr6upfc" path="res://interface/liderboard_row/liderboard_row.gd" id="1_cpdpa"]
+[ext_resource type="FontFile" uid="uid://1qmoiwwfgi76" path="res://theme/alagard-12px-unicode.ttf" id="1_ep78h"]
+
+[node name="HBoxContainer" type="HBoxContainer"]
+script = ExtResource("1_cpdpa")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ep78h")
+theme_override_font_sizes/font_size = 23
+text = "Место"
+horizontal_alignment = 1
+clip_text = true
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ep78h")
+theme_override_font_sizes/font_size = 23
+text = "Ник"
+horizontal_alignment = 1
+clip_text = true
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ep78h")
+theme_override_font_sizes/font_size = 23
+text = "Волны"
+horizontal_alignment = 1
+clip_text = true
+
+[connection signal="resized" from="Label" to="." method="_on_label_resized"]
+[connection signal="tree_entered" from="Label" to="." method="_on_label_tree_entered"]

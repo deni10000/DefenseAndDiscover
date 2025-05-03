@@ -1,5 +1,5 @@
 extends Control
-var question_time = 7
+var question_time = 8
 var await_time = 2
 signal question_completed(result: Results)
 signal button_pressed(i) 

@@ -4,15 +4,11 @@
 
 [node name="StatisticLine" type="HBoxContainer"]
 script = ExtResource("1_x3uy1")
-property = "Количество убитых врагов"
-value = "100"
 
 [node name="Name" type="Label" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 2.0
 theme_override_font_sizes/font_size = 44
-text = "Количество убитых врагов"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
@@ -21,7 +17,6 @@ autowrap_mode = 3
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 60
-text = "100"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3

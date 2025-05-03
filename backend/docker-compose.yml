@@ -1,102 +1,105 @@
-services:
+version: '3.8'
 
+services:
   apigateway:
     container_name: "apigateway"
     build: ./ApiGateWay
     ports:
       - "8080:8080"
     environment:
-      - REDIS_HOST=host.docker.internal
+      - REDIS_HOST=redis
       - REDIS_PORT=6379
+      - ZOOKEEPER_CONNECT_STRING=zookeeper:2181
+      - SCHEMA_REGISTRY_URL=http://schema-registry:8083
+      - BOOTSTRAP_SERVERS=kafka-1:9092
+      - PROMT_CLIENT_URL=http://modelservice:8082
+      - ROLE_CLIENT_URL=http://userservice:8081
+      - STAT_CLIENT_URL=http://userservice:8081
+      - USER_CLIENT_URL=http://userservice:8081
+    networks:
+      - app-network
 
-      - ZOOKEEPER_CONNECT_STRING=host.docker.internal:2181
-      - SCHEMA_REGISTRY_URL=http://host.docker.internal:8083
-      - BOOTSTRAP-SERVERS=kafka-1:9092
-
-      - PROMT_CLIENT_URL=http://host.docker.internal:8082
-      - ROLE_CLIENT_URL=http://host.docker.internal:8081
-      - STAT_CLIENT_URL=http://host.docker.internal:8081
-      - USER_CLIENT_URL=http://host.docker.internal:8081
-
-  model_service:
-    container_name: "model_service"
+  modelservice:
+    container_name: "modelservice"
     build: ./ModelService
     ports:
       - "8082:8082"
     environment:
-      - REDIS_HOST=localhost
+      - REDIS_HOST=redis
       - REDIS_PORT=6379
-
-      - POSTGRES_URL=jdbc:postgresql://localhost:5434/mydatabase
+      - POSTGRES_URL=jdbc:postgresql://postgres2:5432/models_db
       - POSTGRES_USER=myuser
       - POSTGRES_PASSWORD=mypassword
+      - ZOOKEEPER_CONNECT_STRING=zookeeper:2181
+      - SCHEMA_REGISTRY_URL=http://schema-registry:8083
+      - BOOTSTRAP_SERVERS=kafka-1:9092
+      - PROMT_CLIENT_URL=http://llmservice:8000
+    networks:
+      - app-network
 
-      - ZOOKEEPER_CONNECT_STRING=localhost:2181
-      - SCHEMA_REGISTRY_URL=http://localhost:8083
-      - BOOTSTRAP-SERVERS=localhost:19092,localhost:29092
-
-      - PROMT_CLIENT_URL=http://localhost:8000
-
-  notification_service:
-    container_name: "notification_service"
+  notificationservice:
+    container_name: "notificationservice"
     build: ./NotificationService
     ports:
       - "8083:8083"
     environment:
-      - REDIS_HOST=localhost
+      - REDIS_HOST=redis
       - REDIS_PORT=6379
-
-      - ZOOKEEPER_CONNECT_STRING=localhost:2181
-      - SCHEMA_REGISTRY_URL=http://localhost:8083
-      - BOOTSTRAP-SERVERS=localhost:19092,localhost:29092
-
+      - ZOOKEEPER_CONNECT_STRING=zookeeper:2181
+      - SCHEMA_REGISTRY_URL=http://schema-registry:8083
+      - BOOTSTRAP_SERVERS=kafka-1:9092
       - MAIL_HOST=smtp.mail.ru
       - MAIL_PORT=587
-      - MAIL_USERNAME=mymail
-      - MAIL_PASSWORD=mymailpassword
+      - MAIL_USERNAME=
+      - MAIL_PASSWORD=
+    networks:
+      - app-network
 
-  user_service:
-    container_name: "user_service"
+  userservice:
+    container_name: "userservice"
     build: ./UserService
     ports:
       - "8081:8081"
     environment:
-      - REDIS_HOST=localhost
+      - REDIS_HOST=redis
       - REDIS_PORT=6379
-
-      - POSTGRES_URL=jdbc:postgresql://localhost:5434/mydatabase
+      - POSTGRES_URL=jdbc:postgresql://postgres:5432/users_db
       - POSTGRES_USER=myuser
       - POSTGRES_PASSWORD=mypassword
-
-      - ZOOKEEPER_CONNECT_STRING=localhost:2181
-      - SCHEMA_REGISTRY_URL=http://localhost:8083
-      - BOOTSTRAP-SERVERS=localhost:19092,localhost:29092
-
+      - ZOOKEEPER_CONNECT_STRING=zookeeper:2181
+      - SCHEMA_REGISTRY_URL=http://schema-registry:8083
+      - BOOTSTRAP_SERVERS=kafka-1:9092
+    networks:
+      - app-network
 
   postgres:
     image: postgres:latest
-    container_name: postgres_db
+    container_name: postgresdb
     restart: always
     environment:
       POSTGRES_USER: myuser
       POSTGRES_PASSWORD: mypassword
-      POSTGRES_DB: mydatabase
+      POSTGRES_DB: users_db
     ports:
       - "5433:5432"
     volumes:
-      - postgres:/var/lib/postgresql/data
+      - postgres_users_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
   postgres2:
     image: postgres:latest
     container_name: postgres_db2
-    restart: always
     environment:
       POSTGRES_USER: myuser
       POSTGRES_PASSWORD: mypassword
-      POSTGRES_DB: mydatabase
+      POSTGRES_DB: models_db
     ports:
       - "5434:5432"
     volumes:
-      - postgres:/var/lib/postgresql/data
+      - postgres_models_data:/var/lib/postgresql/data
+    networks:
+      - app-network
 
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
@@ -106,10 +109,12 @@ services:
       - "2181:2181"
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
+    networks:
+      - app-network
 
   kafka-1:
     image: confluentinc/cp-kafka:latest
-    hostname: kafka
+    hostname: kafka-1
     container_name: kafka-1
     ports:
       - "19092:19092"
@@ -123,6 +128,24 @@ services:
       KAFKA_MIN_IN_SYNC_REPLICAS: 1
     depends_on:
       - zookeeper
+    networks:
+      - app-network
+
+  schema-registry:
+    image: confluentinc/cp-schema-registry:latest
+    container_name: schema-registry
+    ports:
+      - "8084:8083"
+    environment:
+      SCHEMA_REGISTRY_HOST_NAME: schema-registry
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: kafka-1:9092
+      SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8083
+    depends_on:
+      - zookeeper
+      - kafka-1
+    networks:
+      - app-network
+
   redis:
     image: redis:latest
     container_name: redis-container
@@ -130,13 +153,25 @@ services:
       - "6379:6379"
     volumes:
       - redis-data:/data
-#  llmservice:
-#    build: ./modelGatewayPath
-#    ports:
-#      - "8000:8000"
-#    env_file:
-#      - .env
-#    restart: always
+    networks:
+      - app-network
+
+  llmservice:
+    build: ./ModelApiService
+    container_name: llmservice
+    ports:
+      - "8000:8000"
+    environment:
+      TOKEN:
+    restart: always
+    networks:
+      - app-network
+
 volumes:
-  postgres:
+  postgres_users_data:
+  postgres_models_data:
   redis-data:
+
+networks:
+  app-network:
+    driver: bridge

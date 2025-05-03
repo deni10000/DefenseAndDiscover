@@ -237,6 +237,7 @@ public class UserServiceImpl implements UserService {
 
             if (Objects.equals(cachesCode, code)) {
                 registerUser(userDto);
+                return;
             }
 
             throw new WrongConfirmationCode(userDto.getEmail());

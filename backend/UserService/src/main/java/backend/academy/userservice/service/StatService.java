@@ -37,7 +37,7 @@ public class StatService {
         User userEntity = userOptional.get();
         List<Stat> stats = statsRepository.findByUserAndCategoryName(userEntity, statDto.getUsername());
 
-        Stat statEntity = stats.getFirst();
+        Stat statEntity = stats.get(0);
         statEntity.setCounterCounter(statEntity.getCounterCounter() + 1);
 
         statsRepository.save(statEntity);

@@ -7,19 +7,32 @@ import backend.academy.modelservice.model.Question;
 import backend.academy.modelservice.repository.QuestionRepository;
 import backend.academy.modelservice.service.QuestionService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class QuestionServiceImpl implements QuestionService {
 
     private final QuestionRepository questionRepository;
     @Override
     public QuestionDto findQuestionAndTopicWhereIdNotIn(List<Long> ids, String topic) {
+        if (ids == null || ids.isEmpty()) {
+            return QuestionMapper.toDto(questionRepository.findFirstByTopic(topic).orElseThrow(
+                    () ->  {
+                        log.error("В базе нет вопросов: " + topic );
+                        return new QuestionDoesntExists("doesnt exist");
+                    }
+            ));
+        }
         return QuestionMapper.toDto(questionRepository.findFirstByTopicAndQuestionIdNotIn(topic, ids).orElseThrow(
-                () ->  new QuestionDoesntExists("doesnt exist")
+                () ->  {
+                    log.error("В базе нет вопросов: ids" + ids + " , " + topic );
+                    return new QuestionDoesntExists("doesnt exist");
+                }
         ));
     }
 

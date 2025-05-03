@@ -45,20 +45,21 @@ public class PromtServiceImpl implements PromtService {
                 });
             }
 
-            QuestionDto questionDto;
+            QuestionDto questionDto = null;
             try {
                 questionDto = questionService.findQuestionAndTopicWhereIdNotIn(ids, requestPromtDto.getPromt().getTopic());
             } catch (QuestionDoesntExists e) {
                 List<QuestionDto> questionDtos = promtClient.getQuestion(requestPromtDto.getPromt());
-                questionDto = questionDtos.get(0);
 
-                questionDto = questionService.createQuestion(questionDto);
+                if (questionDtos != null) {
+                    questionDto = questionDtos.get(0);
+                    questionDto = questionService.createQuestion(questionDto);
+                }
 
             } catch (Exception e) {
                 log.error("Модель не доступна");
                 questionDto = questionService.findQuestionAndTopicWhereIdNotIn(List.of(), requestPromtDto.getPromt().getTopic());
             }
-
 
             ids.add(Long.parseLong(questionDto.getQuestionId()));
             redisService.setValue(requestPromtDto.getUsername(), objectMapper.writeValueAsString(ids));

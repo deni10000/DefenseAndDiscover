@@ -10,4 +10,5 @@ import java.util.Optional;
 @Repository
 public interface QuestionRepository extends JpaRepository<Question, Long> {
     Optional<Question> findFirstByTopicAndQuestionIdNotIn(String topic, List<Long> ids);
+    Optional<Question> findFirstByTopic(String topic);
 }

@@ -33,7 +33,6 @@ public class KafkaProducerConfig {
 
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, LongSerializer.class);
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-
         props.put(ProducerConfig.PARTITIONER_CLASS_CONFIG, CustomUserPartitioner.class);
 
         var factory = new DefaultKafkaProducerFactory<Long, String>(props);

@@ -1,0 +1,27 @@
+name: Godot Web Export
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Run Godot export in container
+      run: |
+        docker run --rm \
+          -v "$PWD/frontend":/game \
+          -w /game \
+          barichello/godot-ci:mono-4.4.1 \
+          godot --export-release "Web" build/web/index.html
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: godot-web
+        path: frontend/build/web/

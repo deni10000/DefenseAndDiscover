@@ -1,8 +1,8 @@
 extends Node2D
-const CAMERA_MOVEMENT_SPEED : float = 60
+const CAMERA_MOVEMENT_SPEED : float = 150
 const CAMERA_ZOOM_SPEED : Vector2 = Vector2(0.2, 0.2)
 const CAMERA_ZOOM_DEFAULT : Vector2 = Vector2(1.0, 1.0)
-const CAMERA_ZOOM_MIN : Vector2 = Vector2(1, 1)
+const CAMERA_ZOOM_MIN : Vector2 = Vector2(1.2, 1.2)
 const CAMERA_ZOOM_MAX : Vector2 = Vector2(3.0, 3.0)
 const CAMERA_TWEEN_DURATION : float = 0.3
 const CAMERA_SPEED = 400
@@ -27,17 +27,16 @@ var hp:
 
 var camera_tween: Tween = null 
 func _ready() -> void:
-	for place in %Places.get_children():
-		%Control.add_child(place.place_for_tower_control)
 	center_field()
 	get_viewport().size_changed.connect(center_field)
+	get_viewport().get_visible_rect()
 	Global.gold_changed.connect(update_gold_label)
 	%GoldInput.text = str(Global.gold)
 	hp = 30
 
-
 func center_field():
 	var screen_size = get_viewport().get_visible_rect().size
+	print(screen_size)
 	camera.limit_right = (viewport_width + screen_size.x) / 2
 	camera.limit_top = (viewport_height - screen_size.y) / 2
 	
@@ -107,7 +106,8 @@ func _on_wave_generator_add_enemy(enemy: Enemy) -> void:
 
 
 func _on_wave_generator_wave_ended() -> void:
-	%StartWave.visible = true
+	pass
+	#%StartWave.visible = true
 
 
 func _on_button_2_pressed() -> void:
@@ -140,3 +140,10 @@ func _on_restart_button_pressed() -> void:
 
 func _on_place_for_tower_return_menu(control: Control) -> void:
 	%Control.add_child(control)
+
+
+func _on_path_2d_child_exiting_tree(node: Node) -> void:
+	if %Path2D.get_child_count() == 1:
+		%StartWave.visible = true
+		wave += 1
+		Http.post_wave(wave)

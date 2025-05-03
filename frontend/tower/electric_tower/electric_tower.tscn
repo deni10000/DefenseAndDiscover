@@ -161,6 +161,7 @@ _data = {
 }
 
 [node name="ElectricTower" instance=ExtResource("1_xx6cv")]
+z_index = -2
 script = ExtResource("2_7o06c")
 
 [node name="AttackArea" parent="." index="1"]
@@ -171,19 +172,9 @@ scale = Vector2(3, 3)
 material = SubResource("ShaderMaterial_oemvy")
 sprite_frames = ExtResource("3_wiw85")
 
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." index="3"]
-visible = false
-texture_repeat = 2
-position = Vector2(133, -34)
-rotation = -1.92483
-sprite_frames = SubResource("SpriteFrames_j8ejx")
-animation = &"new_animation"
-frame_progress = 0.240652
-
-[node name="Attack" type="Sprite2D" parent="." index="4"]
+[node name="Attack" type="Sprite2D" parent="." index="3"]
 unique_name_in_owner = true
 visible = false
-z_index = -2
 texture_repeat = 2
 position = Vector2(0, -56)
 texture = ExtResource("5_oemvy")
@@ -193,6 +184,15 @@ hframes = 7
 frame = 4
 region_enabled = true
 region_rect = Rect2(0, 0, 448, 512)
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." index="4"]
+visible = false
+texture_repeat = 2
+position = Vector2(133, -34)
+rotation = -1.92483
+sprite_frames = SubResource("SpriteFrames_j8ejx")
+animation = &"new_animation"
+frame_progress = 0.240652
 
 [node name="AttackAnimation" type="AnimationPlayer" parent="." index="5"]
 unique_name_in_owner = true

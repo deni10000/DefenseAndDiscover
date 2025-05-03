@@ -4,25 +4,65 @@ const ALLOWED_SPECIALS = "!@#$%^&*()_+-=[]{}|;:'\",.<>?/ "
 const NOT_ALLOWED_EMAIL_ERROR = "Неверный адресс электронной почты" 
 var email_regex :=  RegEx.new() 
 
-
 var email: String:
 	set(value):
 		%EmailInput.text = value
 		%EmailInput2.text = value
 		%EmailLine.text = value
 		email = value
-var nickname: String:
+var username: String:
 	set(value):
 		%NicknameInput.text = value
 		%NicknameInput2.text = value
 		%NicknameLine.text = value
-		nickname = value
+		username = value
+		fill_leaderboard()
+
+var row_count = 7
+func fill_leaderboard():
+	await update_user_data()
+	var res = await Http.get_waves()
+	if res == null:
+		return
+	res = res as Http.LeaderBoardDto
+	var flag = false
+	for i in range(max(row_count - 1, len(res.users))):
+		var x: Http.UserScore = res.users[i]
+		var row = Global.leaderboard_row_secene.instantiate()
+		row.set_params(i + 1, x.username, x.count_wave)
+		if x.username == username:
+			row.set_bold()
+			flag = true
+		%LeaderBord.add_child(row)
+	var row = Global.leaderboard_row_secene.instantiate()
+	if len(res.users) < row_count:
+		return
+	if flag:
+		var x: Http.UserScore = res.users[row_count - 1]
+		row.set_params(row_count, x.username, x.count_wave)
+	else:
+		for i in range(len(res.users)):
+			var x: Http.UserScore = res.users[i]
+			if x.username == username:
+				row.set_bold()
+				row.set_params(i + 1, x.username, x.count_wave)
+				break
+		%LeaderBord.add_child(row)
+	
+			
+func update_user_data():
+	if Http.token != '':
+		var res = await Http.get_user()
+		if 'error' in res:
+			return
+		username = res['username']
+		email = res['email']
 
 func _ready():
+	fill_leaderboard()
 	%TabContainer.set_tab_title(0, 'Профиль')
 	%TabContainer.set_tab_title(1, 'Статистика')
 	var tab_bar: TabBar = %TabContainer.get_tab_bar()
-	tab_bar.max_tab_width
 	email_regex.compile(r"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$")
 
 	
@@ -65,7 +105,17 @@ func _on_cross_button_pressed() -> void:
 	%Registration.visible = false
 	%Profile.visible = false
 
-	
+func set_user_stats():
+	var res = await Http.get_user_stat(username)
+	if res == null:
+		return
+	res = res as Http.StatsDto
+	%HistoryLine.text = res.history
+	%ScienceLine.text = res.science
+	%CultureLine.text = res.culture
+	%NatureLine.text = res.nature
+
+
 func _on_profile_button_pressed() -> void:
 	%Registration.visible = false
 	if Http.token == "":
@@ -79,8 +129,8 @@ func _on_profile_button_pressed() -> void:
 			else:
 				%AcceptDialog.visible = true
 		else:
-			email = dct["email"]
-			nickname = dct["login"]
+			set_user_stats()
+			update_user_data()
 			%Profile.visible = true
 		disable_waiting()
 			
@@ -162,3 +212,13 @@ func _on_authorization_button_pressed() -> void:
 
 func _on_recover_password_button_pressed() -> void:
 	%GetPassword.visible = true
+	%Authorization.visible = false
+
+
+func _on_get_password_cross_button_pressed() -> void:
+	%GetPassword.visible = false
+	%Authorization.visible = true
+
+
+func _on_change_password_cross_button_pressed() -> void:
+	%ChangePasswordCrossButton.visible = false

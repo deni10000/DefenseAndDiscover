@@ -50,18 +50,18 @@ func _send_request(http_request: HTTPRequest, method: int, url: String, data: Di
 
 # ========== AUTH ==========
 
-func register_user(email: String, login:String, password: String) -> Dictionary:
+func register_user(email: String, username:String, password: String) -> Dictionary:
 	return await _send_request(_create_http_request(), HTTPClient.METHOD_POST, "/api/regUser", {
 		"email": email,
 		"password": password,
-		"login": login
+		'username': username
 	})
 
-func confirm_user(email: String, login:String, password: String, code: String) -> Dictionary:
+func confirm_user(email: String, username:String, password: String, code: String) -> Dictionary:
 	var response := await _send_request(_create_http_request(), HTTPClient.METHOD_POST, "/api/confirmation/" + str(code), {
 		"email": email,
 		"password": password,
-		"login": login
+		'username': username
 	})
 	if response.has("token"):
 		token = response["token"]
@@ -80,8 +80,58 @@ func login_user(email: String, password: String) -> Dictionary:
 			Global.java_script.setCookie("token", token, cookie_time)
 	return response
 
-# ========== USER ==========
 
+# ========== USER ==========
+class StatsDto:
+	var history: int
+	var science: int
+	var culture: int
+	var nature: int
+	func _init(json):
+		var dct = {}
+		for x in json:
+			dct[x['topic']] = x['score']
+		history = int(dct['history'])
+		science = int(dct['science'])
+		culture = int(dct['culture'])
+		nature = int(dct['nature'])
+
+func get_user_stat(username):
+	var res = await  _send_request(_create_http_request(), HTTPClient.METHOD_GET, "/api/getUserStat?username=" + username, {}, true)
+	if 'error' in res:
+		return null
+	return StatsDto.new(res)	
+
+func post_wave(waves):
+	fill_user_name()
+	if user_name != '':
+		return
+	_send_request(_create_http_request(), HTTPClient.METHOD_POST, "/api/postWave", {
+		"countWave": waves,
+		"username": user_name
+	}, true)
+
+class UserScore:
+	var username: String
+	var count_wave: int
+	func _init(dct) -> void:
+		username = dct['username']
+		count_wave = int(dct['countWave'])
+	
+
+class LeaderBoardDto:
+	var users: Array[UserScore] = []
+	func _init(json):
+		for x in json:
+			users.append(UserScore.new(x))
+			
+func get_waves():
+	var res = await _send_request(_create_http_request(), HTTPClient.METHOD_GET, "/api/getWaves", {})
+	if 'error' in res:
+		return null
+	return LeaderBoardDto.new(res)
+	
+	
 func get_user() -> Dictionary:
 	return await _send_request(_create_http_request(), HTTPClient.METHOD_GET, "/api/user", {}, true)
 
@@ -105,10 +155,7 @@ class QuestionDto:
 		options = dct['options'] 
 
 func get_question(category: String, difficulty: int):
-	if user_name == '' and token != '':
-		var res = await get_user()
-		if 'error' not in res:
-			user_name = res['login']
+	fill_user_name()
 	var dct = await _send_request(_create_http_request(), HTTPClient.METHOD_POST, "/api/getQuestion", {
 		'username': user_name,
 		'prompt': {
@@ -139,3 +186,9 @@ func post_answer(question_id: String, answer: String):
 	if 'error' in res:
 		return null
 	return AnswerDto.new(res)
+
+func fill_user_name():
+	if user_name == '' and token != '':
+		var res = await get_user()
+		if 'error' not in res:
+			user_name = res['username']

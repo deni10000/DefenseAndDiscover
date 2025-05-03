@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001
+      author: valyalshikovd
+      changes:
+        - sqlFile:
+            path: changes/001_create_questions_table_and_seed.sql
+            relativeToChangelogFile: true

@@ -35,12 +35,6 @@ public class CommonKafkaConfig {
                 Map.of(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaProperties.getBootstrapServers()));
     }
 
-    //    @Bean
-    //    @SneakyThrows
-    //    ZooKeeper localZooKeeperAdmin(CuratorFramework curatorFramework) {
-    //        return curatorFramework.getZookeeperClient().getZooKeeper();
-    //    }
-
     @Bean
     @SneakyThrows
     KafkaAdmin.NewTopics userEventsTopic() {

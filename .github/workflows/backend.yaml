@@ -30,6 +30,15 @@ jobs:
       - uses: actions/checkout@v4
       - name: Build & Test ${{ matrix.service }}
         run: mvn clean install
+    env:
+      PROMT_CLIENT_URL: http://modelservice:8082
+      ROLE_CLIENT_URL: http://userservice:8081
+      STAT_CLIENT_URL: http://userservice:8081
+      USER_CLIENT_URL: http://userservice:8081
+      MAIL_HOST: smtp.mail.ru
+      MAIL_PORT: 587
+      MAIL_USERNAME: ""
+      MAIL_PASSWORD: ""
 
   build_python_service:
     runs-on: ubuntu-latest

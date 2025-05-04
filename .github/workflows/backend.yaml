@@ -96,7 +96,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          source: "backend/docker-compose.yaml"
+          source: "backend/docker-compose.yml"
           target: ~/
 
       - name: SSH deploy

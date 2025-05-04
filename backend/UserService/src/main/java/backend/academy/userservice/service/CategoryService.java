@@ -14,9 +14,15 @@ public class CategoryService {
 
     @PostConstruct
     public void init() {
-        categoryRepository.save(Category.builder().name("history").build());
-        categoryRepository.save(Category.builder().name("science").build());
-        categoryRepository.save(Category.builder().name("culture").build());
-        categoryRepository.save(Category.builder().name("nature").build());
+        saveCategoryIfNotExists("history");
+        saveCategoryIfNotExists("science");
+        saveCategoryIfNotExists("culture");
+        saveCategoryIfNotExists("nature");
+    }
+
+    private void saveCategoryIfNotExists(String name) {
+        if (!categoryRepository.findByName(name).isPresent()) {
+            categoryRepository.save(Category.builder().name(name).build());
+        }
     }
 }

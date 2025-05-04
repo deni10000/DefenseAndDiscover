@@ -73,6 +73,8 @@ public class UserService {
     @Transactional
     public UserDto getUserByEmail(String email) {
 
+        log.info("UserService getUserByEmail: " + email);
+
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 

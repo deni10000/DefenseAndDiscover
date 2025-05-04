@@ -12,6 +12,8 @@ import backend.academy.apigateway.exception.WrongPasswordException;
 import backend.academy.apigateway.service.KafkaClientService;
 import backend.academy.apigateway.service.UserService;
 import backend.academy.apigateway.utils.ApiPaths;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -28,6 +30,7 @@ import java.util.List;
 @Controller
 @RestController
 @RequiredArgsConstructor
+@Tag(name = "Пользователь", description = "Взаимодействие с пользователями")
 public class UserController {
 
     private final UserService userService;
@@ -44,6 +47,7 @@ public class UserController {
         }
     }
 
+    @Operation(summary = "Логин")
     @PostMapping(ApiPaths.BASE_API + "/login")
     public ResponseEntity<String> login(@RequestBody UserDto userDto) {
         try {
@@ -70,6 +74,7 @@ public class UserController {
         }
     }
 
+
     @PostMapping((ApiPaths.ADMIN_API + "/registerWithRole"))
     public ResponseEntity<String> registerWithRole(@RequestBody UserDto userDto) {
         try {
@@ -83,6 +88,7 @@ public class UserController {
         }
     }
 
+    @Operation(summary = "Удаление пользователя")
     @PostMapping(ApiPaths.ADMIN_API + "/deleteUser")
     public ResponseEntity<String> deleteUser(@RequestBody UserDto userDto) {
         try {
@@ -95,6 +101,7 @@ public class UserController {
         }
     }
 
+    @Operation(summary = "Смена пароля")
     @PostMapping(ApiPaths.USER_API + "/changePassword")
     public ResponseEntity<String> updatePassword(@RequestBody ChangingPasswordDto changingPasswordDto, @AuthenticationPrincipal UserDetails userDetails) {
         try {
@@ -115,6 +122,7 @@ public class UserController {
         }
     }
 
+    @Operation(summary = "Получить роль пользователя")
     @PostMapping(ApiPaths.ADMIN_API + "/getRoles")
     public ResponseEntity<RoleDto> getRoles(@RequestBody UserDto userDto) {
         try {
@@ -128,6 +136,7 @@ public class UserController {
     }
 
 
+    @Operation(summary = "Добавить роль пользователю")
     @PostMapping(ApiPaths.ADMIN_API + "/addRoleToUser")
     public ResponseEntity<String> addRole(@RequestBody AddRoleDto addRoleDto) {
         try {
@@ -141,6 +150,7 @@ public class UserController {
 
     }
 
+    @Operation(summary = "Убрать роль у пользователя")
     @PostMapping(ApiPaths.ADMIN_API + "/deleteRoleFromUser")
     public ResponseEntity<String> deleteRoleFromUser(@RequestBody AddRoleDto addRoleDto) {
         try {
@@ -153,6 +163,7 @@ public class UserController {
         }
     }
 
+    @Operation(summary = "Получить список пользователей")
     @GetMapping(ApiPaths.ADMIN_API + "/getAllUsers")
     public ResponseEntity<List<UserDto>> getAllUsers(@RequestParam(required = false) String limit) {
         try {
@@ -168,7 +179,7 @@ public class UserController {
         }
     }
 
-
+    @Operation(summary = "Получить конкретного пользователя")
     @PostMapping(ApiPaths.ADMIN_API + "/getUser")
     public ResponseEntity<UserDto> getUser(@RequestBody UserDto user) {
         try {
@@ -180,11 +191,13 @@ public class UserController {
         }
     }
 
+    @Operation(summary = "Регистрация с подтверждением через почту")
     @PostMapping(ApiPaths.BASE_API + "/createUser")
     public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
        return ResponseEntity.ok().body(userService.requestToCreateUser(userDto));
     }
 
+    @Operation(summary = "Отправка кода подтверждения почты")
     @PostMapping(ApiPaths.BASE_API + "/confirmationUser")
     public ResponseEntity<UserDto> confirmationUser(@RequestBody UserDto userDto, @RequestParam(name = "code") int code) {
         userService.userConfirmation(userDto, String.valueOf(code));

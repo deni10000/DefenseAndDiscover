@@ -106,8 +106,8 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
-            export DOCKER_USERNAME="${{ secrets.DOCKER_USERNAME }}"
-            export DOCKER_PASSWORD="${{ secrets.DOCKER_PASSWORD }}"
+            export DOCKER_USERNAME="${{ secrets.DOCKERHUB_USERNAME }}"
+            export DOCKER_PASSWORD="${{ secrets.DOCKERHUB_TOKEN }}"
 
             echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
             

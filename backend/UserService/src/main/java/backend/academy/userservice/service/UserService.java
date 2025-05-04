@@ -10,12 +10,14 @@ import backend.academy.userservice.repository.RoleRepository;
 import jakarta.annotation.PostConstruct;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class UserService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
@@ -25,18 +27,26 @@ public class UserService {
     @PostConstruct
     @Transactional
     void init() {
-        roleRepository.save(Role.builder().name("ADMIN").build());
-        roleRepository.save(Role.builder().name("USER").build());
+        if (roleRepository.findByName("ADMIN").isEmpty()) {
+            roleRepository.save(Role.builder().name("ADMIN").build());
+        }
 
-        userRepository.save(
-                User
-                        .builder()
-                        .username("ADMIN")
-                        .password(encoder.encode("0000"))
-                        .email("admin@admin.com")
-                        .role(roleRepository.findByName("ADMIN").orElseThrow(NullPointerException::new))
-                        .build()
-        );
+        if (roleRepository.findByName("USER").isEmpty()) {
+            roleRepository.save(Role.builder().name("USER").build());
+        }
+
+        if (userRepository.findByUsername("ADMIN").isEmpty()) {
+            userRepository.save(
+                    User.builder()
+                            .username("ADMIN")
+                            .password(encoder.encode("0000"))
+                            .email("admin@admin.com")
+                            .role(roleRepository.findByName("ADMIN").orElseThrow())
+                            .build()
+            );
+        }
+
+        log.info("UserService inited");
     }
 
     public List<User> getAllUsers() {

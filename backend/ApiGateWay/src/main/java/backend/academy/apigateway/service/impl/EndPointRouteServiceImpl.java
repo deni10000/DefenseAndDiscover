@@ -14,7 +14,6 @@ import java.util.List;
 @Service
 public class EndPointRouteServiceImpl implements EndPointRouteService {
 
-
     private List<EndPointRoute> routes;
 
     public EndPointRouteServiceImpl() {

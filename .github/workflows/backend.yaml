@@ -35,6 +35,10 @@ jobs:
       ROLE_CLIENT_URL: http://userservice:8081
       STAT_CLIENT_URL: http://userservice:8081
       USER_CLIENT_URL: http://userservice:8081
+      MAIL_HOST: smtp.mail.ru
+      MAIL_PORT: 587
+      MAIL_USERNAME: ""
+      MAIL_PASSWORD: ""
 
   build_python_service:
     runs-on: ubuntu-latest

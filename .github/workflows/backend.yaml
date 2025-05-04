@@ -102,9 +102,9 @@ jobs:
           target: ~/
       - name: Create app.env file
         run: |
-          echo "LLM_TOKEN=${{ secrets.LLM_TOKEN }}" >> app.env
-          echo "MAIL_USERNAME=${{ secrets.MAIL_USERNAME }}" >> app.env
-          echo "MAIL_PASSWORD=${{ secrets.MAIL_PASSWORD }}" >> app.env
+          echo "LLM_TOKEN=${{ secrets.LLM_TOKEN }}" >> backend/app.env
+          echo "MAIL_USERNAME=${{ secrets.MAIL_USERNAME }}" >> backend/app.env
+          echo "MAIL_PASSWORD=${{ secrets.MAIL_PASSWORD }}" >> backend/app.env
 
       - name: Upload app.env via SCP
         uses: appleboy/scp-action@v1
@@ -112,7 +112,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          source: "app.env"
+          source: "backend/app.env"
           target: "~/backend/"
 
       - name: SSH deploy

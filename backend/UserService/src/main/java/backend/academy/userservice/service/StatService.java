@@ -1,5 +1,6 @@
 package backend.academy.userservice.service;
 
+import backend.academy.userservice.dto.StatCounterWithoutUserDto;
 import backend.academy.userservice.dto.StatDto;
 import backend.academy.userservice.dto.StatDtoCounter;
 import backend.academy.userservice.mapper.StatMapper;
@@ -30,7 +31,7 @@ public class StatService {
 
         Optional<User> userOptional = userRepository.findByUsername(statDto.getUsername());
 
-        if(userOptional.isEmpty()) {
+        if (userOptional.isEmpty()) {
             return null;
         }
 
@@ -48,6 +49,26 @@ public class StatService {
     public List<StatDtoCounter> getAllStats() {
         return statsRepository.findAll().stream().map(
                 StatMapper::toStatCounterDto
+        ).collect(Collectors.toList());
+    }
+
+    public List<StatCounterWithoutUserDto> getUserStats(String username) {
+        Optional<User> userOptional = userRepository.findByUsername(username);
+        if (userOptional.isEmpty()) {
+            return null;
+        }
+        User userEntity = userOptional.get();
+
+        List<Stat> stats = statsRepository.findByUser(userEntity);
+
+        return stats.stream().map(
+                (stat) -> {
+                    return StatCounterWithoutUserDto
+                            .builder()
+                            .score(stat.getCounterCounter())
+                            .topic(stat.getCategory().getName())
+                            .build();
+                }
         ).collect(Collectors.toList());
     }
 

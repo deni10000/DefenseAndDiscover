@@ -70,6 +70,17 @@ public class UserService {
         return userMapper.toDto(user);
     }
 
+    @Transactional
+    public UserDto getUserByEmail(String email) {
+
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        return userMapper.toDto(user);
+    }
+
+
+
     public UserDto createUser(UserDto userDto) {
         User user = new User();
         user.setUsername(userDto.getUsername());

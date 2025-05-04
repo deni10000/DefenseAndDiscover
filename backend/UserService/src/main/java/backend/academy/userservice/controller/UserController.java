@@ -29,6 +29,11 @@ public class UserController {
         return userService.getUserByUsername(username);
     }
 
+    @GetMapping("/by-email/{email}")
+    public UserDto getUserByUsername(@PathVariable String email) {
+        return userService.getUserByEmail(email);
+    }
+
     @PostMapping
     public UserDto createUser(@RequestBody UserDto userDto) {
         return userService.createUser(userDto);

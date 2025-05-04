@@ -180,7 +180,7 @@ public class UserController {
     }
 
     @Operation(summary = "Получить конкретного пользователя")
-    @PostMapping(ApiPaths.ADMIN_API + "/getUser")
+    @PostMapping(ApiPaths.BASE_API + "/getUser")
     public ResponseEntity<UserDto> getUser(@RequestBody UserDto user) {
         try {
             return ResponseEntity.ok(userService.getUser(user.getUsername()));

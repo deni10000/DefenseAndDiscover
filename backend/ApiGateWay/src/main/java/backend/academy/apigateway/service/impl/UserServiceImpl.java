@@ -84,7 +84,6 @@ public class UserServiceImpl implements UserService {
                 return jwtService.generateToken(user.getUsername());
             }
         }catch (Exception e){
-            log.error(e.getMessage());
             log.error("Не удалось сохранить или валидикровать сущность User");
             return null;
         }

@@ -37,7 +37,6 @@ public class KafkaConsumerConfig {
                 new ConcurrentKafkaListenerContainerFactory<Long, UserConfirmation>();
         factory.setConsumerFactory(
                 consumerFactory(props -> props.put(ConsumerConfig.GROUP_ID_CONFIG, "default-consumer")));
-
         factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL);
         factory.setAutoStartup(true);
         factory.setConcurrency(1);

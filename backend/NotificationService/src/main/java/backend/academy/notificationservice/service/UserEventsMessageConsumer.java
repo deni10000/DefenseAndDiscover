@@ -46,6 +46,7 @@ public class UserEventsMessageConsumer {
         try {
             messageService.sendMail(objectMapper.readValue(record.value(), UserConfirmation.class));
         } catch (Exception e) {
+            log.error(e.getMessage(), e);
             kafkaTemplate.send(topicDlt + "-dlt", record.toString());
         }
 

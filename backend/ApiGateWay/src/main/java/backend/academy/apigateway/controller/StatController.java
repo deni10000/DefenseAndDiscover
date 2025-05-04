@@ -27,7 +27,7 @@ public class StatController {
         return ResponseEntity.ok(statClient.getAllStats());
     }
 
-    @GetMapping("/getUserStat")
+    @GetMapping(ApiPaths.BASE_API+"/getUserStat")
     public ResponseEntity<List<StatCounterWithoutUserDto>> stats(@RequestParam(name = "username") String username) {
         return ResponseEntity.ok(statClient.getUserStat(username));
     }

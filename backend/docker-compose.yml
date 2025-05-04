@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   apigateway:
+    image: 770vda/defense-discover:apigateway
     container_name: "apigateway"
     build: ./ApiGateWay
     ports:
@@ -20,6 +21,7 @@ services:
       - app-network
 
   modelservice:
+    image: 770vda/defense-discover:modelservice
     container_name: "modelservice"
     build: ./ModelService
     ports:
@@ -38,6 +40,7 @@ services:
       - app-network
 
   notificationservice:
+    image: 770vda/defense-discover:notificationservice
     container_name: "notificationservice"
     build: ./NotificationService
     ports:
@@ -56,6 +59,7 @@ services:
       - app-network
 
   userservice:
+    image: 770vda/defense-discover:userservice
     container_name: "userservice"
     build: ./UserService
     ports:

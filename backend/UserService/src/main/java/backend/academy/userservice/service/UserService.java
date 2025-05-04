@@ -27,6 +27,7 @@ public class UserService {
     @PostConstruct
     @Transactional
     void init() {
+        log.info("UserService initializating");
         if (roleRepository.findFirstByName("ADMIN").isEmpty()) {
             roleRepository.save(Role.builder().name("ADMIN").build());
         }
@@ -45,7 +46,6 @@ public class UserService {
                             .build()
             );
         }
-
         log.info("UserService inited");
     }
 

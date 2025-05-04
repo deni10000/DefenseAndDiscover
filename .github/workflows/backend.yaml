@@ -101,6 +101,13 @@ jobs:
           source: "backend/docker-compose.yml"
           target: ~/
 
+      - name: Create app.env file
+        run: |
+          echo "LLM_TOKEN=${{ secrets.LLM_TOKEN }}" >> app.env
+          echo "MAIL_USERNAME=${{ secrets.MAIL_USERNAME }}" >> app.env
+          echo "MAIL_PASSWORD=${{ secrets.MAIL_PASSWORD }}" >> app.env
+
+
       - name: SSH deploy
         uses: appleboy/ssh-action@v1
         with:

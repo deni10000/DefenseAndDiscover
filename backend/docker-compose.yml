@@ -53,8 +53,8 @@ services:
       - BOOTSTRAP_SERVERS=kafka-1:9092
       - MAIL_HOST=smtp.mail.ru
       - MAIL_PORT=587
-      - MAIL_USERNAME=
-      - MAIL_PASSWORD=
+      - MAIL_USERNAME=${MAIL_USERNAME}
+      - MAIL_PASSWORD=${MAIL_PASSWORD}
     networks:
       - app-network
 
@@ -167,7 +167,7 @@ services:
     ports:
       - "8000:8000"
     environment:
-      TOKEN:
+      TOKEN: ${LLM_TOKEN}
     restart: always
     networks:
       - app-network

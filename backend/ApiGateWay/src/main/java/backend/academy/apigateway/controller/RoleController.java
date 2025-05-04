@@ -35,7 +35,6 @@ public class RoleController {
         }
     }
 
-
     @GetMapping("/getAllRoles")
     @Operation(summary = "Получить все роли")
     public ResponseEntity<List<RoleDto>> getRoles() {

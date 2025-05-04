@@ -14,7 +14,6 @@ public interface StatClient {
     @PostMapping("/getStats")
     List<StatCounterDto> getAllStats();
 
-
     @PostMapping("/getUserStat")
     List<StatCounterWithoutUserDto> getUserStat(@RequestParam(name = "username") String username);
 

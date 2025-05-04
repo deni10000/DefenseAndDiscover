@@ -28,9 +28,8 @@ public class UserController {
     public UserDto getUserByUsername(@PathVariable String username) {
         return userService.getUserByUsername(username);
     }
-
     @GetMapping("/by-email/{email}")
-    public UserDto getUserByUsername(@PathVariable String email) {
+    public UserDto getUserByEmail(@PathVariable String email) {
         return userService.getUserByEmail(email);
     }
 
@@ -43,7 +42,6 @@ public class UserController {
     public UserDto updateUser(@PathVariable Long id, @RequestBody UserDto userDto) {
         return userService.updateUser(id, userDto);
     }
-
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);

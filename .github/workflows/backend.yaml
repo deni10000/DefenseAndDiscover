@@ -101,6 +101,15 @@ jobs:
           source: "backend/docker-compose.yml"
           target: ~/
 
+      - name: Upload app.env via SCP
+        uses: appleboy/scp-action@v1
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          source: "app.env"
+          target: "~/backend/"
+
       - name: Create app.env file
         run: |
           echo "LLM_TOKEN=${{ secrets.LLM_TOKEN }}" >> app.env

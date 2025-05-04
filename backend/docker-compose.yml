@@ -26,6 +26,7 @@ services:
     build: ./ModelService
     ports:
       - "8082:8082"
+    env_file: ./app.env
     environment:
       - REDIS_HOST=redis
       - REDIS_PORT=6379
@@ -43,6 +44,7 @@ services:
     image: 770vda/defense-discover:notificationservice
     container_name: "notificationservice"
     build: ./NotificationService
+    env_file: ./app.env
     ports:
       - "8083:8083"
     environment:

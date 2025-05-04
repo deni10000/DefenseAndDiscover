@@ -98,7 +98,7 @@ public class PromtServiceImpl implements PromtService {
                         .builder()
                         .isCorrect(true)
                         .userName(postAnswerDto.getUserName())
-                        .correctAnswer(postAnswerDto.getAnswer())
+                        .correctAnswer(questionDto.getCorrectAnswer())
                         .build();
             }
 
@@ -106,7 +106,7 @@ public class PromtServiceImpl implements PromtService {
                     .builder()
                     .isCorrect(false)
                     .userName(postAnswerDto.getUserName())
-                    .correctAnswer(postAnswerDto.getAnswer())
+                    .correctAnswer(questionDto.getCorrectAnswer())
                     .build();
 
         } catch (Exception e) {

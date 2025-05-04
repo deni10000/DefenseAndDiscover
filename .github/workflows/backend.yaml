@@ -118,3 +118,7 @@ jobs:
             docker compose pull
             docker compose up -d
             docker system prune -f
+    env:
+      LLM_TOKEN: ${{ secrets.LLM_TOKEN }}
+      MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
+      MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}

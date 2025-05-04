@@ -27,11 +27,11 @@ public class UserService {
     @PostConstruct
     @Transactional
     void init() {
-        if (roleRepository.findByName("ADMIN").isEmpty()) {
+        if (roleRepository.findFirstByName("ADMIN").isEmpty()) {
             roleRepository.save(Role.builder().name("ADMIN").build());
         }
 
-        if (roleRepository.findByName("USER").isEmpty()) {
+        if (roleRepository.findFirstByName("USER").isEmpty()) {
             roleRepository.save(Role.builder().name("USER").build());
         }
 

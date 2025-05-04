@@ -55,6 +55,4 @@ public class KafkaProducerConfig {
         @Override
         public void configure(Map<String, ?> configs) {}
     }
-
-    public static class UserEventSerializer extends JsonSerializer<UserConfirmation> {}
 }

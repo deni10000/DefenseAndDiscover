@@ -24,5 +24,4 @@ public class StatController {
     public ResponseEntity<List<StatCounterDto>> getAllStats(){
         return ResponseEntity.ok(statClient.getAllStats());
     }
-
 }

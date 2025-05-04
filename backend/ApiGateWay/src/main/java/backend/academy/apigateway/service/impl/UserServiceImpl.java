@@ -74,7 +74,6 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-
     public String registerAndVerifyUser(UserDto user) {
         user.setPassword(encoder.encode(user.getPassword()));
         try {
@@ -96,7 +95,6 @@ public class UserServiceImpl implements UserService {
     public UserDto registerWithRole(UserDto user) {
         user.setPassword(encoder.encode(user.getPassword()));
         try {
-            log.info("Сохранение сущности User");
             RoleDto roleEntity = roleClient.getRoleByName(user.getRole().getName());
             if (roleEntity != null) {
                 user.setRole(roleEntity);
@@ -106,7 +104,6 @@ public class UserServiceImpl implements UserService {
             repo.createUser(user);
             return user;
         }catch (Exception e){
-            log.error(e.getMessage());
             log.error("Не удалось сохранить сущность User");
             return null;
         }

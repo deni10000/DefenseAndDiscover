@@ -100,6 +100,11 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           source: "backend/docker-compose.yml"
           target: ~/
+      - name: Create app.env file
+        run: |
+          echo "LLM_TOKEN=${{ secrets.LLM_TOKEN }}" >> app.env
+          echo "MAIL_USERNAME=${{ secrets.MAIL_USERNAME }}" >> app.env
+          echo "MAIL_PASSWORD=${{ secrets.MAIL_PASSWORD }}" >> app.env
 
       - name: Upload app.env via SCP
         uses: appleboy/scp-action@v1
@@ -109,13 +114,6 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           source: "app.env"
           target: "~/backend/"
-
-      - name: Create app.env file
-        run: |
-          echo "LLM_TOKEN=${{ secrets.LLM_TOKEN }}" >> app.env
-          echo "MAIL_USERNAME=${{ secrets.MAIL_USERNAME }}" >> app.env
-          echo "MAIL_PASSWORD=${{ secrets.MAIL_PASSWORD }}" >> app.env
-
 
       - name: SSH deploy
         uses: appleboy/ssh-action@v1

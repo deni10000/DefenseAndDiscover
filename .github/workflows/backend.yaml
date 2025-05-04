@@ -5,6 +5,7 @@ on:
     branches: [main, 'develop', 'develop-*', 'develop/**']
     paths:
       - 'backend/**'
+      - '.github'
   pull_request:
     branches: [main, 'develop', 'develop-*', 'develop/**']
     paths:
@@ -62,6 +63,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Create app.env file
+        run: |
+          echo "LLM_TOKEN=${{ secrets.LLM_TOKEN }}" >> backend/app.env
+          echo "MAIL_USERNAME=${{ secrets.MAIL_USERNAME }}" >> backend/app.env
+          echo "MAIL_PASSWORD=${{ secrets.MAIL_PASSWORD }}" >> backend/app.env
 
       - name: Setup Docker
         uses: docker/setup-docker-action@v4

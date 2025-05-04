@@ -8,7 +8,6 @@ import java.util.List;
 
 public interface RoleService {
 
-
     List<RoleDto> getAllRoles();
     List<UserDto> findUsersByRole(RoleDto role);
 }

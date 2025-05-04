@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
-from ModelGateway.utils.generation import generate_quiz
+from backend.ModelApiService.ModelGateway.utils.generation import generate_quiz
 
 app = FastAPI()
 

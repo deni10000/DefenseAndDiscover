@@ -3,6 +3,9 @@ name: Godot Web Export and Deploy
 on:
   push:
     branches: [main, 'develop', 'develop-*', 'develop/**']
+    paths:
+      - 'frontend/**'
+      - '.github'
 
 permissions:
   contents: write

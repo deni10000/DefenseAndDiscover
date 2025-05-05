@@ -13,6 +13,8 @@ config_version=5
 config/name="TowerDefense"
 run/main_scene="uid://dgd30hd5wxqbf"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+boot_splash/fullsize=false
+boot_splash/image="uid://kqqg52etmvwp"
 config/icon="res://icon.svg"
 
 [autoload]

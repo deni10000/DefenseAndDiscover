@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="TowerDefense"
+config/name="Defense&Discover"
 run/main_scene="uid://dgd30hd5wxqbf"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 boot_splash/fullsize=false

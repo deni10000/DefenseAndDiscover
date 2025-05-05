@@ -3,7 +3,7 @@ extends Control
 const ALLOWED_SPECIALS = "!@#$%^&*()_+-=[]{}|;:'\",.<>?/ "
 const NOT_ALLOWED_EMAIL_ERROR = "Неверный адресс электронной почты" 
 const MIN_LEN_PASSWORD_ERROR = "Пароль слишком короткий"
-const USERNAME_LEN_ERROR = "Логин не должен быть пустым"
+const USERNAME_LEN_ERROR = "Никнейм не должен быть пустым"
 var email_regex :=  RegEx.new() 
 const MINIMUM_PASSWORD_LENGTH := 8
 
@@ -143,7 +143,7 @@ func _on_profile_button_pressed() -> void:
 				%AcceptDialog.visible = true
 		else:
 			set_user_stats()
-			update_user_data()
+			await update_user_data()
 			%Profile.visible = true
 		disable_waiting()
 			
@@ -232,8 +232,8 @@ func _on_authorization_button_pressed() -> void:
 	var error = ''
 	if not is_valid_email(%EmailLineEdit2.text):
 		error = NOT_ALLOWED_EMAIL_ERROR
-	#elif not is_valid_passoword(%PasswordLineEdit2.text):
-		#error = MIN_LEN_PASSWORD_ERROR
+	elif not is_valid_passoword(%PasswordLineEdit2.text):
+		error = MIN_LEN_PASSWORD_ERROR
 	
 	if error != '':
 		%ErrorAutharizationLabel.text = error

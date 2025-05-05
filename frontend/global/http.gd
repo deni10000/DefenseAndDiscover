@@ -12,7 +12,7 @@ func  _ready() -> void:
 		var dop = Global.java_script.getCookie("token")
 		if dop != null:
 			token = dop
-		dop = Global.java_script.getCookue("email")
+		dop = Global.java_script.getCookie("email")
 		email = dop if dop != null else ''
 			
 
@@ -64,11 +64,11 @@ func register_user(email: String, username:String, password: String) -> Dictiona
 	})
 
 func set_cookie(token ,email):
-		if OS.get_name() == 'Web':
-			Global.java_script.setCookie("token", token, cookie_time)
-			Global.java_script.setCookie("email", email, cookie_time)
-		self.token = token
-		self.email = email
+	if OS.get_name() == 'Web':
+		Global.java_script.setCookie("token", token, cookie_time)
+		Global.java_script.setCookie("email", email, cookie_time)
+	self.token = token
+	self.email = email
 	
 	
 

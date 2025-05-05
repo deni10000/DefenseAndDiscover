@@ -209,6 +209,15 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
+    @Override
+    public UserDto getUserByEmail(String email) {
+        UserDto user = userClient.getUserByEmail(email);
+        if(user == null){
+            throw new UserNotFound(email);
+        }
+        return user;
+    }
+
 
     public UserDto requestToCreateUser(UserDto userDto) {
         try {

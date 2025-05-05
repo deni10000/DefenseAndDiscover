@@ -22,4 +22,5 @@ public interface UserService {
     UserDto getUser(String username);
     UserDto requestToCreateUser(UserDto user);
     void userConfirmation(UserDto userDto, String code);
+    UserDto getUserByEmail(String email);
 }

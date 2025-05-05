@@ -185,14 +185,14 @@ public class UserController {
 
     @Operation(summary = "Получить конкретного пользователя")
     @PostMapping(ApiPaths.BASE_API + "/getUser")
-    public ResponseEntity<UserDto> getUser( @AuthenticationPrincipal UserDetails userDetails) {
+    public ResponseEntity<UserDto> getUser(@RequestParam(name = "email") String email) {
         try {
-            return ResponseEntity.ok(userService.getUser(userDetails.getUsername()));
+            return ResponseEntity.ok(userService.getUserByEmail(email));
         } catch (UserNotFound e) {
-            log.error(e.getMessage() + userDetails.toString());
+            log.error(e.getMessage() + email);
             return ResponseEntity.notFound().build();
         } catch (Exception e) {
-            log.error(e.getMessage() + userDetails.toString());
+            log.error(e.getMessage() + email);
             return ResponseEntity.unprocessableEntity().build();
         }
     }

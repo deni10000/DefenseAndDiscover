@@ -1,33 +1,42 @@
-name: Godot Web Export and Deploy to Vercel
+name: Godot Web Export and Deploy
 
 on:
   push:
     branches: [main, 'develop', 'develop-*', 'develop/**']
-    paths:
-      - 'frontend/**'
-      - '.github'
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    - name: Checkout repo
+      uses: actions/checkout@v3
 
-      - name: Create export directory
-        run: mkdir -p frontend/build/web
+    - name: Create export directory
+      run: mkdir -p frontend/build/web
 
-      - name: Export HTML5 build using Godot
-        run: |
-          docker run --rm \
-            -v "${{ github.workspace }}/frontend":/game \
-            -w /game \
-            barichello/godot-ci:4.4.1 \
-            godot --headless --export-release "Web" build/web/index.html
+    - name: Export HTML5 build using Godot
+      run: |
+        docker run --rm \
+          -v "${{ github.workspace }}/frontend":/game \
+          -w /game \
+          barichello/godot-ci:4.4.1 \
+          godot --headless --export-release "Web" build/web/index.html
 
-      - name: Install Vercel CLI
-        run: npm install -g vercel
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
 
-      - name: Deploy to Vercel
-        run: vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --confirm --cwd frontend/build/web
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4

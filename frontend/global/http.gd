@@ -9,6 +9,7 @@ const TIMEOUT_SECONDS := 4.0
 
 func  _ready() -> void:
 	if OS.get_name() == 'Web':
+		print(JavaScriptBridge.eval("window.location.origin", true))
 		var dop = Global.java_script.getCookie("token")
 		if dop != null:
 			token = dop

@@ -35,3 +35,5 @@ res://interface/settings_panel/settings.tscn
 res://level/map/map.gd
 res://tower/tree_tower/tree_tower.tscn
 res://global/http.gd
+res://interface/main_menu/main_menu.gd
+res://level/place_for_tower/v1/place_for_tower.gd

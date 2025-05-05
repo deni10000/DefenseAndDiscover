@@ -196,12 +196,16 @@ func _on_registration_button_pressed() -> void:
 	var ret = await Http.register_user(%EmailLineEdit.text, %LoginLineEdit.text, %PasswordLineEdit.text)
 	if 'error' not in ret:
 		%Registration.visible = false
-		$ConfirmationMenu.visible = true	
+		%ConfirmationMenu.visible = true	
 	disable_waiting()
 
+func show_success_notification():
+	%RegistrationSuccess.visible = true
+	await  get_tree().create_timer(1).timeout
+	%RegistrationSuccess.visible = false
 
 func _on_confirmation_cross_button_pressed() -> void:
-	$ConfirmationMenu.visible = false
+	%ConfirmationMenu.visible = false
 	%ConfirmationLineEdit.text = ''
 
 
@@ -209,8 +213,9 @@ func _on_confirmation_button_pressed() -> void:
 	enable_waiting()
 	var ret = await Http.confirm_user(%EmailLineEdit.text, %LoginLineEdit.text, %PasswordLineEdit.text, %ConfirmationLineEdit.text)
 	if 'error' not in ret:
-		$ConfirmationMenu.visible = false
+		%ConfirmationMenu.visible = false
 		%ConfirmationLineEdit.text = ''
+		show_success_notification()
 	disable_waiting()
 
 

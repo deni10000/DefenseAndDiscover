@@ -157,8 +157,10 @@ public class UserController {
             userService.deleteRole(addRoleDto.getRole(), addRoleDto.getUsername());
             return ResponseEntity.ok().build();
         } catch (UserNotFound e) {
+            log.error(e.getMessage());
             return ResponseEntity.unprocessableEntity().body("User not found " + e.getMessage());
         } catch (Exception e) {
+            log.error(e.getMessage());
             return ResponseEntity.unprocessableEntity().build();
         }
     }
@@ -173,8 +175,10 @@ public class UserController {
             }
             return ResponseEntity.ok(userService.getAllUsers());
         } catch (NumberFormatException e) {
+            log.error(e.getMessage());
             return ResponseEntity.unprocessableEntity().build();
         } catch (Exception e) {
+            log.error(e.getMessage());
             return ResponseEntity.badRequest().build();
         }
     }
@@ -185,8 +189,10 @@ public class UserController {
         try {
             return ResponseEntity.ok(userService.getUser(userDetails.getUsername()));
         } catch (UserNotFound e) {
+            log.error(e.getMessage() + userDetails.toString());
             return ResponseEntity.notFound().build();
         } catch (Exception e) {
+            log.error(e.getMessage() + userDetails.toString());
             return ResponseEntity.unprocessableEntity().build();
         }
     }

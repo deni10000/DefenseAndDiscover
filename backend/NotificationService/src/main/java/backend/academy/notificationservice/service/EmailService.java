@@ -1,11 +1,13 @@
 package backend.academy.notificationservice.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class EmailService {
@@ -16,9 +18,9 @@ public class EmailService {
     private String fromEmail;
 
     public void sendSimpleMessage(String to, String subject, String text) {
-        System.out.println("Отправка сообщения" );
-        System.out.println("Отправка на адрес: " + to);
 
+        log.info("Sending email to " + to);
+        log.info("From: " + fromEmail);
         SimpleMailMessage message = new SimpleMailMessage();
 
         message.setFrom(fromEmail);

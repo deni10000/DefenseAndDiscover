@@ -49,9 +49,11 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y sshpass
-          
-          sshpass -p "$SSH_PASS" scp -o StrictHostKeyChecking=no godot-web-app.tar $SSH_USER@$VPS_HOST:/tmp/
-          
+
+          # Копируем файл
+          sshpass -p "$SSH_PASS" scp -o StrictHostKeyChecking=no /tmp/docker-export/godot-web-app.tar $SSH_USER@$VPS_HOST:/tmp/
+
+          # Загружаем образ и перезапускаем контейнер
           sshpass -p "$SSH_PASS" ssh -o StrictHostKeyChecking=no $SSH_USER@$VPS_HOST <<EOF
             docker load -i /tmp/godot-web-app.tar
             docker stop godot-web || true && docker rm godot-web || true

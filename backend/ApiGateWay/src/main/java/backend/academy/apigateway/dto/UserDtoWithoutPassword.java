@@ -13,11 +13,4 @@ public class UserDtoWithoutPassword {
     private String username;
     private String email;
     private RoleDto role;
-
-    public UserDtoWithoutPassword(UserDto userDto) {
-        this.id = userDto.getId();
-        this.username = userDto.getUsername();
-        this.email = userDto.getEmail();
-        this.role = userDto.getRole();
-    }
 }

@@ -188,7 +188,15 @@ public class UserController {
     @PostMapping(ApiPaths.BASE_API + "/getUser")
     public ResponseEntity<UserDtoWithoutPassword> getUser(@RequestParam(name = "email") String email) {
         try {
-            return ResponseEntity.ok(new UserDtoWithoutPassword(userService.getUserByEmail(email)));
+            UserDto userDto = userService.getUser(email);
+            UserDtoWithoutPassword userDtoWithoutPassword = UserDtoWithoutPassword
+                    .builder()
+                    .id(userDto.getId())
+                    .email(userDto.getEmail())
+                    .username(userDto.getUsername())
+                    .role(userDto.getRole())
+                    .build();
+            return ResponseEntity.ok(userDtoWithoutPassword);
         } catch (UserNotFound e) {
             log.error(e.getMessage() + email);
             return ResponseEntity.notFound().build();

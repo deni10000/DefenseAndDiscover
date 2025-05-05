@@ -43,9 +43,9 @@ jobs:
 
       - name: Upload image to VPS over SSH
         env:
-          SSH_USER: ${{ secrets.HOST }}
-          SSH_PASS: ${{ secrets.USERNAME }}
-          VPS_HOST: ${{ secrets.PASSWORD }}
+          SSH_USER: ${{ secrets.USERNAME }}
+          SSH_PASS: ${{ secrets.PASSWORD }}
+          VPS_HOST: ${{ secrets.HOST}}
         run: |
           sudo apt-get update
           sudo apt-get install -y sshpass

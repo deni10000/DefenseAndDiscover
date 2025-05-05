@@ -19,16 +19,19 @@ public class EmailService {
 
     public void sendSimpleMessage(String to, String subject, String text) {
 
-        log.info("Sending email to " + to);
-        log.info("From: " + fromEmail);
-        SimpleMailMessage message = new SimpleMailMessage();
+        try {
+            log.info("Sending email to " + to);
+            log.info("From: " + fromEmail);
+            SimpleMailMessage message = new SimpleMailMessage();
 
-        message.setFrom(fromEmail);
-        message.setTo(to);
-        message.setSubject(subject);
-        message.setText(text);
-        mailSender.send(message);
-
+            message.setFrom(fromEmail);
+            message.setTo(to);
+            message.setSubject(subject);
+            message.setText(text);
+            mailSender.send(message);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
     }
 }
 

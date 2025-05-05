@@ -58,20 +58,21 @@ jobs:
   
           sshpass -p "$SSH_PASS" ssh -o StrictHostKeyChecking=no $SSH_USER@$VPS_HOST 'ls -lh ~/godot-web-app.tar'
   
-          sshpass -p "$SSH_PASS" ssh -o StrictHostKeyChecking=no $SSH_USER@$VPS_HOST <<'EOF'
+          sshpass -p "$SSH_PASS" ssh -o StrictHostKeyChecking=no $SSH_USER@$VPS_HOST bash << 'EOF'
           echo "== Проверяем наличие файла =="
           ls -l ~/godot-web-app.tar || { echo "Файл не найден"; exit 1; }
   
-           echo "== Устанавливаем права доступа =="
-           chmod 644 ~/godot-web-app.tar
+          echo "== Устанавливаем права доступа =="
+          chmod 644 ~/godot-web-app.tar
   
-           echo "== Загружаем Docker-образ =="
-           docker load -i ~/godot-web-app.tar || { echo "Ошибка при загрузке образа"; exit 1; }
+          echo "== Загружаем Docker-образ =="
+          docker load -i ~/godot-web-app.tar || { echo "Ошибка при загрузке образа"; exit 1; }
   
-           echo "== Перезапускаем контейнер =="
-           docker stop godot-web || true
-           docker rm godot-web || true
-           docker run -d --name godot-web -p 80:80 godot-web-app || { echo "Ошибка при запуске контейнера"; exit 1; }
+          echo "== Перезапускаем контейнер =="
+          docker stop godot-web || true
+          docker rm godot-web || true
+          docker run -d --name godot-web -p 80:80 godot-web-app || { echo "Ошибка при запуске контейнера"; exit 1; }
   
-           echo "== Готово =="
-           EOF
+          echo "== Готово =="
+          EOF
+

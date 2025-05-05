@@ -43,7 +43,7 @@ jobs:
           docker save godot-web-app -o /tmp/docker-export/godot-web-app.tar
 
       - name: List files in /tmp/docker-export before upload
-        run: ls -lh /tmp/docker-export
+        run: ls -lh /tmp/docker-export  # Проверим наличие файла
 
       - name: Upload image to VPS over SSH
         env:
@@ -54,14 +54,22 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y sshpass
 
-          sshpass -p ${{ secrets.PASSWORD }} scp -o StrictHostKeyChecking=no /tmp/docker-export/godot-web-app.tar ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/tmp/
+          sshpass -p "$SSH_PASS" scp -o StrictHostKeyChecking=no /tmp/docker-export/godot-web-app.tar $SSH_USER@$VPS_HOST:/tmp/
 
-          sshpass -p ${{ secrets.PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'ls -lh /tmp/' 
+          sshpass -p "$SSH_PASS" ssh -o StrictHostKeyChecking=no $SSH_USER@$VPS_HOST 'ls -lh /tmp/'  # Проверим, что файл был передан
+          
+          sshpass -p "$SSH_PASS" ssh -o StrictHostKeyChecking=no $SSH_USER@$VPS_HOST 'ls -l /tmp/godot-web-app.tar'  # Проверим права доступа
 
-          sshpass -p ${{ secrets.PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.HOST }} <<EOF
+          sshpass -p "$SSH_PASS" ssh -o StrictHostKeyChecking=no $SSH_USER@$VPS_HOST <<EOF
             docker images
 
-            docker load -i /tmp/godot-web-app.tar
+            ls -l /tmp/godot-web-app.tar
+
+            docker load -i /tmp/godot-web-app.tar || echo "Ошибка при загрузке образа"
+
+            docker images
+
             docker stop godot-web || true && docker rm godot-web || true
+
             docker run -d --name godot-web -p 80:80 godot-web-app
           EOF

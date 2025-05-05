@@ -120,7 +120,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           source: "backend/app.env"
-          target: "~/backend/"
+          target: ~/
 
       - name: SSH deploy
         uses: appleboy/ssh-action@v1

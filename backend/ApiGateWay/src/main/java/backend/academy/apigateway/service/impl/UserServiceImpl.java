@@ -229,7 +229,7 @@ public class UserServiceImpl implements UserService {
                             .username(userDto.getUsername())
                             .code(code)
                             .build());
-            redisService.setValue(userDto.getEmail()+userDto.getUsername(), code);
+            redisService.setValue(userDto.getEmail(), code);
             return userDto;
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -238,12 +238,13 @@ public class UserServiceImpl implements UserService {
 
     public void userConfirmation(UserDto userDto, String code) {
         try {
-            String cachesCode = redisService.getValue(userDto.getEmail()+userDto.getUsername());
+            String cachesCode = redisService.getValue(userDto.getEmail());
 
             if (Objects.equals(cachesCode, code)) {
                 registerUser(userDto);
                 return;
             }
+            log.error(cachesCode + " " + code);
 
             throw new WrongConfirmationCode(userDto.getEmail());
 

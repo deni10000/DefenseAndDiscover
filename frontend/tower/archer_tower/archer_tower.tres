@@ -1,0 +1,46 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://30xal2d5v48x"]
+
+[ext_resource type="Texture2D" uid="uid://bq7nu076hmhrk" path="res://tower/archer_tower/archer_tower_sh.png" id="1_n1cet"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_410t3"]
+atlas = ExtResource("1_n1cet")
+region = Rect2(0, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8nuvt"]
+atlas = ExtResource("1_n1cet")
+region = Rect2(64, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jojrp"]
+atlas = ExtResource("1_n1cet")
+region = Rect2(128, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6sob7"]
+atlas = ExtResource("1_n1cet")
+region = Rect2(192, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_05o0t"]
+atlas = ExtResource("1_n1cet")
+region = Rect2(256, 0, 64, 128)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_410t3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8nuvt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jojrp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6sob7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_05o0t")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]

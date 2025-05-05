@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2bj3yntbkiuu"]
+
+[ext_resource type="Script" uid="uid://d3qkkeoo1sgw4" path="res://tower/archer_tower/arrow.gd" id="1_b6v0w"]
+[ext_resource type="Texture2D" uid="uid://vvk26y8jombr" path="res://tower/archer_tower/arrow.png" id="2_84xuu"]
+[ext_resource type="PackedScene" uid="uid://so0m1tucs74d" path="res://tower/archer_tower/node_2d.tscn" id="3_5f6xn"]
+
+[sub_resource type="Curve2D" id="Curve2D_84xuu"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -377.983, 46.5636)
+}
+point_count = 1
+
+[node name="Arrow" type="Path2D"]
+y_sort_enabled = true
+curve = SubResource("Curve2D_84xuu")
+script = ExtResource("1_b6v0w")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(287, 581)
+rotation = -0.870342
+loop = false
+
+[node name="Arrow" type="Sprite2D" parent="PathFollow2D"]
+rotation = 0.785398
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_84xuu")
+
+[node name="Node2D" parent="." instance=ExtResource("3_5f6xn")]
+visible = false
+position = Vector2(1199, 556)

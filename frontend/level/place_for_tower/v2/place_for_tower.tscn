@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0rltbdwa65jf"]
+
+[ext_resource type="Script" uid="uid://bu5igm480rcua" path="res://level/place_for_tower/v2/place_for_tower.gd" id="1_pwdrv"]
+[ext_resource type="Texture2D" uid="uid://bdd4gcb88t88t" path="res://level/place_for_tower/placeForTower.png" id="7_7tcvd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fvx64"]
+radius = 52.0024
+
+[node name="PlaceForTower" type="Node2D"]
+script = ExtResource("1_pwdrv")
+
+[node name="Tower" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_fvx64")
+
+[node name="PlaceTexture" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -5)
+scale = Vector2(0.9, 1)
+texture = ExtResource("7_7tcvd")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

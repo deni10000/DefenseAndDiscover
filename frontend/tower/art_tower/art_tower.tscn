@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=3 uid="uid://bdth5uwj86qyt"]
+
+[ext_resource type="PackedScene" uid="uid://cn2hos3800cij" path="res://tower/base/tower.tscn" id="1_rh3f1"]
+[ext_resource type="Script" uid="uid://bidv1b4ghm63m" path="res://tower/art_tower/art_tower.gd" id="2_tq1yk"]
+[ext_resource type="SpriteFrames" uid="uid://cd8pkhjfrcqyk" path="res://tower/art_tower/art_tower.tres" id="3_tq1yk"]
+
+[sub_resource type="Shader" id="Shader_tq1yk"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform vec2 center = vec2(0.5, 0.5); 
+uniform float speed = 1.0;     
+uniform float frequency = 10.0; 
+uniform float thickness = 0.05; 
+uniform float dop_alpha = 1;
+uniform float start_time = 0;
+
+void fragment() {
+    float dist = distance(UV, center);
+	if (dist <= 0.5){
+	    float wave = sin((dist - (TIME - start_time) * speed) * frequency);
+	    float alpha = 1.0 - smoothstep(0.0, thickness, abs(wave));
+	    COLOR = vec4(vec3(1.0), min(1.0, alpha * 2.5 * (0.5 - dist)) - dop_alpha);
+	} else {
+		COLOR = vec4(vec3(1.0), 0);
+	}
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wvs4v"]
+resource_local_to_scene = true
+shader = SubResource("Shader_tq1yk")
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/speed = 0.5
+shader_parameter/frequency = 10.0
+shader_parameter/thickness = 0.025
+shader_parameter/dop_alpha = 1.0
+shader_parameter/start_time = 0.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wvs4v"]
+resource_local_to_scene = true
+load_path = "res://.godot/imported/circle-svgrepo-com.svg-efdaec912dccedeb13a728aa133e8620.ctex"
+
+[sub_resource type="Shader" id="Shader_t748c"]
+code = "shader_type canvas_item;
+
+uniform float strength = 0.0;
+
+void fragment() {
+    COLOR = texture(TEXTURE, UV);
+    COLOR.rgb += vec3(strength);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tq1yk"]
+resource_local_to_scene = true
+shader = SubResource("Shader_t748c")
+shader_parameter/strength = 0.0
+
+[node name="ArtTower" instance=ExtResource("1_rh3f1")]
+script = ExtResource("2_tq1yk")
+
+[node name="AttackArea" parent="." index="1"]
+scale = Vector2(2, 2)
+
+[node name="Shader" type="Sprite2D" parent="AttackArea" index="0"]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_wvs4v")
+scale = Vector2(0.185, 0.185)
+texture = SubResource("CompressedTexture2D_wvs4v")
+
+[node name="TowerSprite" parent="." index="2"]
+material = SubResource("ShaderMaterial_tq1yk")
+sprite_frames = ExtResource("3_tq1yk")

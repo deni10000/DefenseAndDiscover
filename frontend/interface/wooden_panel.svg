@@ -1,0 +1,22 @@
+<svg width="420" height="270" viewBox="0 0 420 270" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Узор для текстуры дерева -->
+    <pattern id="woodPattern" patternUnits="userSpaceOnUse" width="40" height="40">
+      <rect width="40" height="40" fill="#A0522D"/>
+      <path d="M0,10 Q20,20 40,10" stroke="#8B4513" stroke-width="2" fill="none"/>
+      <path d="M0,30 Q20,20 40,30" stroke="#8B4513" stroke-width="2" fill="none"/>
+    </pattern>
+    <!-- Узор для рамки -->
+    <pattern id="ornamentPattern" patternUnits="userSpaceOnUse" width="20" height="20">
+      <rect width="20" height="20" fill="#AA7C39"/>
+      <path d="M0,10 C5,0 15,0 20,10" stroke="#8B5A2B" stroke-width="1" fill="none"/>
+      <path d="M0,10 C5,20 15,20 20,10" stroke="#8B5A2B" stroke-width="1" fill="none"/>
+    </pattern>
+  </defs>
+  
+  <!-- Внешняя рамка с узором -->
+  <rect x="10" y="10" width="400" height="250" rx="15" ry="15" fill="url(#ornamentPattern)"/>
+  
+  <!-- Внутренняя область с текстурой дерева -->
+  <rect x="30" y="30" width="360" height="210" rx="10" ry="10" fill="url(#woodPattern)"/>
+</svg>

@@ -1,0 +1,101 @@
+[gd_scene load_steps=10 format=3 uid="uid://dp7m0dcsucwl3"]
+
+[ext_resource type="Theme" uid="uid://h1f7iqhh7ycb" path="res://theme/kenneyUI-yellow.tres" id="1_7h7tk"]
+[ext_resource type="PackedScene" uid="uid://cyja2fwqgai08" path="res://interface/tower_card/tower_card.tscn" id="2_r3n2h"]
+[ext_resource type="Script" uid="uid://toxmk0rd6d8b" path="res://level/place_for_tower/v2/place_for_tower_control.gd" id="2_v2eh3"]
+[ext_resource type="Texture2D" uid="uid://c0foveme6oxjl" path="res://tower/archer_tower/archer_tower.png" id="3_v2eh3"]
+[ext_resource type="Texture2D" uid="uid://b6xq7i4oqgfq1" path="res://tower/art_tower/art_tower.png" id="4_w3dvn"]
+[ext_resource type="Texture2D" uid="uid://c5lsxj52wm6r8" path="res://tower/tree_tower/tree_tower.png" id="5_tbpp3"]
+[ext_resource type="Texture2D" uid="uid://d2omc278toyg2" path="res://tower/electric_tower/electric_tower.png" id="6_taffl"]
+[ext_resource type="Texture2D" uid="uid://dh0b3bx6fqn8o" path="res://level/place_for_tower/6379ded93cc6652.png" id="7_eusfo"]
+[ext_resource type="Texture2D" uid="uid://cdsit8ni20ri7" path="res://level/place_for_tower/trashcan2_sptite.png" id="8_6saot"]
+
+[node name="Control" type="Control"]
+z_index = 1
+z_as_relative = false
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("1_7h7tk")
+script = ExtResource("2_v2eh3")
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="MenuPanel" type="PanelContainer" parent="Control"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_right = 436.0
+offset_bottom = 223.0
+pivot_offset = Vector2(100, 0)
+mouse_filter = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/MenuPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="Menu" type="HBoxContainer" parent="Control/MenuPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+metadata/_edit_lock_ = true
+
+[node name="ArcherTowerCard" parent="Control/MenuPanel/MarginContainer/Menu" instance=ExtResource("2_r3n2h")]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("3_v2eh3")
+
+[node name="ArtTowerCard" parent="Control/MenuPanel/MarginContainer/Menu" instance=ExtResource("2_r3n2h")]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("4_w3dvn")
+
+[node name="TreeTowerCard" parent="Control/MenuPanel/MarginContainer/Menu" instance=ExtResource("2_r3n2h")]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("5_tbpp3")
+
+[node name="ElectricTowerCard" parent="Control/MenuPanel/MarginContainer/Menu" instance=ExtResource("2_r3n2h")]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("6_taffl")
+
+[node name="UpdatePanel" type="PanelContainer" parent="Control"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_right = 304.0
+offset_bottom = 216.0
+pivot_offset = Vector2(100, 0)
+mouse_filter = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/UpdatePanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+
+[node name="Update" type="HBoxContainer" parent="Control/UpdatePanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="UpdateCard" parent="Control/UpdatePanel/MarginContainer/Update" instance=ExtResource("2_r3n2h")]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("7_eusfo")
+
+[node name="RemoveCard" parent="Control/UpdatePanel/MarginContainer/Update" instance=ExtResource("2_r3n2h")]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("8_6saot")
+
+[connection signal="mouse_entered" from="." to="." method="_on_control_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_control_mouse_exited"]
+[connection signal="cardPressed" from="Control/MenuPanel/MarginContainer/Menu/ArcherTowerCard" to="." method="_on_archer_tower_card_card_pressed"]
+[connection signal="cardPressed" from="Control/MenuPanel/MarginContainer/Menu/ArtTowerCard" to="." method="_on_art_tower_card_card_pressed"]
+[connection signal="cardPressed" from="Control/MenuPanel/MarginContainer/Menu/TreeTowerCard" to="." method="_on_tree_tower_card_card_pressed"]
+[connection signal="cardPressed" from="Control/MenuPanel/MarginContainer/Menu/ElectricTowerCard" to="." method="_on_electric_tower_card_card_pressed"]
+[connection signal="cardPressed" from="Control/UpdatePanel/MarginContainer/Update/UpdateCard" to="." method="_on_update_card_card_pressed"]
+[connection signal="cardPressed" from="Control/UpdatePanel/MarginContainer/Update/RemoveCard" to="." method="_on_remove_card_card_pressed"]

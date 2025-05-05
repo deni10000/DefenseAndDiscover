@@ -1,0 +1,1680 @@
+[gd_scene load_steps=52 format=3 uid="uid://dgd30hd5wxqbf"]
+
+[ext_resource type="Texture2D" uid="uid://d1vg4wf0s8br8" path="res://interface/main_menu/background_upscale.png" id="2_rahlh"]
+[ext_resource type="Script" uid="uid://cu8e2j7nnhfvx" path="res://interface/main_menu/main_menu.gd" id="2_wwcsp"]
+[ext_resource type="Shader" uid="uid://cwge4y7tj8vrt" path="res://interface/main_menu/blur.gdshader" id="3_rahlh"]
+[ext_resource type="PackedScene" uid="uid://da306r6rg5ck5" path="res://interface/liderboard_row/liderboard_row.tscn" id="4_db0k2"]
+[ext_resource type="FontFile" uid="uid://hu66wi2qdxpl" path="res://theme/Abaddon Bold.ttf" id="5_7piqx"]
+[ext_resource type="LabelSettings" uid="uid://ci6a0b63tao2b" path="res://theme/error_text.tres" id="5_qt2eg"]
+[ext_resource type="PackedScene" uid="uid://dmmbux1y4e8bw" path="res://interface/main_menu/cross_button.tscn" id="5_x3w8v"]
+[ext_resource type="PackedScene" uid="uid://dpivg3l2hiaup" path="res://interface/main_menu/statistic_line.tscn" id="6_7piqx"]
+[ext_resource type="Texture2D" uid="uid://cukb4mqk7d2wo" path="res://interface/new_compressed_texture_2d.tres" id="6_hm0ms"]
+[ext_resource type="Texture2D" uid="uid://d00ws7wljnit4" path="res://theme/UIpack_vector.svg" id="7_7piqx"]
+[ext_resource type="FontFile" uid="uid://3rbcosvdyhmd" path="res://theme/kenvector_future.ttf" id="8_rkwbc"]
+[ext_resource type="FontFile" uid="uid://dldpwib6aoosf" path="res://theme/Abaddon Light.ttf" id="9_qt2eg"]
+[ext_resource type="Texture2D" uid="uid://8ftsbugsvsdr" path="res://interface/Block3 (1).png" id="10_db0k2"]
+[ext_resource type="FontFile" uid="uid://1qmoiwwfgi76" path="res://theme/alagard-12px-unicode.ttf" id="11_cr5ul"]
+[ext_resource type="PackedScene" uid="uid://dj334r3yagshk" path="res://interface/settings_panel/settings.tscn" id="13_rkwbc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cr5ul"]
+bg_color = Color(0, 0, 0, 0.313726)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wwcsp"]
+shader = ExtResource("3_rahlh")
+shader_parameter/lod = 2.0
+
+[sub_resource type="Theme" id="Theme_rahlh"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_db0k2"]
+thickness = 2
+
+[sub_resource type="StyleBoxTexture" id="1"]
+texture = ExtResource("6_hm0ms")
+texture_margin_left = 12.5436
+texture_margin_top = 10.0349
+texture_margin_right = 8.78053
+texture_margin_bottom = 14.2161
+region_rect = Rect2(211, 60, 190, 49)
+
+[sub_resource type="StyleBoxEmpty" id="2"]
+
+[sub_resource type="StyleBoxTexture" id="3"]
+texture = ExtResource("7_7piqx")
+texture_margin_left = 12.5436
+texture_margin_top = 10.0349
+texture_margin_right = 8.78053
+texture_margin_bottom = 14.2161
+region_rect = Rect2(1, 60, 190, 49)
+
+[sub_resource type="StyleBoxTexture" id="4"]
+texture = ExtResource("7_7piqx")
+texture_margin_left = 12.5436
+texture_margin_top = 10.0349
+texture_margin_right = 8.78053
+texture_margin_bottom = 14.2161
+region_rect = Rect2(211, 60, 190, 49)
+
+[sub_resource type="StyleBoxTexture" id="5"]
+texture = ExtResource("7_7piqx")
+texture_margin_left = 12.5436
+texture_margin_top = 10.0349
+texture_margin_right = 8.78053
+texture_margin_bottom = 14.2161
+region_rect = Rect2(421, 64, 190, 45)
+
+[sub_resource type="FontFile" id="31"]
+fallbacks = Array[Font]([ExtResource("8_rkwbc")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/22/0/ascent = 0.0
+cache/0/22/0/descent = 0.0
+cache/0/22/0/underline_position = 0.0
+cache/0/22/0/underline_thickness = 0.0
+cache/0/22/0/scale = 1.0
+cache/0/1/0/ascent = 0.0
+cache/0/1/0/descent = 0.0
+cache/0/1/0/underline_position = 0.0
+cache/0/1/0/underline_thickness = 0.0
+cache/0/1/0/scale = 1.0
+cache/0/2/0/ascent = 0.0
+cache/0/2/0/descent = 0.0
+cache/0/2/0/underline_position = 0.0
+cache/0/2/0/underline_thickness = 0.0
+cache/0/2/0/scale = 1.0
+cache/0/3/0/ascent = 0.0
+cache/0/3/0/descent = 0.0
+cache/0/3/0/underline_position = 0.0
+cache/0/3/0/underline_thickness = 0.0
+cache/0/3/0/scale = 1.0
+cache/0/4/0/ascent = 0.0
+cache/0/4/0/descent = 0.0
+cache/0/4/0/underline_position = 0.0
+cache/0/4/0/underline_thickness = 0.0
+cache/0/4/0/scale = 1.0
+cache/0/5/0/ascent = 0.0
+cache/0/5/0/descent = 0.0
+cache/0/5/0/underline_position = 0.0
+cache/0/5/0/underline_thickness = 0.0
+cache/0/5/0/scale = 1.0
+cache/0/6/0/ascent = 0.0
+cache/0/6/0/descent = 0.0
+cache/0/6/0/underline_position = 0.0
+cache/0/6/0/underline_thickness = 0.0
+cache/0/6/0/scale = 1.0
+cache/0/7/0/ascent = 0.0
+cache/0/7/0/descent = 0.0
+cache/0/7/0/underline_position = 0.0
+cache/0/7/0/underline_thickness = 0.0
+cache/0/7/0/scale = 1.0
+cache/0/8/0/ascent = 0.0
+cache/0/8/0/descent = 0.0
+cache/0/8/0/underline_position = 0.0
+cache/0/8/0/underline_thickness = 0.0
+cache/0/8/0/scale = 1.0
+cache/0/9/0/ascent = 0.0
+cache/0/9/0/descent = 0.0
+cache/0/9/0/underline_position = 0.0
+cache/0/9/0/underline_thickness = 0.0
+cache/0/9/0/scale = 1.0
+cache/0/10/0/ascent = 0.0
+cache/0/10/0/descent = 0.0
+cache/0/10/0/underline_position = 0.0
+cache/0/10/0/underline_thickness = 0.0
+cache/0/10/0/scale = 1.0
+cache/0/11/0/ascent = 0.0
+cache/0/11/0/descent = 0.0
+cache/0/11/0/underline_position = 0.0
+cache/0/11/0/underline_thickness = 0.0
+cache/0/11/0/scale = 1.0
+cache/0/12/0/ascent = 0.0
+cache/0/12/0/descent = 0.0
+cache/0/12/0/underline_position = 0.0
+cache/0/12/0/underline_thickness = 0.0
+cache/0/12/0/scale = 1.0
+cache/0/13/0/ascent = 0.0
+cache/0/13/0/descent = 0.0
+cache/0/13/0/underline_position = 0.0
+cache/0/13/0/underline_thickness = 0.0
+cache/0/13/0/scale = 1.0
+cache/0/14/0/ascent = 0.0
+cache/0/14/0/descent = 0.0
+cache/0/14/0/underline_position = 0.0
+cache/0/14/0/underline_thickness = 0.0
+cache/0/14/0/scale = 1.0
+cache/0/15/0/ascent = 0.0
+cache/0/15/0/descent = 0.0
+cache/0/15/0/underline_position = 0.0
+cache/0/15/0/underline_thickness = 0.0
+cache/0/15/0/scale = 1.0
+cache/0/17/0/ascent = 0.0
+cache/0/17/0/descent = 0.0
+cache/0/17/0/underline_position = 0.0
+cache/0/17/0/underline_thickness = 0.0
+cache/0/17/0/scale = 1.0
+cache/0/18/0/ascent = 0.0
+cache/0/18/0/descent = 0.0
+cache/0/18/0/underline_position = 0.0
+cache/0/18/0/underline_thickness = 0.0
+cache/0/18/0/scale = 1.0
+cache/0/19/0/ascent = 0.0
+cache/0/19/0/descent = 0.0
+cache/0/19/0/underline_position = 0.0
+cache/0/19/0/underline_thickness = 0.0
+cache/0/19/0/scale = 1.0
+cache/0/20/0/ascent = 0.0
+cache/0/20/0/descent = 0.0
+cache/0/20/0/underline_position = 0.0
+cache/0/20/0/underline_thickness = 0.0
+cache/0/20/0/scale = 1.0
+cache/0/21/0/ascent = 0.0
+cache/0/21/0/descent = 0.0
+cache/0/21/0/underline_position = 0.0
+cache/0/21/0/underline_thickness = 0.0
+cache/0/21/0/scale = 1.0
+cache/0/23/0/ascent = 0.0
+cache/0/23/0/descent = 0.0
+cache/0/23/0/underline_position = 0.0
+cache/0/23/0/underline_thickness = 0.0
+cache/0/23/0/scale = 1.0
+cache/0/24/0/ascent = 0.0
+cache/0/24/0/descent = 0.0
+cache/0/24/0/underline_position = 0.0
+cache/0/24/0/underline_thickness = 0.0
+cache/0/24/0/scale = 1.0
+cache/0/25/0/ascent = 0.0
+cache/0/25/0/descent = 0.0
+cache/0/25/0/underline_position = 0.0
+cache/0/25/0/underline_thickness = 0.0
+cache/0/25/0/scale = 1.0
+
+[sub_resource type="AtlasTexture" id="6"]
+atlas = ExtResource("7_7piqx")
+region = Rect2(50, 544, 36, 36)
+
+[sub_resource type="AtlasTexture" id="7"]
+atlas = ExtResource("7_7piqx")
+region = Rect2(51, 440, 36, 36)
+
+[sub_resource type="AtlasTexture" id="8"]
+atlas = ExtResource("7_7piqx")
+region = Rect2(1, 440, 36, 36)
+
+[sub_resource type="AtlasTexture" id="9"]
+atlas = ExtResource("7_7piqx")
+region = Rect2(0, 544, 36, 36)
+
+[sub_resource type="StyleBoxEmpty" id="10"]
+
+[sub_resource type="StyleBoxEmpty" id="11"]
+
+[sub_resource type="StyleBoxEmpty" id="12"]
+
+[sub_resource type="StyleBoxEmpty" id="13"]
+
+[sub_resource type="AtlasTexture" id="15"]
+atlas = ExtResource("7_7piqx")
+region = Rect2(50, 544, 36, 36)
+
+[sub_resource type="AtlasTexture" id="14"]
+atlas = ExtResource("7_7piqx")
+region = Rect2(50, 644, 36, 36)
+
+[sub_resource type="AtlasTexture" id="16"]
+atlas = ExtResource("7_7piqx")
+region = Rect2(872, 504, 28, 42)
+
+[sub_resource type="StyleBoxTexture" id="17"]
+texture = ExtResource("7_7piqx")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+region_rect = Rect2(840, 316, 192, 6)
+
+[sub_resource type="StyleBoxEmpty" id="18"]
+
+[sub_resource type="StyleBoxTexture" id="19"]
+texture = ExtResource("7_7piqx")
+texture_margin_left = 17.1475
+texture_margin_top = 12.0032
+texture_margin_right = 13.718
+texture_margin_bottom = 9.43112
+region_rect = Rect2(629, 317, 194, 49)
+
+[sub_resource type="AtlasTexture" id="20"]
+atlas = ExtResource("7_7piqx")
+region = Rect2(812, 458, 28, 10)
+
+[sub_resource type="StyleBoxTexture" id="21"]
+texture = ExtResource("10_db0k2")
+region_rect = Rect2(11, 3, 106, 116)
+
+[sub_resource type="AtlasTexture" id="22"]
+atlas = ExtResource("7_7piqx")
+region = Rect2(50, 544, 36, 36)
+
+[sub_resource type="AtlasTexture" id="23"]
+atlas = ExtResource("7_7piqx")
+region = Rect2(51, 440, 36, 36)
+
+[sub_resource type="AtlasTexture" id="24"]
+atlas = ExtResource("7_7piqx")
+region = Rect2(1, 440, 36, 36)
+
+[sub_resource type="AtlasTexture" id="25"]
+atlas = ExtResource("7_7piqx")
+region = Rect2(0, 544, 36, 36)
+
+[sub_resource type="StyleBoxTexture" id="26"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+texture = ExtResource("7_7piqx")
+texture_margin_left = 7.94429
+texture_margin_top = 9.53314
+texture_margin_right = 8.73872
+texture_margin_bottom = 13.9025
+region_rect = Rect2(1, 60, 190, 49)
+
+[sub_resource type="StyleBoxTexture" id="27"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+texture = ExtResource("7_7piqx")
+texture_margin_left = 7.94429
+texture_margin_top = 9.53314
+texture_margin_right = 8.73872
+texture_margin_bottom = 13.9025
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+region_rect = Rect2(122, 310, 100, 100)
+
+[sub_resource type="StyleBoxTexture" id="28"]
+content_margin_left = 12.0
+content_margin_top = 10.0
+texture = ExtResource("7_7piqx")
+texture_margin_left = 10.8072
+texture_margin_top = 28.4299
+texture_margin_right = 9.71325
+texture_margin_bottom = 14.7561
+axis_stretch_vertical = 1
+region_rect = Rect2(1, 310, 100, 100)
+
+[sub_resource type="AtlasTexture" id="29"]
+atlas = ExtResource("7_7piqx")
+region = Rect2(1007, 510, 39, 31)
+
+[sub_resource type="StyleBoxTexture" id="30"]
+texture = ExtResource("7_7piqx")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+region_rect = Rect2(1051, 317, 4, 100)
+
+[sub_resource type="Theme" id="Theme_38238"]
+default_font = ExtResource("11_cr5ul")
+default_font_size = 25
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_disabled_color = Color(0.9, 0.9, 0.9, 0.2)
+Button/colors/font_hover_color = Color(0.34902, 0.34902, 0.34902, 1)
+Button/colors/font_pressed_color = Color(0.388235, 0.388235, 0.388235, 1)
+Button/constants/h_separation = 2
+Button/styles/disabled = SubResource("1")
+Button/styles/focus = SubResource("2")
+Button/styles/hover = SubResource("3")
+Button/styles/normal = SubResource("4")
+Button/styles/pressed = SubResource("5")
+CheckBox/colors/font_color = Color(0, 0, 0, 1)
+CheckBox/colors/font_disabled_color = Color(0.9, 0.9, 0.9, 0.2)
+CheckBox/colors/font_hover_color = Color(0.34902, 0.34902, 0.34902, 1)
+CheckBox/colors/font_hover_color_pressed = Color(0.34902, 0.34902, 0.34902, 1)
+CheckBox/colors/font_pressed_color = Color(0.388235, 0.388235, 0.388235, 1)
+CheckBox/constants/check_v_offset = 0
+CheckBox/constants/h_separation = 4
+CheckBox/fonts/font = SubResource("31")
+CheckBox/icons/checked = SubResource("6")
+CheckBox/icons/radio_checked = SubResource("7")
+CheckBox/icons/radio_unchecked = SubResource("8")
+CheckBox/icons/unchecked = SubResource("9")
+CheckBox/styles/disabled = null
+CheckBox/styles/focus = null
+CheckBox/styles/hover = SubResource("10")
+CheckBox/styles/hover_pressed = SubResource("11")
+CheckBox/styles/normal = SubResource("12")
+CheckBox/styles/pressed = SubResource("13")
+CheckButton/colors/font_color = Color(0, 0, 0, 1)
+CheckButton/colors/font_disabled_color = Color(0.9, 0.9, 0.9, 0.2)
+CheckButton/colors/font_hover_color = Color(0.34902, 0.34902, 0.34902, 1)
+CheckButton/colors/font_hover_color_pressed = Color(0.388235, 0.388235, 0.388235, 1)
+CheckButton/colors/font_pressed_color = Color(0.388235, 0.388235, 0.388235, 1)
+CheckButton/constants/check_v_offset = 0
+CheckButton/constants/h_separation = 4
+CheckButton/fonts/font = SubResource("31")
+CheckButton/icons/checked = SubResource("15")
+CheckButton/icons/checked_disabled = SubResource("15")
+CheckButton/icons/unchecked = SubResource("14")
+CheckButton/icons/unchecked_disabled = SubResource("14")
+CheckButton/styles/disabled = null
+CheckButton/styles/focus = null
+CheckButton/styles/hover = null
+CheckButton/styles/hover_pressed = null
+CheckButton/styles/normal = null
+CheckButton/styles/pressed = null
+HSlider/icons/grabber = SubResource("16")
+HSlider/icons/grabber_disabled = null
+HSlider/icons/grabber_highlight = SubResource("16")
+HSlider/icons/tick = null
+HSlider/styles/grabber_area = SubResource("17")
+HSlider/styles/grabber_area_highlight = SubResource("17")
+HSlider/styles/slider = SubResource("17")
+Label/font_sizes/font_size = 30
+LineEdit/colors/clear_button_color = Color(0.88, 0.88, 0.88, 1)
+LineEdit/colors/clear_button_color_pressed = Color(1, 1, 1, 1)
+LineEdit/colors/cursor_color = Color(0.34902, 0.34902, 0.34902, 1)
+LineEdit/colors/font_color = Color(0, 0, 0, 1)
+LineEdit/colors/font_color_uneditable = Color(0.88, 0.88, 0.88, 0.5)
+LineEdit/colors/font_selected_color = Color(0, 0, 0, 1)
+LineEdit/colors/selection_color = Color(1, 0.8, 0, 1)
+LineEdit/constants/minimum_spaces = 12
+LineEdit/font_sizes/font_size = 30
+LineEdit/fonts/font = ExtResource("9_qt2eg")
+LineEdit/icons/clear = null
+LineEdit/styles/focus = SubResource("18")
+LineEdit/styles/normal = SubResource("19")
+LineEdit/styles/read_only = SubResource("19")
+OptionButton/colors/font_color = Color(0, 0, 0, 1)
+OptionButton/colors/font_disabled_color = Color(0.9, 0.9, 0.9, 0.2)
+OptionButton/colors/font_hover_color = Color(0.34902, 0.34902, 0.34902, 1)
+OptionButton/colors/font_pressed_color = Color(0, 0, 0, 1)
+OptionButton/constants/arrow_margin = 2
+OptionButton/constants/h_separation = 2
+OptionButton/fonts/font = SubResource("31")
+OptionButton/icons/arrow = SubResource("20")
+OptionButton/styles/disabled = null
+OptionButton/styles/focus = null
+OptionButton/styles/hover = null
+OptionButton/styles/normal = null
+OptionButton/styles/pressed = null
+Panel/styles/panel = SubResource("21")
+PopupMenu/colors/font_color = Color(0, 0, 0, 1)
+PopupMenu/colors/font_color_accel = Color(0.701961, 0.701961, 0.701961, 0.8)
+PopupMenu/colors/font_disabled_color = Color(0.4, 0.4, 0.4, 0.8)
+PopupMenu/colors/font_hover_color = Color(0.388235, 0.388235, 0.388235, 1)
+PopupMenu/constants/h_separation = 4
+PopupMenu/constants/vseparation = 32
+PopupMenu/fonts/font = SubResource("31")
+PopupMenu/icons/checked = SubResource("22")
+PopupMenu/icons/radio_checked = SubResource("23")
+PopupMenu/icons/radio_unchecked = SubResource("24")
+PopupMenu/icons/submenu = null
+PopupMenu/icons/unchecked = SubResource("25")
+PopupMenu/styles/hover = SubResource("26")
+PopupMenu/styles/labeled_separator_left = null
+PopupMenu/styles/labeled_separator_right = null
+PopupMenu/styles/panel = SubResource("27")
+PopupMenu/styles/panel_disabled = null
+PopupMenu/styles/separator = null
+TextEdit/colors/background_color = Color(0, 0, 0, 0)
+TextEdit/colors/bookmark_color = Color(0.08, 0.49, 0.98, 1)
+TextEdit/colors/brace_mismatch_color = Color(1, 0.2, 0.2, 1)
+TextEdit/colors/breakpoint_color = Color(0.8, 0.8, 0.4, 0.2)
+TextEdit/colors/caret_background_color = Color(0, 0, 0, 1)
+TextEdit/colors/caret_color = Color(0.88, 0.88, 0.88, 1)
+TextEdit/colors/code_folding_color = Color(0.8, 0.8, 0.8, 0.8)
+TextEdit/colors/completion_background_color = Color(0.17, 0.16, 0.2, 1)
+TextEdit/colors/completion_existing_color = Color(0.87, 0.87, 0.87, 0.13)
+TextEdit/colors/completion_font_color = Color(0.67, 0.67, 0.67, 1)
+TextEdit/colors/completion_scroll_color = Color(1, 1, 1, 1)
+TextEdit/colors/completion_selected_color = Color(0.26, 0.26, 0.27, 1)
+TextEdit/colors/current_line_color = Color(0.25, 0.25, 0.26, 0.8)
+TextEdit/colors/executing_line_color = Color(0.2, 0.8, 0.2, 0.4)
+TextEdit/colors/font_color = Color(0, 0, 0, 1)
+TextEdit/colors/font_color_readonly = Color(0.88, 0.88, 0.88, 0.5)
+TextEdit/colors/font_selected_color = Color(0.34902, 0.34902, 0.34902, 1)
+TextEdit/colors/function_color = Color(0.4, 0.64, 0.81, 1)
+TextEdit/colors/line_number_color = Color(0.67, 0.67, 0.67, 0.4)
+TextEdit/colors/mark_color = Color(1, 0.4, 0.4, 0.4)
+TextEdit/colors/member_variable_color = Color(0.9, 0.31, 0.35, 1)
+TextEdit/colors/number_color = Color(0.92, 0.58, 0.2, 1)
+TextEdit/colors/safe_line_number_color = Color(0.67, 0.78, 0.67, 0.6)
+TextEdit/colors/selection_color = Color(0.49, 0.49, 0.49, 1)
+TextEdit/colors/symbol_color = Color(0.94, 0.94, 0.94, 1)
+TextEdit/colors/word_highlighted_color = Color(0.8, 0.9, 0.9, 0.15)
+TextEdit/constants/completion_lines = 7
+TextEdit/constants/completion_max_width = 50
+TextEdit/constants/completion_scroll_width = 3
+TextEdit/constants/line_spacing = 4
+TextEdit/fonts/font = SubResource("31")
+TextEdit/icons/fold = null
+TextEdit/icons/folded = null
+TextEdit/icons/space = null
+TextEdit/icons/tab = null
+TextEdit/styles/completion = null
+TextEdit/styles/focus = null
+TextEdit/styles/normal = SubResource("28")
+TextEdit/styles/read_only = null
+VSlider/icons/grabber = SubResource("29")
+VSlider/icons/grabber_disabled = SubResource("29")
+VSlider/icons/grabber_highlight = SubResource("29")
+VSlider/icons/tick = null
+VSlider/styles/grabber_area = SubResource("30")
+VSlider/styles/grabber_area_highlight = SubResource("30")
+VSlider/styles/slider = SubResource("30")
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_wwcsp")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -961.0
+offset_top = -540.5
+offset_right = 959.0
+offset_bottom = 538.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_rahlh")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -770.0
+offset_top = -540.0
+offset_right = -382.092
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.72549)
+
+[node name="LeaderBord" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -730.0
+offset_top = -480.0
+offset_right = -423.0
+offset_bottom = -190.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_cr5ul")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LeaderBord"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="LeaderBord/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("11_cr5ul")
+theme_override_font_sizes/font_size = 27
+text = "Таблица лидеров"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" parent="LeaderBord/VBoxContainer" instance=ExtResource("4_db0k2")]
+layout_mode = 2
+
+[node name="StartGameButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -730.0
+offset_top = -95.0
+offset_right = -423.0
+offset_bottom = -34.749
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 1
+text = "Начать игру"
+
+[node name="SettingsButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -730.0
+offset_top = 45.0
+offset_right = -423.0
+offset_bottom = 105.251
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 1
+text = "Настройки"
+
+[node name="ProfileButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -730.0
+offset_top = 185.0
+offset_right = -423.0
+offset_bottom = 245.251
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 1
+text = "Профиль"
+
+[node name="Authorization" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Authorization"]
+material = SubResource("ShaderMaterial_wwcsp")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_rahlh")
+color = Color(0, 0, 0, 0.560784)
+
+[node name="Panel" type="PanelContainer" parent="Authorization"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -270.0
+offset_top = -287.0
+offset_right = 270.0
+offset_bottom = 287.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Authorization/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="Control" type="VBoxContainer" parent="Authorization/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 26
+
+[node name="MarginContainer2" type="MarginContainer" parent="Authorization/Panel/MarginContainer/Control"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_bottom = -8
+
+[node name="Label" type="Label" parent="Authorization/Panel/MarginContainer/Control/MarginContainer2"]
+layout_mode = 2
+text = "Email:"
+
+[node name="EmailLineEdit2" type="LineEdit" parent="Authorization/Panel/MarginContainer/Control"]
+unique_name_in_owner = true
+layout_mode = 2
+context_menu_enabled = false
+language = "en"
+
+[node name="MarginContainer3" type="MarginContainer" parent="Authorization/Panel/MarginContainer/Control"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_bottom = -8
+
+[node name="Label2" type="Label" parent="Authorization/Panel/MarginContainer/Control/MarginContainer3"]
+layout_mode = 2
+text = "Пароль:"
+
+[node name="PasswordLineEdit2" type="LineEdit" parent="Authorization/Panel/MarginContainer/Control"]
+unique_name_in_owner = true
+layout_mode = 2
+max_length = 20
+context_menu_enabled = false
+emoji_menu_enabled = false
+secret = true
+
+[node name="MarginContainer4" type="MarginContainer" parent="Authorization/Panel/MarginContainer/Control"]
+layout_mode = 2
+theme_override_constants/margin_top = -16
+theme_override_constants/margin_bottom = -12
+
+[node name="ErrorAutharizationLabel" type="Label" parent="Authorization/Panel/MarginContainer/Control/MarginContainer4"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_7piqx")
+label_settings = ExtResource("5_qt2eg")
+horizontal_alignment = 1
+
+[node name="MarginContainer5" type="MarginContainer" parent="Authorization/Panel/MarginContainer/Control"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+
+[node name="AuthorizationButton" type="Button" parent="Authorization/Panel/MarginContainer/Control/MarginContainer5"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 1
+theme_override_font_sizes/font_size = 44
+text = "   Войти   "
+language = "en"
+
+[node name="MarginContainer" type="MarginContainer" parent="Authorization/Panel/MarginContainer/Control"]
+layout_mode = 2
+theme_override_constants/margin_top = -10
+theme_override_constants/margin_bottom = -16
+
+[node name="RecoverPasswordButton" type="LinkButton" parent="Authorization/Panel/MarginContainer/Control/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 1
+text = "Восстановить пароль?"
+
+[node name="CreateAccount" type="LinkButton" parent="Authorization/Panel/MarginContainer/Control"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 1
+text = "Создать аккаунт?"
+
+[node name="MarginContainer2" type="MarginContainer" parent="Authorization/Panel"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+mouse_filter = 0
+theme_override_constants/margin_top = -25
+theme_override_constants/margin_right = -16
+
+[node name="CrossButton" parent="Authorization/Panel/MarginContainer2" instance=ExtResource("5_x3w8v")]
+layout_mode = 2
+focus_mode = 1
+
+[node name="GetPassword" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="GetPassword"]
+material = SubResource("ShaderMaterial_wwcsp")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.560784)
+
+[node name="Panel" type="PanelContainer" parent="GetPassword"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -270.0
+offset_top = -148.5
+offset_right = 270.0
+offset_bottom = 148.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="GetPassword/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="Control" type="VBoxContainer" parent="GetPassword/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 26
+
+[node name="MarginContainer" type="MarginContainer" parent="GetPassword/Panel/MarginContainer/Control"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_bottom = -8
+
+[node name="Label" type="Label" parent="GetPassword/Panel/MarginContainer/Control/MarginContainer"]
+layout_mode = 2
+text = "Email:"
+
+[node name="LineEdit" type="LineEdit" parent="GetPassword/Panel/MarginContainer/Control"]
+layout_mode = 2
+max_length = 20
+context_menu_enabled = false
+language = "en"
+
+[node name="MarginContainer5" type="MarginContainer" parent="GetPassword/Panel/MarginContainer/Control"]
+layout_mode = 2
+theme_override_constants/margin_top = -16
+theme_override_constants/margin_bottom = -12
+
+[node name="Label" type="Label" parent="GetPassword/Panel/MarginContainer/Control/MarginContainer5"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_7piqx")
+label_settings = ExtResource("5_qt2eg")
+horizontal_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="GetPassword/Panel/MarginContainer/Control"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+
+[node name="Button" type="Button" parent="GetPassword/Panel/MarginContainer/Control/MarginContainer2"]
+layout_mode = 2
+focus_mode = 1
+theme_override_font_sizes/font_size = 40
+text = "Получить пароль"
+
+[node name="MarginContainer2" type="MarginContainer" parent="GetPassword/Panel"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/margin_top = -25
+theme_override_constants/margin_right = -16
+
+[node name="GetPasswordCrossButton" parent="GetPassword/Panel/MarginContainer2" instance=ExtResource("5_x3w8v")]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+focus_mode = 1
+
+[node name="Registration" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Registration"]
+material = SubResource("ShaderMaterial_wwcsp")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.560784)
+
+[node name="Panel" type="PanelContainer" parent="Registration"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -276.5
+offset_top = -353.0
+offset_right = 276.5
+offset_bottom = 353.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Registration/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="Control" type="VBoxContainer" parent="Registration/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 26
+
+[node name="MarginContainer" type="MarginContainer" parent="Registration/Panel/MarginContainer/Control"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_bottom = -8
+
+[node name="Label" type="Label" parent="Registration/Panel/MarginContainer/Control/MarginContainer"]
+layout_mode = 2
+text = "Email"
+
+[node name="EmailLineEdit" type="LineEdit" parent="Registration/Panel/MarginContainer/Control"]
+unique_name_in_owner = true
+layout_mode = 2
+context_menu_enabled = false
+
+[node name="MarginContainer2" type="MarginContainer" parent="Registration/Panel/MarginContainer/Control"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_bottom = -8
+
+[node name="Label2" type="Label" parent="Registration/Panel/MarginContainer/Control/MarginContainer2"]
+layout_mode = 2
+text = "Никнейм"
+metadata/_edit_use_anchors_ = true
+
+[node name="LoginLineEdit" type="LineEdit" parent="Registration/Panel/MarginContainer/Control"]
+unique_name_in_owner = true
+layout_mode = 2
+max_length = 20
+context_menu_enabled = false
+emoji_menu_enabled = false
+
+[node name="MarginContainer3" type="MarginContainer" parent="Registration/Panel/MarginContainer/Control"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_bottom = -8
+
+[node name="Label3" type="Label" parent="Registration/Panel/MarginContainer/Control/MarginContainer3"]
+layout_mode = 2
+text = "Пароль"
+
+[node name="PasswordLineEdit" type="LineEdit" parent="Registration/Panel/MarginContainer/Control"]
+unique_name_in_owner = true
+layout_mode = 2
+max_length = 20
+context_menu_enabled = false
+secret = true
+
+[node name="MarginContainer5" type="MarginContainer" parent="Registration/Panel/MarginContainer/Control"]
+layout_mode = 2
+theme_override_constants/margin_top = -16
+theme_override_constants/margin_bottom = -12
+
+[node name="ErrorRegistrationLabel" type="Label" parent="Registration/Panel/MarginContainer/Control/MarginContainer5"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_7piqx")
+label_settings = ExtResource("5_qt2eg")
+horizontal_alignment = 1
+
+[node name="MarginContainer4" type="MarginContainer" parent="Registration/Panel/MarginContainer/Control"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+
+[node name="RegistrationButton" type="Button" parent="Registration/Panel/MarginContainer/Control/MarginContainer4"]
+layout_mode = 2
+focus_mode = 1
+theme_override_font_sizes/font_size = 44
+text = "Зарегистрироваться"
+language = "en"
+
+[node name="LoginButton" type="LinkButton" parent="Registration/Panel/MarginContainer/Control"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 1
+text = "Уже есть аккаунт? Войти?"
+
+[node name="MarginContainer2" type="MarginContainer" parent="Registration/Panel"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/margin_top = -25
+theme_override_constants/margin_right = -16
+
+[node name="CrossButton" parent="Registration/Panel/MarginContainer2" instance=ExtResource("5_x3w8v")]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+focus_mode = 1
+
+[node name="ConfirmationMenu" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="ConfirmationMenu"]
+material = SubResource("ShaderMaterial_wwcsp")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_rahlh")
+color = Color(0, 0, 0, 0.560784)
+
+[node name="Panel" type="Panel" parent="ConfirmationMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -113.0
+offset_right = 200.0
+offset_bottom = 157.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="ConfirmationMenu/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = 10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="ConfirmationMenu/Panel/Control"]
+layout_mode = 0
+offset_left = -176.5
+offset_top = 17.0
+offset_right = 173.5
+offset_bottom = 54.0
+theme_override_font_sizes/font_size = 32
+text = "Код подтверждения"
+horizontal_alignment = 1
+
+[node name="ConfirmationLineEdit" type="LineEdit" parent="ConfirmationMenu/Panel/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -84.0
+offset_top = 62.0
+offset_right = 84.0
+offset_bottom = 132.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+alignment = 1
+max_length = 10
+context_menu_enabled = false
+
+[node name="ConfirmationButton" type="Button" parent="ConfirmationMenu/Panel/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -141.0
+offset_top = 144.0
+offset_right = 141.0
+offset_bottom = 200.0
+focus_mode = 1
+text = "Отправить"
+
+[node name="ConfirmationCrossButton" parent="ConfirmationMenu/Panel/Control" instance=ExtResource("5_x3w8v")]
+layout_mode = 1
+offset_left = 145.0
+offset_top = -32.5
+offset_right = 215.0
+offset_bottom = 37.5
+scale = Vector2(0.6, 0.6)
+pivot_offset = Vector2(35, 35)
+focus_mode = 1
+
+[node name="LinkButton" type="LinkButton" parent="ConfirmationMenu/Panel/Control"]
+layout_mode = 0
+offset_left = -139.0
+offset_top = 204.0
+offset_right = 139.0
+offset_bottom = 235.0
+focus_mode = 1
+theme_override_font_sizes/font_size = 22
+text = "Получить код повторно"
+
+[node name="Profile" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Profile"]
+material = SubResource("ShaderMaterial_wwcsp")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.560784)
+
+[node name="Panel" type="Panel" parent="Profile"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -376.0
+offset_top = -370.0
+offset_right = 376.0
+offset_bottom = 475.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="Profile/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -25.0
+offset_top = 343.0
+offset_right = 25.0
+offset_bottom = 393.0
+grow_horizontal = 2
+
+[node name="Nickname" type="Label" parent="Profile/Panel/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -308.0
+offset_top = -320.0
+offset_right = -66.0
+offset_bottom = -251.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Никнейм:"
+
+[node name="NicknameInput" type="Label" parent="Profile/Panel/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -257.0
+offset_top = -250.0
+offset_right = 80.0
+offset_bottom = -178.0
+grow_vertical = 2
+
+[node name="Email" type="Label" parent="Profile/Panel/Control"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -288.0
+offset_top = -140.0
+offset_right = -248.0
+offset_bottom = -71.0
+grow_vertical = 2
+text = "Email:"
+
+[node name="EmailInput" type="Label" parent="Profile/Panel/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -257.0
+offset_top = -50.0
+offset_right = -58.0
+offset_bottom = 19.0
+
+[node name="CheckStatistic" type="Button" parent="Profile/Panel/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -294.0
+offset_top = 44.0
+offset_right = 294.0
+offset_bottom = 119.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 1
+theme_override_font_sizes/font_size = 44
+text = "Посмотреть статистику"
+
+[node name="ChangePassword" type="Button" parent="Profile/Panel/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -294.0
+offset_top = 151.0
+offset_right = 294.0
+offset_bottom = 226.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 1
+theme_override_font_sizes/font_size = 44
+text = "Сменить пароль"
+
+[node name="CrossButton" parent="Profile/Panel/Control" instance=ExtResource("5_x3w8v")]
+layout_mode = 1
+offset_left = 295.0
+offset_top = -371.0
+offset_right = 365.0
+offset_bottom = -301.0
+focus_mode = 1
+
+[node name="ExitButton" type="Button" parent="Profile/Panel/Control"]
+self_modulate = Color(0.737255, 0.137255, 0.137255, 1)
+layout_mode = 0
+offset_left = -274.0
+offset_top = 278.0
+offset_right = 316.0
+offset_bottom = 353.0
+focus_mode = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 44
+text = "Выйти"
+
+[node name="Button" type="Button" parent="Profile/Panel/Control"]
+layout_mode = 0
+offset_left = -274.0
+offset_top = 385.0
+offset_right = 314.0
+offset_bottom = 460.0
+focus_mode = 1
+theme_override_font_sizes/font_size = 44
+text = "Удалить аккаунт"
+
+[node name="TabContainer" type="TabContainer" parent="Profile"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -307.0
+offset_top = -343.0
+offset_right = 319.0
+offset_bottom = 368.0
+grow_horizontal = 2
+current_tab = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Profile/TabContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Profile/TabContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="MarginContainer3" type="MarginContainer" parent="Profile/TabContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_bottom = -8
+
+[node name="Email" type="Label" parent="Profile/TabContainer/MarginContainer/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+text = "Email:"
+
+[node name="MarginContainer2" type="MarginContainer" parent="Profile/TabContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="EmailInput2" type="Label" parent="Profile/TabContainer/MarginContainer/VBoxContainer/MarginContainer2"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_7piqx")
+vertical_alignment = 1
+
+[node name="EmailLine" type="LineEdit" parent="Profile/TabContainer/MarginContainer/VBoxContainer/MarginContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "deni.1000@ya.ru"
+editable = false
+context_menu_enabled = false
+
+[node name="MarginContainer4" type="MarginContainer" parent="Profile/TabContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_bottom = -8
+
+[node name="Nickname" type="Label" parent="Profile/TabContainer/MarginContainer/VBoxContainer/MarginContainer4"]
+layout_mode = 2
+text = "Никнейм:"
+
+[node name="MarginContainer" type="MarginContainer" parent="Profile/TabContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="NicknameInput2" type="Label" parent="Profile/TabContainer/MarginContainer/VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_7piqx")
+
+[node name="NicknameLine" type="LineEdit" parent="Profile/TabContainer/MarginContainer/VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "deni1000"
+editable = false
+context_menu_enabled = false
+
+[node name="MarginContainer5" type="MarginContainer" parent="Profile/TabContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+
+[node name="ChangePassword" type="Button" parent="Profile/TabContainer/MarginContainer/VBoxContainer/MarginContainer5"]
+layout_mode = 2
+focus_mode = 1
+theme_override_font_sizes/font_size = 44
+text = "Сменить пароль"
+
+[node name="ExitButton" type="Button" parent="Profile/TabContainer/MarginContainer/VBoxContainer"]
+self_modulate = Color(0.737255, 0.137255, 0.137255, 1)
+layout_mode = 2
+focus_mode = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 44
+text = "Выйти"
+
+[node name="CenterContainer" type="CenterContainer" parent="Profile/TabContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="DeleteButton" type="LinkButton" parent="Profile/TabContainer/MarginContainer/VBoxContainer/CenterContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 1
+theme_override_colors/font_color = Color(0.85098, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 32
+text = "Удалить аккаунт?"
+underline = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="Profile/TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+metadata/_tab_index = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Profile/TabContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Profile/TabContainer/MarginContainer2/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="Profile/TabContainer/MarginContainer2/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 22
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Profile/TabContainer/MarginContainer2/ScrollContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Profile/TabContainer/MarginContainer2/ScrollContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 34
+text = "Тема 
+вопроса:"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="Profile/TabContainer/MarginContainer2/ScrollContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 34
+text = "Правильных ответов"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Panel" type="Panel" parent="Profile/TabContainer/MarginContainer2/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxLine_db0k2")
+
+[node name="HistoryLine" parent="Profile/TabContainer/MarginContainer2/ScrollContainer/VBoxContainer" instance=ExtResource("6_7piqx")]
+unique_name_in_owner = true
+layout_mode = 2
+property = "История"
+value = "-"
+
+[node name="ScienceLine" parent="Profile/TabContainer/MarginContainer2/ScrollContainer/VBoxContainer" instance=ExtResource("6_7piqx")]
+unique_name_in_owner = true
+layout_mode = 2
+property = "Наука"
+value = "-"
+
+[node name="CultureLine" parent="Profile/TabContainer/MarginContainer2/ScrollContainer/VBoxContainer" instance=ExtResource("6_7piqx")]
+unique_name_in_owner = true
+layout_mode = 2
+property = "Искусство"
+value = "-"
+
+[node name="NatureLine" parent="Profile/TabContainer/MarginContainer2/ScrollContainer/VBoxContainer" instance=ExtResource("6_7piqx")]
+unique_name_in_owner = true
+layout_mode = 2
+property = "природа"
+value = "-"
+
+[node name="CrossButton" parent="Profile" instance=ExtResource("5_x3w8v")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 265.0
+offset_top = -292.0
+offset_right = 335.0
+offset_bottom = -222.0
+grow_horizontal = 1
+grow_vertical = 1
+focus_mode = 1
+
+[node name="StatisticMenu" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="StatisticMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -568.0
+offset_top = -388.0
+offset_right = 568.0
+offset_bottom = 388.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StatisticCrossButton" parent="StatisticMenu/Panel" instance=ExtResource("5_x3w8v")]
+layout_mode = 1
+offset_left = 467.0
+offset_top = -388.0
+offset_right = 537.0
+offset_bottom = -318.0
+focus_mode = 1
+
+[node name="ChangePassword" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="PanelContainer" parent="ChangePassword"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -270.0
+offset_top = -148.5
+offset_right = 270.0
+offset_bottom = 148.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="ChangePassword/Panel"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/margin_top = -25
+theme_override_constants/margin_right = -16
+
+[node name="ChangePasswordCrossButton" parent="ChangePassword/Panel/MarginContainer2" instance=ExtResource("5_x3w8v")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+focus_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="ChangePassword/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="Control" type="VBoxContainer" parent="ChangePassword/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 26
+
+[node name="MarginContainer" type="MarginContainer" parent="ChangePassword/Panel/MarginContainer/Control"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_bottom = -8
+
+[node name="Label" type="Label" parent="ChangePassword/Panel/MarginContainer/Control/MarginContainer"]
+layout_mode = 2
+text = "старый пароль:"
+
+[node name="LineEdit" type="LineEdit" parent="ChangePassword/Panel/MarginContainer/Control"]
+layout_mode = 2
+max_length = 20
+context_menu_enabled = false
+language = "en"
+
+[node name="MarginContainer3" type="MarginContainer" parent="ChangePassword/Panel/MarginContainer/Control"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_bottom = -8
+
+[node name="Label" type="Label" parent="ChangePassword/Panel/MarginContainer/Control/MarginContainer3"]
+layout_mode = 2
+text = "Новый пароль:"
+
+[node name="LineEdit2" type="LineEdit" parent="ChangePassword/Panel/MarginContainer/Control"]
+layout_mode = 2
+max_length = 20
+context_menu_enabled = false
+language = "en"
+
+[node name="MarginContainer4" type="MarginContainer" parent="ChangePassword/Panel/MarginContainer/Control"]
+layout_mode = 2
+theme_override_constants/margin_top = -16
+theme_override_constants/margin_bottom = -12
+
+[node name="ErrorChangePasswordLabel" type="Label" parent="ChangePassword/Panel/MarginContainer/Control/MarginContainer4"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_7piqx")
+label_settings = ExtResource("5_qt2eg")
+horizontal_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="ChangePassword/Panel/MarginContainer/Control"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+
+[node name="Button" type="Button" parent="ChangePassword/Panel/MarginContainer/Control/MarginContainer2"]
+layout_mode = 2
+focus_mode = 1
+theme_override_font_sizes/font_size = 40
+text = "Получить пароль"
+
+[node name="WaitingScreen" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_vertical = 0
+color = Color(0, 0, 0, 0.301961)
+
+[node name="AcceptDialog" type="AcceptDialog" parent="."]
+unique_name_in_owner = true
+title = "Внимание!"
+initial_position = 2
+size = Vector2i(200, 150)
+unresizable = true
+always_on_top = true
+popup_window = true
+sharp_corners = true
+theme = SubResource("Theme_38238")
+dialog_text = "Не удалось получить данные с сервера"
+
+[node name="Settings" parent="." instance=ExtResource("13_rkwbc")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="ColorRect2" type="ColorRect" parent="Settings"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_wwcsp")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.560784)
+
+[node name="NotificationPanel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 568.0
+offset_top = -540.0
+offset_right = 959.0
+offset_bottom = -230.0
+
+[node name="Label" type="Label" parent="NotificationPanel"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("11_cr5ul")
+theme_override_font_sizes/font_size = 25
+text = "Полный функционал доступен только зарегистрированным пользователям.
+
+Нажмите на кнопку \"Профиль\", чтобы войти."
+autowrap_mode = 3
+
+[connection signal="pressed" from="StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="ProfileButton" to="." method="_on_profile_button_pressed"]
+[connection signal="pressed" from="Authorization/Panel/MarginContainer/Control/MarginContainer5/AuthorizationButton" to="." method="_on_authorization_button_pressed"]
+[connection signal="pressed" from="Authorization/Panel/MarginContainer/Control/MarginContainer/RecoverPasswordButton" to="." method="_on_recover_password_button_pressed"]
+[connection signal="pressed" from="Authorization/Panel/MarginContainer/Control/CreateAccount" to="." method="_on_create_account_pressed"]
+[connection signal="pressed" from="Authorization/Panel/MarginContainer2/CrossButton" to="." method="_on_cross_button_pressed"]
+[connection signal="pressed" from="GetPassword/Panel/MarginContainer2/GetPasswordCrossButton" to="." method="_on_get_password_cross_button_pressed"]
+[connection signal="pressed" from="Registration/Panel/MarginContainer/Control/MarginContainer4/RegistrationButton" to="." method="_on_registration_button_pressed"]
+[connection signal="pressed" from="Registration/Panel/MarginContainer/Control/LoginButton" to="." method="_on_login_button_pressed"]
+[connection signal="pressed" from="Registration/Panel/MarginContainer2/CrossButton" to="." method="_on_cross_button_pressed"]
+[connection signal="pressed" from="ConfirmationMenu/Panel/Control/ConfirmationButton" to="." method="_on_confirmation_button_pressed"]
+[connection signal="pressed" from="ConfirmationMenu/Panel/Control/ConfirmationCrossButton" to="." method="_on_confirmation_cross_button_pressed"]
+[connection signal="pressed" from="Profile/Panel/Control/CheckStatistic" to="." method="_on_check_statistic_pressed"]
+[connection signal="pressed" from="Profile/Panel/Control/CrossButton" to="." method="_on_cross_button_pressed"]
+[connection signal="pressed" from="Profile/Panel/Control/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="Profile/TabContainer/MarginContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="Profile/CrossButton" to="." method="_on_cross_button_pressed"]
+[connection signal="pressed" from="StatisticMenu/Panel/StatisticCrossButton" to="." method="_on_statistic_cross_button_pressed"]
+[connection signal="pressed" from="ChangePassword/Panel/MarginContainer2/ChangePasswordCrossButton" to="." method="_on_change_password_cross_button_pressed"]

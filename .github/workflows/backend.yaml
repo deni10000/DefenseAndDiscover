@@ -5,6 +5,7 @@ on:
     branches: [main, 'develop', 'develop-*', 'develop/**']
     paths:
       - 'backend/**'
+      - '.github'
   pull_request:
     branches: [main, 'develop', 'develop-*', 'develop/**']
     paths:
@@ -37,8 +38,8 @@ jobs:
       USER_CLIENT_URL: http://userservice:8081
       MAIL_HOST: smtp.mail.ru
       MAIL_PORT: 587
-      MAIL_USERNAME: ""
-      MAIL_PASSWORD: ""
+      MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
+      MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
 
   build_python_service:
     runs-on: ubuntu-latest
@@ -54,3 +55,91 @@ jobs:
         run: pip install -r requirements.txt
       - name: Run tests
         run: pytest
+
+  build_and_push_docker_images:
+    name: Build and Push Docker Images
+    runs-on: ubuntu-latest
+    needs: [build_java_services, build_python_service]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create app.env file
+        run: |
+          echo "LLM_TOKEN=${{ secrets.LLM_TOKEN }}" >> backend/app.env
+          echo "MAIL_USERNAME=${{ secrets.MAIL_USERNAME }}" >> backend/app.env
+          echo "MAIL_PASSWORD=${{ secrets.MAIL_PASSWORD }}" >> backend/app.env
+
+      - name: Setup Docker
+        uses: docker/setup-docker-action@v4
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build Docker images
+        run: |
+          cd backend
+          docker compose build
+
+      - name: Push Docker images
+        run: |
+          cd backend
+          docker compose push
+    env:
+      LLM_TOKEN: ${{ secrets.LLM_TOKEN }}
+  deploy:
+
+    name: Deploy
+    runs-on: ubuntu-latest
+    needs: build_and_push_docker_images
+    steps:
+      - name: Setup repo
+        uses: actions/checkout@v4
+
+      - name: Copy files via SSH
+        uses: appleboy/scp-action@v1
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          source: "backend/docker-compose.yml"
+          target: ~/
+      - name: Create app.env file
+        run: |
+          echo "LLM_TOKEN=${{ secrets.LLM_TOKEN }}" >> backend/app.env
+          echo "MAIL_USERNAME=${{ secrets.MAIL_USERNAME }}" >> backend/app.env
+          echo "MAIL_PASSWORD=${{ secrets.MAIL_PASSWORD }}" >> backend/app.env
+
+      - name: Upload app.env via SCP
+        uses: appleboy/scp-action@v1
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          source: "backend/app.env"
+          target: ~/
+
+      - name: SSH deploy
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            export DOCKER_USERNAME="${{ secrets.DOCKERHUB_USERNAME }}"
+            export DOCKER_PASSWORD="${{ secrets.DOCKERHUB_TOKEN }}"
+
+            echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+            
+            cd ~/backend
+            docker compose down
+            docker compose pull
+            docker compose up -d
+            docker system prune -f
+    env:
+      LLM_TOKEN: ${{ secrets.LLM_TOKEN }}
+      MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
+      MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}

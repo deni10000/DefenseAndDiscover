@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://dy4r1ip5lxp2r"]
+
+[ext_resource type="Script" uid="uid://dhennyynwt7tv" path="res://enemy/base/enemy.gd" id="1_1fxkx"]
+[ext_resource type="Script" uid="uid://bq6qckk15x2xp" path="res://enemy/base/body.gd" id="2_2aqp0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e5eyy"]
+bg_color = Color(0, 0, 0, 1)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4plym"]
+bg_color = Color(1, 0, 0, 1)
+
+[node name="Enemy" type="PathFollow2D" node_paths=PackedStringArray("texture", "lightning") groups=["Enemy"]]
+y_sort_enabled = true
+rotates = false
+loop = false
+script = ExtResource("1_1fxkx")
+texture = NodePath("Texture")
+lightning = NodePath("Texture/Lightning")
+
+[node name="HpBar" type="ProgressBar" parent="."]
+offset_left = 18.0
+offset_top = 4.0
+offset_right = 124.0
+offset_bottom = 68.0
+theme_override_styles/background = SubResource("StyleBoxFlat_e5eyy")
+theme_override_styles/fill = SubResource("StyleBoxFlat_4plym")
+value = 100.0
+show_percentage = false
+metadata/_edit_lock_ = true
+
+[node name="Body" type="Area2D" parent="."]
+script = ExtResource("2_2aqp0")
+
+[node name="Texture" type="AnimatedSprite2D" parent="."]
+
+[node name="Lightning" type="AnimatedSprite2D" parent="Texture"]

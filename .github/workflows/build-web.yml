@@ -42,8 +42,8 @@ jobs:
           mkdir -p /tmp/docker-export  # Убедимся, что директория существует
           docker save godot-web-app -o /tmp/docker-export/godot-web-app.tar
 
-      - name: List files in /tmp/docker-export
-        run: ls -lh /tmp/docker-export  # Список файлов для проверки
+      - name: List files in /tmp/docker-export before upload
+        run: ls -lh /tmp/docker-export
 
       - name: Upload image to VPS over SSH
         env:
@@ -54,11 +54,13 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y sshpass
 
-          # Копируем файл
-          sshpass -p "$SSH_PASS" scp -o StrictHostKeyChecking=no /tmp/docker-export/godot-web-app.tar $SSH_USER@$VPS_HOST:/tmp/
+          sshpass -p ${{ secrets.PASSWORD }} scp -o StrictHostKeyChecking=no /tmp/docker-export/godot-web-app.tar ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/tmp/
 
-          # Загружаем образ и перезапускаем контейнер
-          sshpass -p "$SSH_PASS" ssh -o StrictHostKeyChecking=no $SSH_USER@$VPS_HOST <<EOF
+          sshpass -p ${{ secrets.PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'ls -lh /tmp/' 
+
+          sshpass -p ${{ secrets.PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.HOST }} <<EOF
+            docker images
+
             docker load -i /tmp/godot-web-app.tar
             docker stop godot-web || true && docker rm godot-web || true
             docker run -d --name godot-web -p 80:80 godot-web-app

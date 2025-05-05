@@ -2,6 +2,7 @@ package backend.academy.apigateway.controller;
 
 
 import backend.academy.apigateway.dto.UserConfirmation;
+import backend.academy.apigateway.dto.UserDtoWithoutPassword;
 import backend.academy.apigateway.dto.security.AddRoleDto;
 import backend.academy.apigateway.dto.security.ChangingPasswordDto;
 import backend.academy.apigateway.dto.security.RoleDto;
@@ -185,9 +186,9 @@ public class UserController {
 
     @Operation(summary = "Получить конкретного пользователя")
     @PostMapping(ApiPaths.BASE_API + "/getUser")
-    public ResponseEntity<UserDto> getUser(@RequestParam(name = "email") String email) {
+    public ResponseEntity<UserDtoWithoutPassword> getUser(@RequestParam(name = "email") String email) {
         try {
-            return ResponseEntity.ok(userService.getUserByEmail(email));
+            return ResponseEntity.ok(new UserDtoWithoutPassword(userService.getUserByEmail(email)));
         } catch (UserNotFound e) {
             log.error(e.getMessage() + email);
             return ResponseEntity.notFound().build();

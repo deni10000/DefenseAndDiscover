@@ -27,6 +27,6 @@ public interface UserClient {
      @GetMapping("/users/by-username/{username}")
      UserDto getUserByUsername(@PathVariable("username") String username);
 
-     @GetMapping("/users/by-email/{email}")
-     UserDto getUserByEmail(@PathVariable("email") String email);
+     @GetMapping("/users/by-email")
+     UserDto getUserByEmail(@RequestParam("email") String email);
 }

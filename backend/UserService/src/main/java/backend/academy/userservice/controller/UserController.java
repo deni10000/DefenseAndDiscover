@@ -28,8 +28,8 @@ public class UserController {
     public UserDto getUserByUsername(@PathVariable String username) {
         return userService.getUserByUsername(username);
     }
-    @GetMapping("/by-email/{email}")
-    public UserDto getUserByEmail(@PathVariable String email) {
+    @GetMapping("/by-email")
+    public UserDto getUserByEmail(@RequestParam(name = "email") String email) {
         return userService.getUserByEmail(email);
     }
 

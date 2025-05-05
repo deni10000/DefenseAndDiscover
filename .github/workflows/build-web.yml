@@ -53,27 +53,25 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y sshpass
-
-          sshpass -p "$SSH_PASS" scp -o StrictHostKeyChecking=no /tmp/docker-export/godot-web-app.tar $SSH_USER@$VPS_HOST:/tmp/
-
-          sshpass -p "$SSH_PASS" ssh -o StrictHostKeyChecking=no $SSH_USER@$VPS_HOST 'ls -lh /tmp/'  # Проверим, что файл был передан
-          
-          sshpass -p "$SSH_PASS" ssh -o StrictHostKeyChecking=no $SSH_USER@$VPS_HOST 'ls -l /tmp/godot-web-app.tar'  # Проверим права доступа
-
+  
+          sshpass -p "$SSH_PASS" scp -o StrictHostKeyChecking=no /tmp/docker-export/godot-web-app.tar $SSH_USER@$VPS_HOST:~/godot-web-app.tar
+  
+          sshpass -p "$SSH_PASS" ssh -o StrictHostKeyChecking=no $SSH_USER@$VPS_HOST 'ls -lh ~/godot-web-app.tar'
+  
           sshpass -p "$SSH_PASS" ssh -o StrictHostKeyChecking=no $SSH_USER@$VPS_HOST <<'EOF'
           echo "== Проверяем наличие файла =="
-          ls -l /tmp/godot-web-app.tar || { echo "Файл не найден"; exit 1; }
-
-          echo "== Устанавливаем права доступа =="
-          chmod 644 /tmp/godot-web-app.tar
-
-          echo "== Загружаем Docker-образ =="
-          docker load -i /tmp/godot-web-app.tar || { echo "Ошибка при загрузке образа"; exit 1; }
-
-          echo "== Перезапускаем контейнер =="
-          docker stop godot-web || true
-          docker rm godot-web || true
-          docker run -d --name godot-web -p 80:80 godot-web-app || { echo "Ошибка при запуске контейнера"; exit 1; }
-
-          echo "== Готово =="
-          EOF
+          ls -l ~/godot-web-app.tar || { echo "Файл не найден"; exit 1; }
+  
+           echo "== Устанавливаем права доступа =="
+           chmod 644 ~/godot-web-app.tar
+  
+           echo "== Загружаем Docker-образ =="
+           docker load -i ~/godot-web-app.tar || { echo "Ошибка при загрузке образа"; exit 1; }
+  
+           echo "== Перезапускаем контейнер =="
+           docker stop godot-web || true
+           docker rm godot-web || true
+           docker run -d --name godot-web -p 80:80 godot-web-app || { echo "Ошибка при запуске контейнера"; exit 1; }
+  
+           echo "== Готово =="
+           EOF

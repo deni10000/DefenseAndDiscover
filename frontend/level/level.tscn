@@ -16,9 +16,9 @@ shader_parameter/lod = 2.0
 
 [sub_resource type="Curve2D" id="Curve2D_6gtgk"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 344, 1144, 0, 0, 0, 0, 344, 264, -28.7073, 23.4757, 28.7073, -23.4757, 368, 192, 0, 0, 0, 0, 440, 176, 0, 0, 0, 0, 1560, 176, -23.2199, -19.3189, 23.2199, 19.3189, 1632, 192, 0, 0, 0, 0, 1656, 240, 0, 0, 0, 0, 1656, 360, 15.9153, -15.9903, -15.9153, 15.9903, 1640, 400, 0, 0, 0, 0, 1576, 416, 0, 0, 0, 0, 704, 416, 21.7987, -20.586, -21.7987, 20.586, 648, 432, 0, 0, 0, 0, 632, 504, 0, 0, 0, 0, 632, 656, -22.5434, -15.2553, 22.5434, 15.2553, 656, 704, 0, 0, 0, 0, 760, 712, 0, 0, 0, 0, 1576, 712, -15.55, -38.0526, 15.55, 38.0526, 1648, 744, 18.2101, -21.7365, -18.2101, 21.7365, 1640, 880, 0, 0, 0, 0, 1552, 896, 0, 0, 0, 0, 720, 896, 20.8108, -12.1654, -20.8108, 12.1654, 664, 904, 0, 0, 0, 0, 648, 952, 0, 0, 0, 0, 648, 1160)
+"points": PackedVector2Array(0, 0, 0, 0, 344, 1144, 0, 0, 0, 0, 344, 264, -28.7073, 23.4757, 28.7073, -23.4757, 368, 192, 0, 0, 0, 0, 440, 176, 0, 0, 0, 0, 1560, 176, -23.2199, -19.3189, 23.2199, 19.3189, 1632, 192, 0, 0, 0, 0, 1656, 240, 0, 0, 0, 0, 1656, 360, 15.9153, -15.9903, -15.9153, 15.9903, 1640, 400, 0, 0, 0, 0, 1576, 416, 0, 0, 0, 0, 704, 416, 21.7987, -20.586, -21.7987, 20.586, 648, 432, 0, 0, 0, 0, 632, 504, 0, 0, 0, 0, 632, 656, -22.5434, -15.2553, 22.5434, 15.2553, 656, 704, 0, 0, 0, 0, 760, 712, 0, 0, 0, 0, 1576, 712, -11.7074, -20.1152, 11.7074, 20.1152, 1638.8, 732.326, 0, 0, 0, 0, 1648.02, 769.231, 0, 0, 0, 0, 1648.02, 833.814, 11.7653, -16.0078, -11.7653, 16.0078, 1640, 880, 0, 0, 0, 0, 1552, 896, 0, 0, 0, 0, 720, 896, 20.8108, -12.1654, -20.8108, 12.1654, 664, 904, 0, 0, 0, 0, 648, 952, 0, 0, 0, 0, 648, 1160)
 }
-point_count = 24
+point_count = 26
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oem8r"]
 radius = 100.005
@@ -218,7 +218,7 @@ theme_override_font_sizes/font_size = 40
 text = "Настройки"
 
 [node name="ExitButton" type="Button" parent="CanvasLayer/Control/Menu/PanelContainer/MarginContainer/HBoxContainer"]
-self_modulate = Color(0.737255, 0.137255, 0.137255, 1)
+self_modulate = Color(0.839216, 0.12549, 0.0470588, 1)
 layout_mode = 2
 size_flags_vertical = 0
 focus_mode = 0
@@ -298,7 +298,7 @@ focus_mode = 0
 text = "Начать заново"
 
 [node name="ExitButton" type="Button" parent="CanvasLayer/Control/DefeatMenu/PanelContainer/MarginContainer/VBoxContainer"]
-modulate = Color(0.694118, 0.0941176, 0.027451, 1)
+modulate = Color(0.840797, 0.12702, 0.0470296, 1)
 layout_mode = 2
 focus_mode = 0
 text = "Выйти "
@@ -323,7 +323,7 @@ position = Vector2(-960, -540)
 [node name="map" parent="Level" node_paths=PackedStringArray("camera") instance=ExtResource("4_ivpvi")]
 unique_name_in_owner = true
 z_index = -3
-position = Vector2(-5, 101)
+position = Vector2(9, 101)
 scale = Vector2(1.3, 1.3)
 camera = NodePath("../../Camera2D")
 
@@ -335,14 +335,15 @@ curve = SubResource("Curve2D_6gtgk")
 [node name="EnemyTimer" type="Timer" parent="Level"]
 
 [node name="Home" type="Area2D" parent="Level"]
-position = Vector2(1289.93, 1168.53)
+position = Vector2(1303.93, 1168.53)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Home"]
-position = Vector2(-633.93, 31.47)
+position = Vector2(-729.93, 23.47)
 shape = SubResource("CircleShape2D_oem8r")
 
 [node name="Places" type="Node2D" parent="Level"]
 unique_name_in_owner = true
+position = Vector2(14, 0)
 
 [node name="PlaceForTower" parent="Level/Places" instance=ExtResource("8_6gtgk")]
 position = Vector2(200, 862)

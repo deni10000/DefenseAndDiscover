@@ -30,7 +30,7 @@
 
 📎 Новое:
 
-Презентация MVP [.pptx]() [видео](https://disk.yandex.ru/i/HJ11HPOJllkSQg)
+Презентация MVP [.pptx](https://disk.yandex.ru/i/OuHshLGiN_WZcQ) [видео](https://disk.yandex.ru/i/HJ11HPOJllkSQg)
 
 [PM-отчет](https://docs.google.com/document/d/1O8wl8u_HmrzIumzbRkWsaGDGj8cGXJMNwQdTcZ3BdJo/edit?usp=sharing)
 

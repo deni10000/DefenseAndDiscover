@@ -322,7 +322,7 @@ position = Vector2(-960, -540)
 
 [node name="map" parent="Level" node_paths=PackedStringArray("camera") instance=ExtResource("4_ivpvi")]
 unique_name_in_owner = true
-z_index = -3
+z_index = -5
 position = Vector2(9, 101)
 scale = Vector2(1.3, 1.3)
 camera = NodePath("../../Camera2D")
@@ -335,10 +335,10 @@ curve = SubResource("Curve2D_6gtgk")
 [node name="EnemyTimer" type="Timer" parent="Level"]
 
 [node name="Home" type="Area2D" parent="Level"]
-position = Vector2(1303.93, 1168.53)
+position = Vector2(571, 1194)
+collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Home"]
-position = Vector2(-729.93, 23.47)
 shape = SubResource("CircleShape2D_oem8r")
 
 [node name="Places" type="Node2D" parent="Level"]

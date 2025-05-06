@@ -1,46 +1,77 @@
-name: Godot Web Export and Deploy
+name: Godot Web Export, Dockerize, and Deploy to VPS
 
 on:
   push:
-    branches: [main]
-
-permissions:
-  contents: write
-  pages: write
-  id-token: write
+    branches: [main, 'develop', 'develop-*', 'develop/**']
+    paths:
+      - 'frontend/**'
+      - '.github/**'
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repo
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Create export directory
-      run: mkdir -p frontend/build/web
+      - name: Create export directory
+        run: mkdir -p frontend/build/web
 
-    - name: Export HTML5 build using Godot
-      run: |
-        docker run --rm \
-          -v "${{ github.workspace }}/frontend":/game \
-          -w /game \
-          barichello/godot-ci:4.4.1 \
-          godot --headless --export-release "Web" build/web/index.html
-    - name: Upload artifact
-      uses: actions/upload-pages-artifact@v3
-      with:
-        path: frontend/build/web
+      - name: Export HTML5 build using Godot
+        run: |
+          docker run --rm \
+            -v "${{ github.workspace }}/frontend":/game \
+            -w /game \
+            barichello/godot-ci:4.4.1 \
+            godot --headless --export-release "Web" build/web/index.html
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
+      - name: Create Dockerfile for NGINX
+        run: |
+          cat <<EOF > frontend/Dockerfile
+          FROM nginx:alpine
+          COPY build/web /usr/share/nginx/html
+          EOF
 
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      - name: Build Docker image
+        run: |
+          docker build -t godot-web-app ./frontend
 
-    steps:
-    - name: Deploy to GitHub Pages
-      id: deployment
-      uses: actions/deploy-pages@v4
+      - name: Save Docker image to tar
+        run: |
+          mkdir -p /tmp/docker-export  # Убедимся, что директория существует
+          docker save godot-web-app -o /tmp/docker-export/godot-web-app.tar
+
+      - name: List files in /tmp/docker-export before upload
+        run: ls -lh /tmp/docker-export  # Проверим наличие файла
+
+      - name: Upload image to VPS over SSH
+        env:
+          SSH_USER: ${{ secrets.USERNAME }}
+          SSH_PASS: ${{ secrets.PASSWORD }}
+          VPS_HOST: ${{ secrets.HOST }}
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y sshpass
+  
+          sshpass -p "$SSH_PASS" scp -o StrictHostKeyChecking=no /tmp/docker-export/godot-web-app.tar $SSH_USER@$VPS_HOST:~/godot-web-app.tar
+  
+          sshpass -p "$SSH_PASS" ssh -o StrictHostKeyChecking=no $SSH_USER@$VPS_HOST 'ls -lh ~/godot-web-app.tar'
+  
+          sshpass -p "$SSH_PASS" ssh -o StrictHostKeyChecking=no $SSH_USER@$VPS_HOST bash << 'EOF'
+          echo "== Проверяем наличие файла =="
+          ls -l ~/godot-web-app.tar || { echo "Файл не найден"; exit 1; }
+  
+          echo "== Устанавливаем права доступа =="
+          chmod 644 ~/godot-web-app.tar
+  
+          echo "== Загружаем Docker-образ =="
+          docker load -i ~/godot-web-app.tar || { echo "Ошибка при загрузке образа"; exit 1; }
+  
+          echo "== Перезапускаем контейнер =="
+          docker stop godot-web || true
+          docker rm godot-web || true
+          docker run -d --name godot-web -p 80:80 godot-web-app || { echo "Ошибка при запуске контейнера"; exit 1; }
+  
+          echo "== Готово =="
+          EOF

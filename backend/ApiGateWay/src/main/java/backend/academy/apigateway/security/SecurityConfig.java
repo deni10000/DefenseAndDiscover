@@ -55,6 +55,7 @@ public class SecurityConfig {
 
                         {
                             request
+                                    .requestMatchers(HttpMethod.GET, ApiPaths.BASE_API + "/*").permitAll()
                                     .requestMatchers(HttpMethod.POST, ApiPaths.BASE_API + "/*").permitAll()
                                     .requestMatchers(HttpMethod.POST, ApiPaths.USER_API + "/*").hasAnyAuthority("USER", "ADMIN")
                                     .requestMatchers(HttpMethod.GET, ApiPaths.ADMIN_API + "/*").hasAuthority("ADMIN")

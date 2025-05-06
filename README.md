@@ -57,6 +57,8 @@ Email: an.an.gurieva@yandex.ru
 
 📎 Аттестация 2
 
+[Чек-лист](https://github.com/anya-ananasss/Defense-Discover/blob/main/Documentation/%D0%A2%D0%9F.%20%D0%A7%D0%B5%D0%BA%D0%BB%D0%B8%D1%81%D1%82%202%20%D1%8D%D1%82%D0%B0%D0%BF.pdf)
+
 # Оценки от других команд
 
 📎 Аттестация 1

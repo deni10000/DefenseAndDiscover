@@ -1,6 +1,6 @@
 extends Node
 
-var base_url := "http://176.98.178.10:8080"
+var base_url := "https://valyalshchikov.ru"
 var token := ''
 var user_name := ''
 var email = ''
@@ -8,6 +8,14 @@ var cookie_time = 30
 const TIMEOUT_SECONDS := 4.0
 
 func  _ready() -> void:
+	var file = FileAccess.open("res://config.json", FileAccess.READ)
+	if file == null:
+		print('File is null')
+	else:
+		var text = file.get_as_text()
+		var json = JSON.parse_string(text)
+		base_url = json['url']
+		print(base_url)
 	if OS.get_name() == 'Web':
 		print(JavaScriptBridge.eval("window.location.origin", true))
 		var dop = Global.java_script.getCookie("token")

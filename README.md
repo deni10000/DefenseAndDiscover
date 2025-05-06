@@ -36,6 +36,12 @@
 
 [Деплой игры](https://deni10000.github.io/DefenseAndDiscover/)
 
+❗ Данные для входа: 
+
+Email: an.an.gurieva@yandex.ru
+
+Пароль: 12345678
+
 Тестовая документация:
 
 [Чек-листы](https://drive.google.com/drive/folders/1yQ8RvDHsIrpe0NRZSt0DQ5H90uvFq1uP?hl=ru)

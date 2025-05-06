@@ -72,3 +72,10 @@ Email: an.an.gurieva@yandex.ru
 📎 Аттестация 2
 
 
+7 группа, 2 команда [Git](https://github.com/orgs/ReflectAppTP) [Чек-лист]()
+
+7 группа, 3 команда [Git](https://github.com/Vlad-gw/task-planner-app) [Чек-лист]()
+
+4 группа 1 команда [Git](https://publictransport2025.github.io/) [Чек-лист]()
+
+4 группа 2 команда [Git](https://github.com/I-want-pizza/QWality) [Чек-лист](https://github.com/I-want-pizza/QWality/blob/88be92d58178c8b91e3ab7b066cc00c24d141450/docs/teams_score/%D0%A7%D0%B5%D0%BA%D0%BB%D0%B8%D1%81%D1%82%202%20%D1%8D%D1%82%D0%B0%D0%BF.pdf)

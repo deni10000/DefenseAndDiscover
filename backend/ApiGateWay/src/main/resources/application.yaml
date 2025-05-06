@@ -44,4 +44,4 @@ stat:
 springdoc:
   swagger-ui:
     enabled: true
-    path: /api/swagger-ui
+    path: /api/v1/swagger-ui

@@ -28,11 +28,32 @@
 
 [Брендбук](https://github.com/anya-ananasss/Defense-Discover/blob/main/Documentation/Brandbook.pdf)
 
+📎 Новое:
+
+Презентация MVP [.pptx]() [.pdf]() [видео]()
+
+[PM-отчет](https://docs.google.com/document/d/1O8wl8u_HmrzIumzbRkWsaGDGj8cGXJMNwQdTcZ3BdJo/edit?usp=sharing)
+
+[Деплой игры](https://deni10000.github.io/DefenseAndDiscover/)
+
+Тестовая документация:
+
+[Чек-листы](https://drive.google.com/drive/folders/1yQ8RvDHsIrpe0NRZSt0DQ5H90uvFq1uP?hl=ru)
+
+[Отчет о тестировании MVP](https://docs.google.com/document/d/13NpzgvBKQ6QEk-bkCHzM8Al6NIYKOsQ0mGWpISV6Xkw/edit?usp=sharing)
+
+
 # Чек-листы
+
+📎 Аттестация 1
 
 [Чек-лист](https://github.com/anya-ananasss/Defense-Discover/blob/main/Documentation/%D0%A7%D0%B5%D0%BA%D0%BB%D0%B8%D1%81%D1%82%20(%D0%A1%D0%9A%2C%202%20%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%B0).pdf)
 
+📎 Аттестация 2
+
 # Оценки от других команд
+
+📎 Аттестация 1
 
 7 группа, 2 команда [Git](https://github.com/orgs/ReflectAppTP) [Чек-лист](https://github.com/ReflectAppTP/documentation/blob/main/%D0%A7%D0%B5%D0%BA%20%D0%BB%D0%B8%D1%81%D1%82.pdf)
 
@@ -41,3 +62,7 @@
 4 группа 1 команда [Git](https://publictransport2025.github.io/) [Чек-лист](https://github.com/PublicTransport2025/Docs/blob/main/%D0%9A%D1%80%D0%BE%D1%81%D1%81-%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%BA%D0%B8.pdf)
 
 4 группа 2 команда [Git](https://github.com/I-want-pizza/QWality) [Чек-лист](https://github.com/I-want-pizza/QWality/blob/db488a1e794473a015df8cb8fc7b1416ed381151/docs/teams_score/%D0%A7%D0%B5%D0%BA%D0%BB%D0%B8%D1%81%D1%82_1_%D1%8D%D1%82%D0%B0%D0%BF.pdf)
+
+📎 Аттестация 2
+
+

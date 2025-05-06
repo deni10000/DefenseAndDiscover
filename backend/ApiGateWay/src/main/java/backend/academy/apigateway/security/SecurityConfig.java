@@ -50,12 +50,17 @@ public class SecurityConfig {
                     corsConfig.setMaxAge(3600L);
                     return corsConfig;
                 }))
-                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(request ->
 
                         {
                             request
-                                    .requestMatchers("/api/v1/swagger-ui/**", "/v3/api-docs/**").permitAll()
+                                    .requestMatchers(
+                                            "/api/v1/swagger-ui/**",
+                                            "/v3/api-docs/**",
+                                            "/swagger-ui/**",
+                                            "/swagger-ui.html",
+                                            "/webjars/**"
+                                    ).permitAll()
                                     .requestMatchers(HttpMethod.GET, ApiPaths.BASE_API + "/*").permitAll()
                                     .requestMatchers(HttpMethod.POST, ApiPaths.BASE_API + "/*").permitAll()
                                     .requestMatchers(HttpMethod.POST, ApiPaths.USER_API + "/*").hasAnyAuthority("USER", "ADMIN")
@@ -63,6 +68,7 @@ public class SecurityConfig {
                                     .requestMatchers(HttpMethod.POST, ApiPaths.ADMIN_API + "/*").hasAuthority("ADMIN");
                         }
                 )
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .httpBasic(Customizer.withDefaults()).
                 sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .build();

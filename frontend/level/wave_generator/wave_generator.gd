@@ -28,7 +28,7 @@ func start_wave():
 		var count := rng.randi_range(enemy.min_count_in_group, enemy.max_count_in_group)
 		for i in range(count):
 			var en = enemy.scene.instantiate()
-			en.hp *= 1 + level * hp_increasing_per_level
+			en.max_hp *= 1 + level * hp_increasing_per_level
 			add_enemy.emit(en)
 			timer.start(short_range)
 			await timer.timeout

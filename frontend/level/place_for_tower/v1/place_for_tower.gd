@@ -57,8 +57,6 @@ func _on_area_2d_mouse_exited() -> void:
 	mouse_in_area = false
 
 func handle_question(type: Global.Types):
-	if type == Global.Types.ARCHER:
-		print('start_archer')
 	start_question.emit(Global.topic_names[type], is_ok, 1)
 	var res = await is_ok
 	var price = Global.tower_prices[type]

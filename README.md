@@ -72,7 +72,7 @@ Email: an.an.gurieva@yandex.ru
 📎 Аттестация 2
 
 
-7 группа, 2 команда [Git](https://github.com/orgs/ReflectAppTP) [Чек-лист]()
+7 группа, 2 команда [Git](https://github.com/orgs/ReflectAppTP) [Чек-лист](https://github.com/ReflectAppTP/documentation/blob/main/%D0%A7%D0%B5%D0%BA%20%D0%9B%D0%B8%D1%81%D1%82%202%20MVP.pdf)
 
 7 группа, 3 команда [Git](https://github.com/Vlad-gw/task-planner-app) [Чек-лист]()
 

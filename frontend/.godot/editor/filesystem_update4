@@ -33,5 +33,13 @@ res://tower/art_tower/art_tower.tscn
 res://tower/archer_tower/archer_tower.tscn
 res://interface/settings_panel/settings.tscn
 res://tower/tree_tower/tree_tower.tscn
+res://interface/tower_card/tower_card.tscn
+res://tower/tree_tower/tree_tower.gd
+res://enemy/lightning.tres
+res://enemy/red_slime/red_slime.tres
+res://enemy/red_slime/red_slime.tscn
+res://tower/archer_tower/archer_tower.gd
+res://tower/art_tower/art_tower.gd
+res://tower/electric_tower/electric_tower.gd
 res://level/wave_generator/wave_generator.gd
-res://level/place_for_tower/v1/place_for_tower.gd
+res://enemy/base/enemy.gd

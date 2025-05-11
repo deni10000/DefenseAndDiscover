@@ -8,7 +8,7 @@ var slow_time: float
 var slowing := 0.7
 var prev_pos := Vector2.ZERO
 var offset : int;
-@export var award : int = 10;
+@export var award : int = 8; #было 10
 
 @export var max_hp: float:
 	set(value):
@@ -33,7 +33,7 @@ var hp: float:
 			hp = value
 
 func on_art_tower_hit():
-	slow_time = 0.2
+	slow_time = 0.17 #было 20
 
 func on_electric_tower_hit():
 	if lightning.sprite_frames:

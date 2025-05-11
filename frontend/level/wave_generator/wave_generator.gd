@@ -8,8 +8,10 @@ var power_per_level = 250  # Увеличиваем базовую мощнос�
 var hp_increasing_per_level = 0.15  # Увеличиваем здоровье врагов с каждым уровнем было 0.1
 var timer: Timer
 var short_range_min = 0.3  # Минимальная задержка
-var short_range_max = 1.0  # Максимальная задержка
-var long_range = 1.7  # Уменьшаем время между волнами
+var short_range_max = 1.5  # Максимальная задержка
+var long_range_min = 1.5
+var long_range_max = 2.1
+
 signal add_enemy(enemy: Enemy)
 signal wave_ended
 
@@ -44,7 +46,8 @@ func start_wave():
 			await timer.timeout  # Задержка между появлением врагов
 
 		current_power -= count * enemy.power
-		timer.start(long_range)
+		var wave_delay = rng.randf_range(long_range_min, long_range_max)
+		timer.start(wave_delay)
 		await timer.timeout
 
 	level += 1

@@ -1,11 +1,11 @@
 extends Tower
 
-var damage := 80
+var damage := 70 #было 80
 var planned_attack := false
 var additional_price_to_up := 60
 
 func get_update_price():
-	return Global.electric_tower_price + additional_price_to_up * (level - 1)
+	return Global.tree_tower_price + additional_price_to_up * (level - 1)
 
 func update_tower():
 	default_update()

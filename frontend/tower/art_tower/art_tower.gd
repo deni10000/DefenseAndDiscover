@@ -8,7 +8,7 @@ const TWEEN_TIME = 1
 var additional_price_to_up := 20
 
 func get_update_price():
-	return Global.electric_tower_price + additional_price_to_up * (level - 1)
+	return Global.art_tower_price + additional_price_to_up * (level - 1)
 
 func _ready() -> void:
 	summary_price = Global.art_tower_price
@@ -16,7 +16,7 @@ func _ready() -> void:
 func update_tower():
 	default_update()
 	level += 1
-	dps += 5
+	dps += 4 #было 5
 
 func _process(delta: float) -> void:
 	var enemies = $AttackArea.get_overlapping_areas()

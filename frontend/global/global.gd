@@ -27,6 +27,8 @@ var topic_names: Dictionary[Types, String] = {Types.ELECTRIC: 'science', Types.A
 var tower_prices: Dictionary[Types, int] = {Types.ELECTRIC: electric_tower_price, Types.ARCHER: archer_tower_price, Types.ART: art_tower_price, Types.TREE: tree_tower_price}
 var tower_scenes: Dictionary[Types, PackedScene] = {Types.ELECTRIC: electric_tower , Types.ARCHER: archer_tower, Types.ART: art_tower, Types.TREE: tree_tower}
 var max_question_level := 5
+var is_campaign: bool = false
+
 
 var java_script := JavaScriptBridge.get_interface("window")
 var volume: float = 0.5

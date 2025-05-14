@@ -1849,4 +1849,4 @@ text = "Начать компанию"
 [connection signal="pressed" from="Profile/TabContainer/MarginContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="Profile/CrossButton" to="." method="_on_cross_button_pressed"]
 [connection signal="pressed" from="ChangePassword/Panel/MarginContainer2/ChangePasswordCrossButton" to="." method="_on_change_password_cross_button_pressed"]
-[connection signal="pressed" from="StartGameButtonHistory" to="." method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="StartGameButtonHistory" to="." method="_on_start_game_button_history_pressed"]

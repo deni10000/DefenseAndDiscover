@@ -4,8 +4,8 @@ class_name Wave_generator
 @export var seed : int
 var level = 1
 var power = 1000
-var power_per_level = 250  # Увеличиваем базовую мощность врагов с каждым уровнем было 200
-var hp_increasing_per_level = 0.15  # Увеличиваем здоровье врагов с каждым уровнем было 0.1
+var power_per_level = 275  # Увеличиваем базовую мощность врагов с каждым уровнем было 200
+var hp_increasing_per_level = 0.17  # Увеличиваем здоровье врагов с каждым уровнем было 0.1
 var timer: Timer
 var short_range_min = 0.3  # Минимальная задержка
 var short_range_max = 1.5  # Максимальная задержка

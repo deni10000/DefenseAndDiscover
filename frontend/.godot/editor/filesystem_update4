@@ -1,4 +1,4 @@
-res://interface/main_menu/main_menu.tscn
+res://interface/settings_panel/settings.tscn
 res://theme/maintheme.tres
 res://tower/base/tower.gdshader
 res://tower/base/tower_lightning.gdshader
@@ -18,7 +18,6 @@ res://theme/kenneyUI-yellow.tres
 res://interface/tower_card/tower_card.gdshader
 res://enemy/red_slime/red_slime.tres
 res://tower/art_tower/art_tower.gdshader
-res://interface/settings_panel/settings.tscn
 res://interface/tower_card/tower_card.tscn
 res://tower/tree_tower/tree_tower.tscn
 res://enemy/slime/slime.tscn
@@ -28,8 +27,9 @@ res://tower/art_tower/art_tower.tscn
 res://tower/archer_tower/arrow.tscn
 res://enemy/base/enemy.tscn
 res://interface/main_menu/cross_button.tscn
-res://interface/main_menu/main_menu.gd
+res://interface/main_menu/main_menu.tscn
 res://level/level.tscn
-res://global/global.gd
+res://tower/archer_tower/node_2d.tscn
+res://tower/art_tower/art_tower.gd
 res://tower/archer_tower/archer_tower.gd
-res://level/wave_generator/wave_generator.gd
+res://global/global.gd

@@ -10,7 +10,7 @@ var gold : int:
 	set(v):
 		gold = v
 		gold_changed.emit()
-var archer_tower_price : int = 110 #было 100
+var archer_tower_price : int = 115 #было 100
 var electric_tower_price : int = 150
 var art_tower_price : int = 170 #было 150
 var tree_tower_price : int = 200

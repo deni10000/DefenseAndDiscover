@@ -1,10 +1,10 @@
 extends Tower
-var dps = 15
+var dps = 14
 
 var tween: Tween
 var visiable = false
 const THIKNESS = 0.025
-const TWEEN_TIME = 1
+const TWEEN_TIME = 1.25
 var additional_price_to_up := 20
 
 func get_update_price():

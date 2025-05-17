@@ -1,2 +1,6 @@
-/backend/ModelApiService/ModelGateway/private/
-
+.import/
+.godot/
+build/
+export/
+*.tmp
+*.log

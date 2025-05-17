@@ -76,6 +76,11 @@ locale/locale_filter_mode=0
 
 disable_plugin_dialogues=true
 
+[physics]
+
+common/physics_ticks_per_second=300
+common/max_physics_steps_per_frame=20
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

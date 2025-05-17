@@ -3,7 +3,7 @@ extends Tower
 var current_enemy: Area2D
 var tween: Tween
 var dps = 100
-var MIN_DPS = 10
+var MIN_DPS = 20 #было 10
 var MAX_DPS = 100
 var additional_price_to_up := 50
 const INCREASING_TIME = 3

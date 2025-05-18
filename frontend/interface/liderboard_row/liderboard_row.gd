@@ -1,4 +1,5 @@
 extends HBoxContainer
+class_name LeaderBoardRow
 
 func is_text_clipped(label: Label) -> bool:
 	var font := label.get_theme_font("font")
@@ -7,9 +8,9 @@ func is_text_clipped(label: Label) -> bool:
 	return text_width > label.get_size().x
 
 func set_params(number, nickname, waves):
-	$Label.text = number
-	$Label2.text = nickname
-	$Label3.text = waves
+	$Label.text = str(number)
+	$Label2.text = str(nickname)
+	$Label3.text = str(waves)
 
 func set_bold():
 	for x in get_children():

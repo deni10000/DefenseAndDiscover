@@ -25,19 +25,23 @@ var row_count = 7
 func fill_leaderboard():
 	await update_user_data()
 	var res = await Http.get_waves()
+	#res = Http.LeaderBoardDto.new([{'username': 'alexagaggagagagag', 'countWave': 10}])
+	var leaderbord = %VBoxContainer
 	if res == null:
 		return
+	for node in leaderbord.find_children("", "LeaderBoardRow"):
+		leaderbord.remove_child(node)
 	res = res as Http.LeaderBoardDto
 	var flag = false
-	for i in range(max(row_count - 1, len(res.users))):
+	for i in range(min(row_count - 1, len(res.users))):
 		var x: Http.UserScore = res.users[i]
-		var row = Global.leaderboard_row_secene.instantiate()
+		var row: LeaderBoardRow = Global.leaderboard_row_secene.instantiate()
 		row.set_params(i + 1, x.username, x.count_wave)
 		if x.username == username:
 			row.set_bold()
 			flag = true
-		%LeaderBord.add_child(row)
-	var row = Global.leaderboard_row_secene.instantiate()
+		leaderbord.add_child(row)
+	var row: LeaderBoardRow = Global.leaderboard_row_secene.instantiate()
 	if len(res.users) < row_count:
 		return
 	if flag:
@@ -50,7 +54,7 @@ func fill_leaderboard():
 				row.set_bold()
 				row.set_params(i + 1, x.username, x.count_wave)
 				break
-		%LeaderBord.add_child(row)
+		leaderbord.add_child(row)
 	
 			
 func update_user_data():
@@ -270,3 +274,9 @@ func _on_get_password_cross_button_pressed() -> void:
 
 func _on_change_password_cross_button_pressed() -> void:
 	%ChangePasswordCrossButton.visible = false
+
+
+func _on_leader_bord_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index <= 2 and event.is_pressed():
+		%FullLeaderbord.show_leaderbord()
+	

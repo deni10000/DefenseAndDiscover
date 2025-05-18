@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://d1vg4wf0s8br8" path="res://interface/main_menu/background_upscale.png" id="2_rahlh"]
 [ext_resource type="Script" uid="uid://cu8e2j7nnhfvx" path="res://interface/main_menu/main_menu.gd" id="2_wwcsp"]
 [ext_resource type="Shader" uid="uid://cwge4y7tj8vrt" path="res://interface/main_menu/blur.gdshader" id="3_rahlh"]
-[ext_resource type="PackedScene" uid="uid://da306r6rg5ck5" path="res://interface/liderboard_row/liderboard_row.tscn" id="4_db0k2"]
 [ext_resource type="FontFile" uid="uid://hu66wi2qdxpl" path="res://theme/Abaddon Bold.ttf" id="5_7piqx"]
+[ext_resource type="PackedScene" uid="uid://dslq5kykjq6h8" path="res://interface/leaderboard/full_leaderbord.tscn" id="5_cr5ul"]
 [ext_resource type="LabelSettings" uid="uid://ci6a0b63tao2b" path="res://theme/error_text.tres" id="5_qt2eg"]
 [ext_resource type="PackedScene" uid="uid://dmmbux1y4e8bw" path="res://interface/main_menu/cross_button.tscn" id="5_x3w8v"]
 [ext_resource type="PackedScene" uid="uid://dpivg3l2hiaup" path="res://interface/main_menu/statistic_line.tscn" id="6_7piqx"]
@@ -540,6 +540,7 @@ offset_bottom = -190.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_cr5ul")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="LeaderBord"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="Label" type="Label" parent="LeaderBord/VBoxContainer"]
@@ -550,8 +551,40 @@ theme_override_font_sizes/font_size = 27
 text = "Таблица лидеров"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" parent="LeaderBord/VBoxContainer" instance=ExtResource("4_db0k2")]
+[node name="HBoxContainer" type="HBoxContainer" parent="LeaderBord/VBoxContainer"]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="LeaderBord/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("11_cr5ul")
+theme_override_font_sizes/font_size = 23
+text = "Место"
+horizontal_alignment = 1
+clip_text = true
+
+[node name="Label2" type="Label" parent="LeaderBord/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("11_cr5ul")
+theme_override_font_sizes/font_size = 23
+text = "Ник"
+horizontal_alignment = 1
+clip_text = true
+
+[node name="Label3" type="Label" parent="LeaderBord/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("11_cr5ul")
+theme_override_font_sizes/font_size = 23
+text = "Волны"
+horizontal_alignment = 1
+clip_text = true
 
 [node name="StartGameButton" type="Button" parent="."]
 layout_mode = 1
@@ -569,6 +602,22 @@ grow_vertical = 2
 focus_mode = 1
 text = "Начать игру"
 
+[node name="StartGameButtonHistory" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -730.0
+offset_top = -15.0
+offset_right = -423.0
+offset_bottom = 45.251
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 1
+text = "Начать компанию"
+
 [node name="SettingsButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -577,9 +626,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -730.0
-offset_top = 75.0
+offset_top = 60.0
 offset_right = -423.0
-offset_bottom = 135.251
+offset_bottom = 120.251
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 1
@@ -593,141 +642,18 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -730.0
-offset_top = 155.0
+offset_top = 135.0
 offset_right = -423.0
-offset_bottom = 215.251
+offset_bottom = 195.251
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 1
 text = "Профиль"
 
-[node name="FullLeaderbord" type="Control" parent="."]
+[node name="FullLeaderbord" parent="." instance=ExtResource("5_cr5ul")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="FullLeaderbord"]
-material = SubResource("ShaderMaterial_wwcsp")
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -960.0
-offset_top = -540.0
-offset_right = 960.0
-offset_bottom = 540.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.560784)
-
-[node name="Panel" type="PanelContainer" parent="FullLeaderbord"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -435.0
-offset_top = -355.5
-offset_right = 435.0
-offset_bottom = 355.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="FullLeaderbord/Panel"]
-layout_mode = 2
-theme_override_constants/margin_left = 6
-theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 6
-theme_override_constants/margin_bottom = 6
-
-[node name="Control" type="VBoxContainer" parent="FullLeaderbord/Panel/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 26
-
-[node name="MarginContainer" type="MarginContainer" parent="FullLeaderbord/Panel/MarginContainer/Control"]
-layout_mode = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_bottom = -8
-
-[node name="Label" type="Label" parent="FullLeaderbord/Panel/MarginContainer/Control/MarginContainer"]
-layout_mode = 2
-text = "Таблица лидеров"
-horizontal_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="FullLeaderbord/Panel/MarginContainer/Control"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="FullLeaderbord/Panel/MarginContainer/Control/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Место"
-horizontal_alignment = 1
-
-[node name="Label2" type="Label" parent="FullLeaderbord/Panel/MarginContainer/Control/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Ник"
-horizontal_alignment = 1
-
-[node name="Label3" type="Label" parent="FullLeaderbord/Panel/MarginContainer/Control/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Волны"
-horizontal_alignment = 1
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="FullLeaderbord/Panel/MarginContainer/Control"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="FullLeaderbord/Panel/MarginContainer/Control/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("11_cr5ul")
-theme_override_font_sizes/font_size = 30
-text = "1"
-horizontal_alignment = 1
-
-[node name="Label2" type="Label" parent="FullLeaderbord/Panel/MarginContainer/Control/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("11_cr5ul")
-theme_override_font_sizes/font_size = 30
-text = "deni1000"
-horizontal_alignment = 1
-
-[node name="Label3" type="Label" parent="FullLeaderbord/Panel/MarginContainer/Control/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("11_cr5ul")
-theme_override_font_sizes/font_size = 30
-text = "15"
-horizontal_alignment = 1
-
-[node name="MarginContainer2" type="MarginContainer" parent="FullLeaderbord/Panel"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-theme_override_constants/margin_top = -25
-theme_override_constants/margin_right = -16
-
-[node name="CrossButton" parent="FullLeaderbord/Panel/MarginContainer2" instance=ExtResource("5_x3w8v")]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-focus_mode = 1
 
 [node name="Authorization" type="Control" parent="."]
 unique_name_in_owner = true
@@ -1813,26 +1739,13 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.560784)
 
-[node name="StartGameButtonHistory" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -730.0
-offset_top = -15.0
-offset_right = -423.0
-offset_bottom = 45.251
-grow_horizontal = 2
-grow_vertical = 2
-focus_mode = 1
-text = "Начать компанию"
-
+[connection signal="gui_input" from="LeaderBord" to="." method="_on_leader_bord_gui_input"]
+[connection signal="resized" from="LeaderBord/VBoxContainer/HBoxContainer/Label" to="LeaderBord/VBoxContainer/HBoxContainer" method="_on_label_resized"]
+[connection signal="tree_entered" from="LeaderBord/VBoxContainer/HBoxContainer/Label" to="LeaderBord/VBoxContainer/HBoxContainer" method="_on_label_tree_entered"]
 [connection signal="pressed" from="StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="StartGameButtonHistory" to="." method="_on_start_game_button_history_pressed"]
 [connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="ProfileButton" to="." method="_on_profile_button_pressed"]
-[connection signal="pressed" from="FullLeaderbord/Panel/MarginContainer2/CrossButton" to="." method="_on_cross_button_pressed"]
 [connection signal="pressed" from="Authorization/Panel/MarginContainer/Control/MarginContainer5/AuthorizationButton" to="." method="_on_authorization_button_pressed"]
 [connection signal="pressed" from="Authorization/Panel/MarginContainer/Control/MarginContainer/RecoverPasswordButton" to="." method="_on_recover_password_button_pressed"]
 [connection signal="pressed" from="Authorization/Panel/MarginContainer/Control/CreateAccount" to="." method="_on_create_account_pressed"]
@@ -1849,4 +1762,3 @@ text = "Начать компанию"
 [connection signal="pressed" from="Profile/TabContainer/MarginContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="Profile/CrossButton" to="." method="_on_cross_button_pressed"]
 [connection signal="pressed" from="ChangePassword/Panel/MarginContainer2/ChangePasswordCrossButton" to="." method="_on_change_password_cross_button_pressed"]
-[connection signal="pressed" from="StartGameButtonHistory" to="." method="_on_start_game_button_history_pressed"]

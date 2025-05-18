@@ -61,6 +61,10 @@ zoom_out={
 ]
 }
 
+[input_devices]
+
+pointing/android/enable_pan_and_scale_gestures=true
+
 [internationalization]
 
 locale/locale_filter_mode=0

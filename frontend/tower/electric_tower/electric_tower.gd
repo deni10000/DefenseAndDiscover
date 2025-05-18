@@ -29,7 +29,7 @@ func update_tower():
 func _ready() -> void:
 	summary_price = Global.electric_tower_price
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	var enemies = $AttackArea.get_overlapping_areas()
 	if is_instance_valid(current_enemy):
 		if current_enemy not in enemies:

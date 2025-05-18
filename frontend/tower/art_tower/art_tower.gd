@@ -18,7 +18,7 @@ func update_tower():
 	level += 1
 	dps += 4 #было 5
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	var enemies = $AttackArea.get_overlapping_areas()
 	if len(enemies) == 0:
 		if visiable == true:

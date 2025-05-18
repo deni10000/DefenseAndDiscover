@@ -79,7 +79,7 @@ func mooving(delta):
 	prev_pos = global_position
 
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	mooving(delta)
 	
 	

@@ -15,7 +15,7 @@ func set_bold():
 	for x in get_children():
 		x.add_theme_color_override("font_color", Color.YELLOW)
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	resize()
 
 func resize():

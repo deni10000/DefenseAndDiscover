@@ -33,7 +33,7 @@ func _ready() -> void:
 func _on_texture_button_pressed() -> void:
 	cardPressed.emit()
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		%TextureButton.texture_normal = texture
 		if price >= 0:

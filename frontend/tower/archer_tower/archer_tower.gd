@@ -20,7 +20,7 @@ func update_tower():
 	default_update()
 	damage += 12 #было 15
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if  $AttackTimer.time_left != 0:
 		return
 	var enemies = $AttackArea.get_overlapping_areas()

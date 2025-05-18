@@ -27,7 +27,7 @@ var t: float = 0:
 		
 
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if is_instance_valid(enemy):
 		enemy_pos = enemy.global_position
 	curve.clear_points()

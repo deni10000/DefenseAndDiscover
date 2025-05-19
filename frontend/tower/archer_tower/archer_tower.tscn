@@ -34,6 +34,8 @@ frame_progress = 1.0
 offset = Vector2(0, 5)
 
 [node name="Arrows" type="Node2D" parent="." index="3"]
+unique_name_in_owner = true
+position = Vector2(0, -15)
 
 [node name="AttackTimer" type="Timer" parent="." index="4"]
 wait_time = 0.5

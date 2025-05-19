@@ -37,6 +37,8 @@ func _ready() -> void:
 
 func start_qestion(topic: String, is_ok: Signal, level: int):
 	var quest = %Question
+	#is_ok.emit.call_deferred(true)
+	#return
 	quest.start_question(topic, level)
 	var res = await quest.question_completed
 	if res == quest.Results.Correct:

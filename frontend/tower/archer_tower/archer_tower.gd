@@ -33,7 +33,7 @@ func _physics_process(delta: float) -> void:
 			max_enemy = enemy
 	if max_enemy != null:
 		var arrow := arrow_class.instantiate()
-		arrow.tower_pos = global_position
+		arrow.tower_pos = global_position + %Arrows.position
 		arrow.damage = damage
 		arrow.enemy = max_enemy
 		arrow.enemy_pos = max_enemy.global_position

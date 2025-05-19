@@ -23,6 +23,7 @@ shader = ExtResource("4_vis6u")
 shader_parameter/strength = 0.0
 
 [node name="Tower" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_sqydd")
 
 [node name="DescriptionArea" type="Area2D" parent="."]
@@ -49,6 +50,7 @@ one_way_collision_margin = 0.0
 
 [node name="TowerSprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
+y_sort_enabled = true
 material = SubResource("ShaderMaterial_ghsb4")
 position = Vector2(0, -36)
 

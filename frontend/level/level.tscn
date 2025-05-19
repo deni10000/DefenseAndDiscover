@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://mahg2nbldblf"]
+[gd_scene load_steps=16 format=3 uid="uid://mahg2nbldblf"]
 
 [ext_resource type="Script" uid="uid://dc256idbg6umu" path="res://level/level.gd" id="1_dbc2d"]
 [ext_resource type="Theme" uid="uid://bbr70t6gbgc2m" path="res://theme/maintheme.tres" id="2_44x8d"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dmmbux1y4e8bw" path="res://interface/main_menu/cross_button.tscn" id="5_6gtgk"]
 [ext_resource type="PackedScene" uid="uid://dj334r3yagshk" path="res://interface/settings_panel/settings.tscn" id="6_cw150"]
 [ext_resource type="PackedScene" uid="uid://bnyty5vobw6si" path="res://level/place_for_tower/v1/place_for_tower.tscn" id="8_6gtgk"]
+[ext_resource type="PackedScene" uid="uid://cnrsl2eyk4iwf" path="res://level/plot_menu/plot_menu.tscn" id="8_rhqlf"]
 [ext_resource type="AudioStream" uid="uid://d3q0taf82i5nn" path="res://asset/theme2.wav" id="10_cw150"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6gtgk"]
@@ -387,6 +388,10 @@ handle_input_locally = false
 size = Vector2i(1920, 1083)
 render_target_update_mode = 0
 
+[node name="Plot" type="CanvasLayer" parent="."]
+
+[node name="PlotMenu" parent="Plot" instance=ExtResource("8_rhqlf")]
+
 [node name="Level" type="Node2D" parent="."]
 position = Vector2(-960, -540)
 
@@ -405,11 +410,10 @@ curve = SubResource("Curve2D_6gtgk")
 [node name="EnemyTimer" type="Timer" parent="Level"]
 
 [node name="Home" type="Area2D" parent="Level"]
-position = Vector2(571, 1194)
+position = Vector2(571, 1204)
 collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Home"]
-position = Vector2(-3, 14)
 shape = SubResource("CircleShape2D_oem8r")
 
 [node name="Places" type="Node2D" parent="Level"]

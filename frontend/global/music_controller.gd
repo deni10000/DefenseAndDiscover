@@ -28,6 +28,9 @@ var music_stream_player : AudioStreamPlayer
 var blend_audio_bus : StringName
 var blend_audio_bus_idx : int
 
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
 func fade_out( duration : float = 0.0 ):
 	if not is_zero_approx(duration):
 		music_stream_player.bus = audio_bus

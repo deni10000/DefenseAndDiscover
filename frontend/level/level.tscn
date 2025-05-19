@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://mahg2nbldblf"]
+[gd_scene load_steps=15 format=3 uid="uid://mahg2nbldblf"]
 
 [ext_resource type="Script" uid="uid://dc256idbg6umu" path="res://level/level.gd" id="1_dbc2d"]
 [ext_resource type="Theme" uid="uid://bbr70t6gbgc2m" path="res://theme/maintheme.tres" id="2_44x8d"]
 [ext_resource type="PackedScene" uid="uid://b8kf561rc3uea" path="res://interface/question_panel/question.tscn" id="3_44x8d"]
+[ext_resource type="FontFile" uid="uid://1qmoiwwfgi76" path="res://theme/alagard-12px-unicode.ttf" id="3_xii2b"]
 [ext_resource type="Shader" uid="uid://cwge4y7tj8vrt" path="res://interface/main_menu/blur.gdshader" id="4_0v1st"]
 [ext_resource type="PackedScene" uid="uid://b0dgarfasdp6i" path="res://level/map/map.tscn" id="4_ivpvi"]
 [ext_resource type="Script" uid="uid://m1vo0myw6iol" path="res://level/wave_generator/wave_generator.gd" id="4_vkbyq"]
@@ -51,33 +52,35 @@ size_flags_horizontal = 4
 mouse_filter = 2
 theme = ExtResource("2_44x8d")
 
-[node name="Panel" type="PanelContainer" parent="CanvasLayer/Control"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Control"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.01414
-anchor_top = 0.00555557
-anchor_right = 1.01414
-anchor_bottom = 0.0518519
-offset_left = -348.16
-offset_right = -0.160034
-offset_bottom = 276.0
-scale = Vector2(0.9, 0.9)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -316.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = 332.0
+grow_horizontal = 0
+
+[node name="Panel" type="PanelContainer" parent="CanvasLayer/Control/VBoxContainer2"]
+layout_mode = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/VBoxContainer2/Panel"]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/Panel/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer2/Panel/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/Panel/VBoxContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/VBoxContainer2/Panel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 6
 theme_override_constants/margin_right = 6
 
-[node name="Gold" type="Label" parent="CanvasLayer/Control/Panel/VBoxContainer/HBoxContainer/MarginContainer"]
+[node name="Gold" type="Label" parent="CanvasLayer/Control/VBoxContainer2/Panel/VBoxContainer/HBoxContainer/MarginContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 0
@@ -86,7 +89,7 @@ text = "💰"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="GoldInput" type="Label" parent="CanvasLayer/Control/Panel/VBoxContainer/HBoxContainer"]
+[node name="GoldInput" type="Label" parent="CanvasLayer/Control/VBoxContainer2/Panel/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -96,11 +99,11 @@ theme_override_constants/outline_size = 5
 autowrap_mode = 3
 text_overrun_behavior = 3
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Control/Panel/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer2/Panel/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="Hp" type="Label" parent="CanvasLayer/Control/Panel/VBoxContainer/HBoxContainer2"]
+[node name="Hp" type="Label" parent="CanvasLayer/Control/VBoxContainer2/Panel/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 60
@@ -108,7 +111,7 @@ text = "♥️"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HpInput" type="Label" parent="CanvasLayer/Control/Panel/VBoxContainer/HBoxContainer2"]
+[node name="HpInput" type="Label" parent="CanvasLayer/Control/VBoxContainer2/Panel/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -116,18 +119,65 @@ size_flags_vertical = 1
 theme_override_colors/font_color = Color(0.972549, 0.25098, 0.243137, 1)
 theme_override_constants/outline_size = 5
 
-[node name="MenuButton" type="Button" parent="CanvasLayer/Control/Panel/VBoxContainer"]
+[node name="MenuButton" type="Button" parent="CanvasLayer/Control/VBoxContainer2/Panel/VBoxContainer"]
 layout_mode = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 28
 text = "Меню"
 
-[node name="StartWave" type="Button" parent="CanvasLayer/Control/Panel/VBoxContainer"]
+[node name="StartWave" type="Button" parent="CanvasLayer/Control/VBoxContainer2/Panel/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 28
 text = "Начать волну"
+
+[node name="GmPanel" type="PanelContainer" parent="CanvasLayer/Control/VBoxContainer2"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/VBoxContainer2/GmPanel"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer2/GmPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_xii2b")
+theme_override_font_sizes/font_size = 28
+text = "Цстановить hp:"
+horizontal_alignment = 1
+
+[node name="HpSpinBox" type="SpinBox" parent="CanvasLayer/Control/VBoxContainer2/GmPanel/VBoxContainer"]
+layout_mode = 2
+rounded = true
+alignment = 1
+
+[node name="Label3" type="Label" parent="CanvasLayer/Control/VBoxContainer2/GmPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_xii2b")
+theme_override_font_sizes/font_size = 28
+text = "Цстановить 
+золото:"
+horizontal_alignment = 1
+
+[node name="GoldSpinBox" type="SpinBox" parent="CanvasLayer/Control/VBoxContainer2/GmPanel/VBoxContainer"]
+layout_mode = 2
+max_value = 10000.0
+rounded = true
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer2/GmPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="CanvasLayer/Control/VBoxContainer2/GmPanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_xii2b")
+theme_override_font_sizes/font_size = 28
+text = "Пропускать 
+вопросы:"
+horizontal_alignment = 1
+
+[node name="QuestionCheckBox" type="CheckBox" parent="CanvasLayer/Control/VBoxContainer2/GmPanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
 
 [node name="Button" type="Button" parent="CanvasLayer/Control"]
 process_mode = 3
@@ -412,8 +462,11 @@ volume_db = -15.0
 autoplay = true
 bus = &"Music"
 
-[connection signal="pressed" from="CanvasLayer/Control/Panel/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/Panel/VBoxContainer/StartWave" to="." method="start_wave"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/Panel/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/Panel/VBoxContainer/StartWave" to="." method="start_wave"]
+[connection signal="value_changed" from="CanvasLayer/Control/VBoxContainer2/GmPanel/VBoxContainer/HpSpinBox" to="." method="_on_hp_spin_box_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/Control/VBoxContainer2/GmPanel/VBoxContainer/GoldSpinBox" to="." method="_on_gold_spin_box_value_changed"]
+[connection signal="toggled" from="CanvasLayer/Control/VBoxContainer2/GmPanel/VBoxContainer/HBoxContainer/QuestionCheckBox" to="." method="_on_question_check_box_toggled"]
 [connection signal="pressed" from="CanvasLayer/Control/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Menu/PanelContainer/MarginContainer/HBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]

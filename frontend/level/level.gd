@@ -10,6 +10,7 @@ var viewport_width = ProjectSettings.get_setting("display/window/size/viewport_w
 var viewport_height = ProjectSettings.get_setting("display/window/size/viewport_height")
 var MAX_RATIO = 16 / 9
 var MIN_RATIO = 16 / 9
+var skip_question: bool = false
 
 @export var camera: Camera2D; 
 
@@ -37,8 +38,9 @@ func _ready() -> void:
 
 func start_qestion(topic: String, is_ok: Signal, level: int):
 	var quest = %Question
-	#is_ok.emit.call_deferred(true)
-	#return
+	if skip_question:
+		is_ok.emit.call_deferred(true)
+		return
 	quest.start_question(topic, level)
 	var res = await quest.question_completed
 	if res == quest.Results.Correct:
@@ -168,3 +170,16 @@ func _on_path_2d_child_exiting_tree(node: Node) -> void:
 		%StartWave.visible = true
 		wave += 1
 		Http.post_wave(wave)
+
+
+
+func _on_question_check_box_toggled(toggled_on: bool) -> void:
+	skip_question = toggled_on
+
+
+func _on_hp_spin_box_value_changed(value: float) -> void:
+	hp = int(value)
+
+
+func _on_gold_spin_box_value_changed(value: float) -> void:
+	Global.gold = int(value)

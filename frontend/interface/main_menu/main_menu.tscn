@@ -1,10 +1,10 @@
-[gd_scene load_steps=52 format=3 uid="uid://dgd30hd5wxqbf"]
+[gd_scene load_steps=53 format=3 uid="uid://dgd30hd5wxqbf"]
 
 [ext_resource type="Texture2D" uid="uid://d1vg4wf0s8br8" path="res://interface/main_menu/background_upscale.png" id="2_rahlh"]
 [ext_resource type="Script" uid="uid://cu8e2j7nnhfvx" path="res://interface/main_menu/main_menu.gd" id="2_wwcsp"]
 [ext_resource type="Shader" uid="uid://cwge4y7tj8vrt" path="res://interface/main_menu/blur.gdshader" id="3_rahlh"]
-[ext_resource type="PackedScene" uid="uid://da306r6rg5ck5" path="res://interface/liderboard_row/liderboard_row.tscn" id="4_db0k2"]
 [ext_resource type="FontFile" uid="uid://hu66wi2qdxpl" path="res://theme/Abaddon Bold.ttf" id="5_7piqx"]
+[ext_resource type="PackedScene" uid="uid://dslq5kykjq6h8" path="res://interface/leaderboard/full_leaderbord.tscn" id="5_cr5ul"]
 [ext_resource type="LabelSettings" uid="uid://ci6a0b63tao2b" path="res://theme/error_text.tres" id="5_qt2eg"]
 [ext_resource type="PackedScene" uid="uid://dmmbux1y4e8bw" path="res://interface/main_menu/cross_button.tscn" id="5_x3w8v"]
 [ext_resource type="PackedScene" uid="uid://dpivg3l2hiaup" path="res://interface/main_menu/statistic_line.tscn" id="6_7piqx"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://8ftsbugsvsdr" path="res://interface/Block3 (1).png" id="10_db0k2"]
 [ext_resource type="FontFile" uid="uid://1qmoiwwfgi76" path="res://theme/alagard-12px-unicode.ttf" id="11_cr5ul"]
 [ext_resource type="PackedScene" uid="uid://dj334r3yagshk" path="res://interface/settings_panel/settings.tscn" id="13_rkwbc"]
+[ext_resource type="AudioStream" uid="uid://df58nlsra6mkb" path="res://asset/main-theme.wav" id="16_cr5ul"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cr5ul"]
 bg_color = Color(0, 0, 0, 0.313726)
@@ -489,10 +490,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -961.0
-offset_top = -540.5
-offset_right = 959.0
-offset_bottom = 538.5
+offset_left = -960.0
+offset_top = -539.5
+offset_right = 960.0
+offset_bottom = 539.5
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_rahlh")
@@ -512,6 +513,24 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.72549)
 
+[node name="NotificationPanel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 568.0
+offset_top = -540.0
+offset_right = 959.0
+offset_bottom = -230.0
+
+[node name="Label" type="Label" parent="NotificationPanel"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("11_cr5ul")
+theme_override_font_sizes/font_size = 25
+text = "Полный функционал доступен только зарегистрированным пользователям.
+
+Нажмите на кнопку \"Профиль\", чтобы войти."
+autowrap_mode = 3
+
 [node name="LeaderBord" type="PanelContainer" parent="."]
 unique_name_in_owner = true
 layout_mode = 0
@@ -522,6 +541,7 @@ offset_bottom = -190.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_cr5ul")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="LeaderBord"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="Label" type="Label" parent="LeaderBord/VBoxContainer"]
@@ -532,8 +552,40 @@ theme_override_font_sizes/font_size = 27
 text = "Таблица лидеров"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" parent="LeaderBord/VBoxContainer" instance=ExtResource("4_db0k2")]
+[node name="HBoxContainer" type="HBoxContainer" parent="LeaderBord/VBoxContainer"]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="LeaderBord/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("11_cr5ul")
+theme_override_font_sizes/font_size = 23
+text = "Место"
+horizontal_alignment = 1
+clip_text = true
+
+[node name="Label2" type="Label" parent="LeaderBord/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("11_cr5ul")
+theme_override_font_sizes/font_size = 23
+text = "Ник"
+horizontal_alignment = 1
+clip_text = true
+
+[node name="Label3" type="Label" parent="LeaderBord/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("11_cr5ul")
+theme_override_font_sizes/font_size = 23
+text = "Волны"
+horizontal_alignment = 1
+clip_text = true
 
 [node name="StartGameButton" type="Button" parent="."]
 layout_mode = 1
@@ -551,6 +603,22 @@ grow_vertical = 2
 focus_mode = 1
 text = "Начать игру"
 
+[node name="StartGameButtonHistory" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -730.0
+offset_top = -15.0
+offset_right = -423.0
+offset_bottom = 45.251
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 1
+text = "Начать компанию"
+
 [node name="SettingsButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -559,9 +627,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -730.0
-offset_top = 45.0
+offset_top = 60.0
 offset_right = -423.0
-offset_bottom = 105.251
+offset_bottom = 120.251
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 1
@@ -575,13 +643,18 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -730.0
-offset_top = 185.0
+offset_top = 135.0
 offset_right = -423.0
-offset_bottom = 245.251
+offset_bottom = 195.251
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 1
 text = "Профиль"
+
+[node name="FullLeaderbord" parent="." instance=ExtResource("5_cr5ul")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
 
 [node name="Authorization" type="Control" parent="."]
 unique_name_in_owner = true
@@ -982,6 +1055,7 @@ size_flags_vertical = 8
 focus_mode = 1
 
 [node name="ConfirmationMenu" type="Control" parent="."]
+unique_name_in_owner = true
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -1094,6 +1168,61 @@ offset_bottom = 235.0
 focus_mode = 1
 theme_override_font_sizes/font_size = 22
 text = "Получить код повторно"
+
+[node name="RegistrationSuccess" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="RegistrationSuccess"]
+material = SubResource("ShaderMaterial_wwcsp")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.560784)
+
+[node name="RegistrationSuccess" type="PanelContainer" parent="RegistrationSuccess"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -284.0
+offset_top = -64.5
+offset_right = 244.0
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="RegistrationSuccess/RegistrationSuccess"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.819608, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("11_cr5ul")
+theme_override_font_sizes/font_size = 35
+text = "✅ Успешная регистрация"
+horizontal_alignment = 1
 
 [node name="Profile" type="Control" parent="."]
 unique_name_in_owner = true
@@ -1289,6 +1418,11 @@ metadata/_tab_index = 0
 layout_mode = 2
 theme_override_constants/separation = 24
 
+[node name="Label" type="Label" parent="Profile/TabContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Личный кабинет"
+horizontal_alignment = 1
+
 [node name="MarginContainer3" type="MarginContainer" parent="Profile/TabContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 15
@@ -1351,7 +1485,7 @@ theme_override_font_sizes/font_size = 44
 text = "Сменить пароль"
 
 [node name="ExitButton" type="Button" parent="Profile/TabContainer/MarginContainer/VBoxContainer"]
-self_modulate = Color(0.737255, 0.137255, 0.137255, 1)
+self_modulate = Color(0.839216, 0.12549, 0.0470588, 1)
 layout_mode = 2
 focus_mode = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -1459,40 +1593,6 @@ offset_right = 335.0
 offset_bottom = -222.0
 grow_horizontal = 1
 grow_vertical = 1
-focus_mode = 1
-
-[node name="StatisticMenu" type="Control" parent="."]
-unique_name_in_owner = true
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Panel" type="Panel" parent="StatisticMenu"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -568.0
-offset_top = -388.0
-offset_right = 568.0
-offset_bottom = 388.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="StatisticCrossButton" parent="StatisticMenu/Panel" instance=ExtResource("5_x3w8v")]
-layout_mode = 1
-offset_left = 467.0
-offset_top = -388.0
-offset_right = 537.0
-offset_bottom = -318.0
 focus_mode = 1
 
 [node name="ChangePassword" type="Control" parent="."]
@@ -1640,25 +1740,18 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.560784)
 
-[node name="NotificationPanel" type="PanelContainer" parent="."]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 568.0
-offset_top = -540.0
-offset_right = 959.0
-offset_bottom = -230.0
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("16_cr5ul")
+volume_db = -15.0
+autoplay = true
+bus = &"Music"
 
-[node name="Label" type="Label" parent="NotificationPanel"]
-layout_mode = 2
-size_flags_vertical = 1
-theme_override_fonts/font = ExtResource("11_cr5ul")
-theme_override_font_sizes/font_size = 25
-text = "Полный функционал доступен только зарегистрированным пользователям.
-
-Нажмите на кнопку \"Профиль\", чтобы войти."
-autowrap_mode = 3
-
+[connection signal="gui_input" from="LeaderBord" to="." method="_on_leader_bord_gui_input"]
+[connection signal="resized" from="LeaderBord/VBoxContainer/HBoxContainer/Label" to="LeaderBord/VBoxContainer/HBoxContainer" method="_on_label_resized"]
+[connection signal="tree_entered" from="LeaderBord/VBoxContainer/HBoxContainer/Label" to="LeaderBord/VBoxContainer/HBoxContainer" method="_on_label_tree_entered"]
 [connection signal="pressed" from="StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="StartGameButtonHistory" to="." method="_on_start_game_button_history_pressed"]
 [connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="ProfileButton" to="." method="_on_profile_button_pressed"]
 [connection signal="pressed" from="Authorization/Panel/MarginContainer/Control/MarginContainer5/AuthorizationButton" to="." method="_on_authorization_button_pressed"]
@@ -1676,5 +1769,4 @@ autowrap_mode = 3
 [connection signal="pressed" from="Profile/Panel/Control/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="Profile/TabContainer/MarginContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="Profile/CrossButton" to="." method="_on_cross_button_pressed"]
-[connection signal="pressed" from="StatisticMenu/Panel/StatisticCrossButton" to="." method="_on_statistic_cross_button_pressed"]
 [connection signal="pressed" from="ChangePassword/Panel/MarginContainer2/ChangePasswordCrossButton" to="." method="_on_change_password_cross_button_pressed"]

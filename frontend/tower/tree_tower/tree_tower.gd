@@ -1,11 +1,11 @@
 extends Tower
 
-var damage := 80
+var damage := 70 #было 80
 var planned_attack := false
 var additional_price_to_up := 60
 
 func get_update_price():
-	return Global.electric_tower_price + additional_price_to_up * (level - 1)
+	return Global.tree_tower_price + additional_price_to_up * (level - 1)
 
 func update_tower():
 	default_update()
@@ -22,8 +22,8 @@ func start_attack_animation():
 	tween.tween_callback(%AnimatedSprite2D3.play).set_delay(0.2)
 	tween.tween_callback(%AnimatedSprite2D2.play).set_delay(0.2)
 	
-func _process(delta: float) -> void:
-	if planned_attack:		
+func _physics_process(delta: float) -> void:
+	if planned_attack:
 		start_attack_animation()
 		for enemy_area: Area2D in %Attack.get_overlapping_areas():
 			enemy_area.hit(damage, Global.Types.TREE)

@@ -3,7 +3,7 @@ extends Control
 const ALLOWED_SPECIALS = "!@#$%^&*()_+-=[]{}|;:'\",.<>?/ "
 const NOT_ALLOWED_EMAIL_ERROR = "Неверный адресс электронной почты" 
 const MIN_LEN_PASSWORD_ERROR = "Пароль слишком короткий"
-const USERNAME_LEN_ERROR = "Логин не должен быть пустым"
+const USERNAME_LEN_ERROR = "Никнейм не должен быть пустым"
 var email_regex :=  RegEx.new() 
 const MINIMUM_PASSWORD_LENGTH := 8
 
@@ -25,19 +25,23 @@ var row_count = 7
 func fill_leaderboard():
 	await update_user_data()
 	var res = await Http.get_waves()
+	#res = Http.LeaderBoardDto.new([{'username': 'alexagaggagagagag', 'countWave': 10}])
+	var leaderbord = %VBoxContainer
 	if res == null:
 		return
+	for node in leaderbord.find_children("", "LeaderBoardRow"):
+		leaderbord.remove_child(node)
 	res = res as Http.LeaderBoardDto
 	var flag = false
-	for i in range(max(row_count - 1, len(res.users))):
+	for i in range(min(row_count - 1, len(res.users))):
 		var x: Http.UserScore = res.users[i]
-		var row = Global.leaderboard_row_secene.instantiate()
+		var row: LeaderBoardRow = Global.leaderboard_row_secene.instantiate()
 		row.set_params(i + 1, x.username, x.count_wave)
 		if x.username == username:
 			row.set_bold()
 			flag = true
-		%LeaderBord.add_child(row)
-	var row = Global.leaderboard_row_secene.instantiate()
+		leaderbord.add_child(row)
+	var row: LeaderBoardRow = Global.leaderboard_row_secene.instantiate()
 	if len(res.users) < row_count:
 		return
 	if flag:
@@ -50,7 +54,7 @@ func fill_leaderboard():
 				row.set_bold()
 				row.set_params(i + 1, x.username, x.count_wave)
 				break
-		%LeaderBord.add_child(row)
+		leaderbord.add_child(row)
 	
 			
 func update_user_data():
@@ -143,7 +147,7 @@ func _on_profile_button_pressed() -> void:
 				%AcceptDialog.visible = true
 		else:
 			set_user_stats()
-			update_user_data()
+			await update_user_data()
 			%Profile.visible = true
 		disable_waiting()
 			
@@ -158,7 +162,13 @@ func _on_login_button_pressed() -> void:
 
 
 func _on_start_game_button_pressed() -> void:
+	Global.is_campaign = false
 	get_tree().change_scene_to_packed(Global.level_scene)
+
+func _on_start_game_button_history_pressed() -> void:
+	Global.is_campaign = true
+	get_tree().change_scene_to_packed(Global.level_scene)
+
 
 
 func _on_check_statistic_pressed() -> void:
@@ -196,12 +206,16 @@ func _on_registration_button_pressed() -> void:
 	var ret = await Http.register_user(%EmailLineEdit.text, %LoginLineEdit.text, %PasswordLineEdit.text)
 	if 'error' not in ret:
 		%Registration.visible = false
-		$ConfirmationMenu.visible = true	
+		%ConfirmationMenu.visible = true	
 	disable_waiting()
 
+func show_success_notification():
+	%RegistrationSuccess.visible = true
+	await  get_tree().create_timer(1).timeout
+	%RegistrationSuccess.visible = false
 
 func _on_confirmation_cross_button_pressed() -> void:
-	$ConfirmationMenu.visible = false
+	%ConfirmationMenu.visible = false
 	%ConfirmationLineEdit.text = ''
 
 
@@ -209,8 +223,9 @@ func _on_confirmation_button_pressed() -> void:
 	enable_waiting()
 	var ret = await Http.confirm_user(%EmailLineEdit.text, %LoginLineEdit.text, %PasswordLineEdit.text, %ConfirmationLineEdit.text)
 	if 'error' not in ret:
-		$ConfirmationMenu.visible = false
+		%ConfirmationMenu.visible = false
 		%ConfirmationLineEdit.text = ''
+		show_success_notification()
 	disable_waiting()
 
 
@@ -232,8 +247,8 @@ func _on_authorization_button_pressed() -> void:
 	var error = ''
 	if not is_valid_email(%EmailLineEdit2.text):
 		error = NOT_ALLOWED_EMAIL_ERROR
-	#elif not is_valid_passoword(%PasswordLineEdit2.text):
-		#error = MIN_LEN_PASSWORD_ERROR
+	elif not is_valid_passoword(%PasswordLineEdit2.text):
+		error = MIN_LEN_PASSWORD_ERROR
 	
 	if error != '':
 		%ErrorAutharizationLabel.text = error
@@ -259,3 +274,9 @@ func _on_get_password_cross_button_pressed() -> void:
 
 func _on_change_password_cross_button_pressed() -> void:
 	%ChangePasswordCrossButton.visible = false
+
+
+func _on_leader_bord_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index <= 2 and event.is_pressed():
+		%FullLeaderbord.show_leaderbord()
+	

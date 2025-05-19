@@ -27,12 +27,16 @@ var t: float = 0:
 		
 
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if is_instance_valid(enemy):
 		enemy_pos = enemy.global_position
 	curve.clear_points()
 	curve.add_point(Vector2.ZERO)
 	var angle := (enemy_pos - tower_pos).angle()
+	if angle < 0:
+		z_index = -1
+	else:
+		z_index = 0
 	var middle_point = (enemy_pos + tower_pos) / 2
 	var second_point = Vector2(middle_point.x, middle_point.y - 100 * abs(cos(angle)))
 	curve.add_point(second_point - tower_pos, (tower_pos - middle_point) / 2, (enemy_pos - middle_point) / 2)

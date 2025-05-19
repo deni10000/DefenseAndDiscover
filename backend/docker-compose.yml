@@ -24,8 +24,6 @@ services:
     image: 770vda/defense-discover:modelservice
     container_name: "modelservice"
     build: ./ModelService
-    ports:
-      - "8082:8082"
     env_file: ./app.env
     environment:
       - REDIS_HOST=redis
@@ -45,8 +43,6 @@ services:
     container_name: "notificationservice"
     build: ./NotificationService
     env_file: ./app.env
-    ports:
-      - "8083:8083"
     environment:
       - REDIS_HOST=redis
       - REDIS_PORT=6379
@@ -64,8 +60,6 @@ services:
     image: 770vda/defense-discover:userservice
     container_name: "userservice"
     build: ./UserService
-    ports:
-      - "8081:8081"
     environment:
       - REDIS_HOST=redis
       - REDIS_PORT=6379
@@ -86,8 +80,6 @@ services:
       POSTGRES_USER: myuser
       POSTGRES_PASSWORD: mypassword
       POSTGRES_DB: users_db
-    ports:
-      - "5433:5432"
     volumes:
       - postgres_users_data:/var/lib/postgresql/data
     networks:
@@ -100,8 +92,6 @@ services:
       POSTGRES_USER: myuser
       POSTGRES_PASSWORD: mypassword
       POSTGRES_DB: models_db
-    ports:
-      - "5434:5432"
     volumes:
       - postgres_models_data:/var/lib/postgresql/data
     networks:
@@ -111,8 +101,6 @@ services:
     image: confluentinc/cp-zookeeper:latest
     hostname: zookeeper
     container_name: zookeeper
-    ports:
-      - "2181:2181"
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
     networks:
@@ -122,8 +110,6 @@ services:
     image: confluentinc/cp-kafka:latest
     hostname: kafka-1
     container_name: kafka-1
-    ports:
-      - "19092:19092"
     environment:
       KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka-1:9092,DOCKER://localhost:19092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,DOCKER:PLAINTEXT
@@ -140,8 +126,6 @@ services:
   schema-registry:
     image: confluentinc/cp-schema-registry:latest
     container_name: schema-registry
-    ports:
-      - "8084:8083"
     environment:
       SCHEMA_REGISTRY_HOST_NAME: schema-registry
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: kafka-1:9092
@@ -155,8 +139,6 @@ services:
   redis:
     image: redis:latest
     container_name: redis-container
-    ports:
-      - "6379:6379"
     volumes:
       - redis-data:/data
     networks:
@@ -166,8 +148,6 @@ services:
     image: 770vda/defense-discover:llmservice
     build: ./ModelApiService
     container_name: llmservice
-    ports:
-      - "8000:8000"
     environment:
       TOKEN: ${LLM_TOKEN}
     restart: always

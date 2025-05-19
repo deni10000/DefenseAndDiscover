@@ -21,8 +21,8 @@ func filling():
 	var map_size = Vector2i(view_size.x / tile_size.x, view_size.y / tile_size.y) 
 	var mn_x = -((view_size.x - viewport_width) / 2)
 	var mx_x = (view_size.x + viewport_width) / 2
-	var mn_y = -((view_size.y - viewport_height) / 2)
-	var mx_y = (view_size.y + viewport_height) / 2
+	var mn_y = -(view_size.y - viewport_height)
+	var mx_y = viewport_height
 	for i in range(mn_x - tile_size.x , mx_x + tile_size.x, tile_size.x):
 		for j in range(mn_y - tile_size.y, mx_y + tile_size.y, tile_size.y):
 			var vec = $object2.local_to_map(Vector2(i, j) - %object2.global_position)

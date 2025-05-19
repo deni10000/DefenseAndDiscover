@@ -1,14 +1,16 @@
-[gd_scene load_steps=13 format=3 uid="uid://mahg2nbldblf"]
+[gd_scene load_steps=15 format=3 uid="uid://mahg2nbldblf"]
 
 [ext_resource type="Script" uid="uid://dc256idbg6umu" path="res://level/level.gd" id="1_dbc2d"]
 [ext_resource type="Theme" uid="uid://bbr70t6gbgc2m" path="res://theme/maintheme.tres" id="2_44x8d"]
 [ext_resource type="PackedScene" uid="uid://b8kf561rc3uea" path="res://interface/question_panel/question.tscn" id="3_44x8d"]
+[ext_resource type="FontFile" uid="uid://1qmoiwwfgi76" path="res://theme/alagard-12px-unicode.ttf" id="3_xii2b"]
 [ext_resource type="Shader" uid="uid://cwge4y7tj8vrt" path="res://interface/main_menu/blur.gdshader" id="4_0v1st"]
 [ext_resource type="PackedScene" uid="uid://b0dgarfasdp6i" path="res://level/map/map.tscn" id="4_ivpvi"]
 [ext_resource type="Script" uid="uid://m1vo0myw6iol" path="res://level/wave_generator/wave_generator.gd" id="4_vkbyq"]
 [ext_resource type="PackedScene" uid="uid://dmmbux1y4e8bw" path="res://interface/main_menu/cross_button.tscn" id="5_6gtgk"]
 [ext_resource type="PackedScene" uid="uid://dj334r3yagshk" path="res://interface/settings_panel/settings.tscn" id="6_cw150"]
 [ext_resource type="PackedScene" uid="uid://bnyty5vobw6si" path="res://level/place_for_tower/v1/place_for_tower.tscn" id="8_6gtgk"]
+[ext_resource type="AudioStream" uid="uid://d3q0taf82i5nn" path="res://asset/theme2.wav" id="10_cw150"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6gtgk"]
 shader = ExtResource("4_0v1st")
@@ -16,9 +18,9 @@ shader_parameter/lod = 2.0
 
 [sub_resource type="Curve2D" id="Curve2D_6gtgk"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 344, 1144, 0, 0, 0, 0, 344, 264, -28.7073, 23.4757, 28.7073, -23.4757, 368, 192, 0, 0, 0, 0, 440, 176, 0, 0, 0, 0, 1560, 176, -23.2199, -19.3189, 23.2199, 19.3189, 1632, 192, 0, 0, 0, 0, 1656, 240, 0, 0, 0, 0, 1656, 360, 15.9153, -15.9903, -15.9153, 15.9903, 1640, 400, 0, 0, 0, 0, 1576, 416, 0, 0, 0, 0, 704, 416, 21.7987, -20.586, -21.7987, 20.586, 648, 432, 0, 0, 0, 0, 632, 504, 0, 0, 0, 0, 632, 656, -22.5434, -15.2553, 22.5434, 15.2553, 656, 704, 0, 0, 0, 0, 760, 712, 0, 0, 0, 0, 1576, 712, -15.55, -38.0526, 15.55, 38.0526, 1648, 744, 18.2101, -21.7365, -18.2101, 21.7365, 1640, 880, 0, 0, 0, 0, 1552, 896, 0, 0, 0, 0, 720, 896, 20.8108, -12.1654, -20.8108, 12.1654, 664, 904, 0, 0, 0, 0, 648, 952, 0, 0, 0, 0, 648, 1160)
+"points": PackedVector2Array(0, 0, 0, 0, 344, 1144, 0, 0, 0, 0, 344, 264, -28.7073, 23.4757, 28.7073, -23.4757, 368, 192, 0, 0, 0, 0, 440, 176, 0, 0, 0, 0, 1560, 176, -23.2199, -19.3189, 23.2199, 19.3189, 1632, 192, 0, 0, 0, 0, 1656, 240, 0, 0, 0, 0, 1656, 360, 11.7289, -18.7812, -11.7289, 18.7812, 1640, 400, 0, 0, 0, 0, 1576.52, 418.637, 0, 0, 0, 0, 704, 416, 21.7987, -20.586, -21.7987, 20.586, 648, 432, 0, 0, 0, 0, 632, 504, 0, 0, 0, 0, 635.452, 658.517, -13.091, -19.9815, 13.091, 19.9815, 644.678, 704.648, 0, 0, 0, 0, 760, 712, 0, 0, 0, 0, 1576, 712, -6.98121, -23.266, 6.98121, 23.266, 1638.8, 732.326, 0, 0, 0, 0, 1648.02, 769.231, 0, 0, 0, 0, 1648.02, 833.814, 14.9161, -9.70621, -14.9161, 9.70621, 1641.1, 889.171, 0, 0, 0, 0, 1552, 896, 0, 0, 0, 0, 720, 896, 20.8108, -12.1654, -20.8108, 12.1654, 664, 904, 0, 0, 0, 0, 648, 952, 0, 0, 0, 0, 653.904, 1193.63)
 }
-point_count = 24
+point_count = 26
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oem8r"]
 radius = 100.005
@@ -50,33 +52,54 @@ size_flags_horizontal = 4
 mouse_filter = 2
 theme = ExtResource("2_44x8d")
 
-[node name="Panel" type="PanelContainer" parent="CanvasLayer/Control"]
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.01414
-anchor_top = 0.00555557
-anchor_right = 1.01414
-anchor_bottom = 0.0518519
-offset_left = -348.16
-offset_right = -0.160034
-offset_bottom = 276.0
-scale = Vector2(0.9, 0.9)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -423.0
+offset_top = -141.0
+offset_right = -7.0
+offset_bottom = -5.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/PanelContainer"]
+layout_mode = 2
+text = "Реклама"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -316.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = 332.0
+grow_horizontal = 0
+
+[node name="Panel" type="PanelContainer" parent="CanvasLayer/Control/VBoxContainer2"]
+layout_mode = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/VBoxContainer2/Panel"]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/Panel/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer2/Panel/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/Panel/VBoxContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/VBoxContainer2/Panel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 6
 theme_override_constants/margin_right = 6
 
-[node name="Gold" type="Label" parent="CanvasLayer/Control/Panel/VBoxContainer/HBoxContainer/MarginContainer"]
+[node name="Gold" type="Label" parent="CanvasLayer/Control/VBoxContainer2/Panel/VBoxContainer/HBoxContainer/MarginContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 0
@@ -85,7 +108,7 @@ text = "💰"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="GoldInput" type="Label" parent="CanvasLayer/Control/Panel/VBoxContainer/HBoxContainer"]
+[node name="GoldInput" type="Label" parent="CanvasLayer/Control/VBoxContainer2/Panel/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -95,11 +118,11 @@ theme_override_constants/outline_size = 5
 autowrap_mode = 3
 text_overrun_behavior = 3
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Control/Panel/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer2/Panel/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="Hp" type="Label" parent="CanvasLayer/Control/Panel/VBoxContainer/HBoxContainer2"]
+[node name="Hp" type="Label" parent="CanvasLayer/Control/VBoxContainer2/Panel/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 60
@@ -107,7 +130,7 @@ text = "♥️"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HpInput" type="Label" parent="CanvasLayer/Control/Panel/VBoxContainer/HBoxContainer2"]
+[node name="HpInput" type="Label" parent="CanvasLayer/Control/VBoxContainer2/Panel/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -115,18 +138,65 @@ size_flags_vertical = 1
 theme_override_colors/font_color = Color(0.972549, 0.25098, 0.243137, 1)
 theme_override_constants/outline_size = 5
 
-[node name="MenuButton" type="Button" parent="CanvasLayer/Control/Panel/VBoxContainer"]
+[node name="MenuButton" type="Button" parent="CanvasLayer/Control/VBoxContainer2/Panel/VBoxContainer"]
 layout_mode = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 28
 text = "Меню"
 
-[node name="StartWave" type="Button" parent="CanvasLayer/Control/Panel/VBoxContainer"]
+[node name="StartWave" type="Button" parent="CanvasLayer/Control/VBoxContainer2/Panel/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 28
 text = "Начать волну"
+
+[node name="GmPanel" type="PanelContainer" parent="CanvasLayer/Control/VBoxContainer2"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/VBoxContainer2/GmPanel"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer2/GmPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_xii2b")
+theme_override_font_sizes/font_size = 28
+text = "Цстановить hp:"
+horizontal_alignment = 1
+
+[node name="HpSpinBox" type="SpinBox" parent="CanvasLayer/Control/VBoxContainer2/GmPanel/VBoxContainer"]
+layout_mode = 2
+rounded = true
+alignment = 1
+
+[node name="Label3" type="Label" parent="CanvasLayer/Control/VBoxContainer2/GmPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_xii2b")
+theme_override_font_sizes/font_size = 28
+text = "Цстановить 
+золото:"
+horizontal_alignment = 1
+
+[node name="GoldSpinBox" type="SpinBox" parent="CanvasLayer/Control/VBoxContainer2/GmPanel/VBoxContainer"]
+layout_mode = 2
+max_value = 10000.0
+rounded = true
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer2/GmPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="CanvasLayer/Control/VBoxContainer2/GmPanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_xii2b")
+theme_override_font_sizes/font_size = 28
+text = "Пропускать 
+вопросы:"
+horizontal_alignment = 1
+
+[node name="QuestionCheckBox" type="CheckBox" parent="CanvasLayer/Control/VBoxContainer2/GmPanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
 
 [node name="Button" type="Button" parent="CanvasLayer/Control"]
 process_mode = 3
@@ -218,7 +288,7 @@ theme_override_font_sizes/font_size = 40
 text = "Настройки"
 
 [node name="ExitButton" type="Button" parent="CanvasLayer/Control/Menu/PanelContainer/MarginContainer/HBoxContainer"]
-self_modulate = Color(0.737255, 0.137255, 0.137255, 1)
+self_modulate = Color(0.839216, 0.12549, 0.0470588, 1)
 layout_mode = 2
 size_flags_vertical = 0
 focus_mode = 0
@@ -298,7 +368,7 @@ focus_mode = 0
 text = "Начать заново"
 
 [node name="ExitButton" type="Button" parent="CanvasLayer/Control/DefeatMenu/PanelContainer/MarginContainer/VBoxContainer"]
-modulate = Color(0.694118, 0.0941176, 0.027451, 1)
+modulate = Color(0.840797, 0.12702, 0.0470296, 1)
 layout_mode = 2
 focus_mode = 0
 text = "Выйти "
@@ -322,8 +392,8 @@ position = Vector2(-960, -540)
 
 [node name="map" parent="Level" node_paths=PackedStringArray("camera") instance=ExtResource("4_ivpvi")]
 unique_name_in_owner = true
-z_index = -3
-position = Vector2(-5, 101)
+z_index = -5
+position = Vector2(9, 101)
 scale = Vector2(1.3, 1.3)
 camera = NodePath("../../Camera2D")
 
@@ -335,14 +405,16 @@ curve = SubResource("Curve2D_6gtgk")
 [node name="EnemyTimer" type="Timer" parent="Level"]
 
 [node name="Home" type="Area2D" parent="Level"]
-position = Vector2(1289.93, 1168.53)
+position = Vector2(571, 1194)
+collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Home"]
-position = Vector2(-633.93, 31.47)
+position = Vector2(-3, 14)
 shape = SubResource("CircleShape2D_oem8r")
 
 [node name="Places" type="Node2D" parent="Level"]
 unique_name_in_owner = true
+position = Vector2(14, 0)
 
 [node name="PlaceForTower" parent="Level/Places" instance=ExtResource("8_6gtgk")]
 position = Vector2(200, 862)
@@ -403,8 +475,18 @@ unique_name_in_owner = true
 script = ExtResource("4_vkbyq")
 metadata/_custom_type_script = "uid://m1vo0myw6iol"
 
-[connection signal="pressed" from="CanvasLayer/Control/Panel/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/Panel/VBoxContainer/StartWave" to="." method="start_wave"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("10_cw150")
+volume_db = -15.0
+autoplay = true
+bus = &"Music"
+
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/Panel/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/Panel/VBoxContainer/StartWave" to="." method="start_wave"]
+[connection signal="value_changed" from="CanvasLayer/Control/VBoxContainer2/GmPanel/VBoxContainer/HpSpinBox" to="." method="_on_hp_spin_box_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/Control/VBoxContainer2/GmPanel/VBoxContainer/GoldSpinBox" to="." method="_on_gold_spin_box_value_changed"]
+[connection signal="toggled" from="CanvasLayer/Control/VBoxContainer2/GmPanel/VBoxContainer/HBoxContainer/QuestionCheckBox" to="." method="_on_question_check_box_toggled"]
 [connection signal="pressed" from="CanvasLayer/Control/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Menu/PanelContainer/MarginContainer/HBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]

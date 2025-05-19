@@ -69,14 +69,11 @@ script = ExtResource("1_5b8io")
 
 [node name="Control" type="Control" parent="."]
 unique_name_in_owner = true
-z_index = 1
-z_as_relative = false
+z_index = 2
 layout_mode = 3
 anchors_preset = 0
-offset_left = -0.458008
-offset_top = -174.733
-offset_right = -0.458008
-offset_bottom = -174.733
+offset_top = -175.0
+offset_bottom = -175.0
 theme = ExtResource("2_8yj58")
 
 [node name="MenuPanel" type="PanelContainer" parent="Control"]

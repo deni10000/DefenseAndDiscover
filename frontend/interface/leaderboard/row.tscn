@@ -1,0 +1,82 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3h4dvey07doa"]
+
+[ext_resource type="Script" uid="uid://cvvelipwhhv26" path="res://interface/leaderboard/row.gd" id="1_p1w1t"]
+[ext_resource type="FontFile" uid="uid://1qmoiwwfgi76" path="res://theme/alagard-12px-unicode.ttf" id="2_xsjdx"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_p1w1t"]
+thickness = 2
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_d06x6"]
+grow_begin = 2.0
+grow_end = 2.0
+thickness = 2
+vertical = true
+
+[node name="Row" type="VBoxContainer"]
+offset_right = 23.0
+offset_bottom = 363.0
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+script = ExtResource("1_p1w1t")
+
+[node name="Panel2" type="Panel" parent="."]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxLine_p1w1t")
+
+[node name="Control" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Panel4" type="Panel" parent="Control"]
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxLine_d06x6")
+
+[node name="Label" type="Label" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_xsjdx")
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Panel" type="Panel" parent="Control"]
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxLine_d06x6")
+
+[node name="Label2" type="Label" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+theme_override_fonts/font = ExtResource("2_xsjdx")
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Panel2" type="Panel" parent="Control"]
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxLine_d06x6")
+
+[node name="Label3" type="Label" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_xsjdx")
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Panel3" type="Panel" parent="Control"]
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxLine_d06x6")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxLine_p1w1t")

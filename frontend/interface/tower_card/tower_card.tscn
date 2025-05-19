@@ -21,6 +21,7 @@ texture = ExtResource("2_uhpuh")
 
 [node name="TextureButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
+process_mode = 1
 layout_mode = 2
 mouse_filter = 1
 texture_normal = ExtResource("2_uhpuh")

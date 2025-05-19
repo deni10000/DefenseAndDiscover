@@ -3,7 +3,7 @@ extends Tower
 var current_enemy: Area2D
 var tween: Tween
 var dps = 100
-var MIN_DPS = 10
+var MIN_DPS = 20 #было 10
 var MAX_DPS = 100
 var additional_price_to_up := 50
 const INCREASING_TIME = 3
@@ -29,7 +29,7 @@ func update_tower():
 func _ready() -> void:
 	summary_price = Global.electric_tower_price
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	var enemies = $AttackArea.get_overlapping_areas()
 	if is_instance_valid(current_enemy):
 		if current_enemy not in enemies:

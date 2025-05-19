@@ -12,13 +12,11 @@ _data = {
 point_count = 1
 
 [node name="Arrow" type="Path2D"]
-y_sort_enabled = true
 curve = SubResource("Curve2D_84xuu")
 script = ExtResource("1_b6v0w")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
 position = Vector2(287, 581)
-rotation = -0.870342
 loop = false
 
 [node name="Arrow" type="Sprite2D" parent="PathFollow2D"]

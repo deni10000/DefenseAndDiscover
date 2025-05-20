@@ -28,10 +28,17 @@ var tower_prices: Dictionary[Types, int] = {Types.ELECTRIC: electric_tower_price
 var tower_scenes: Dictionary[Types, PackedScene] = {Types.ELECTRIC: electric_tower , Types.ARCHER: archer_tower, Types.ART: art_tower, Types.TREE: tree_tower}
 var max_question_level := 5
 var is_campaign: bool = false
-
+var analytics_id:
+	set(value):
+		analytics_id = int(value)
+		load_metrika(analytics_id)
 
 var java_script := JavaScriptBridge.get_interface("window")
 var volume: float = 0.5
+
+func send_analytics(goal: String):
+	if OS.get_name() == 'Web':
+		JavaScriptBridge.eval("ym(%d, 'reachGoal', '%s')" % [analytics_id, goal])
 
 class Properties:
 	var power: int
@@ -48,6 +55,22 @@ class Properties:
 	
 enum Enemies {SLIME}
 var enemy_properties: Dictionary[Enemies, Properties]  = {Enemies.SLIME : Properties.new(100, 3, 7, preload("uid://bm1ng04ojad8f"))}
+
+func load_metrika(counter_id: int):
+	var code := """
+	   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+	   m[i].l=1*new Date();
+	   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+	   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+	   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+	   ym(%d, "init", {
+			clickmap:true,
+			trackLinks:true,
+			accurateTrackBounce:true
+	   });	
+	""" % counter_id
+	JavaScriptBridge.eval(code)
 
 func _ready() -> void:
 	gold = 600

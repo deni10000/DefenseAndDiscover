@@ -162,6 +162,7 @@ func _on_login_button_pressed() -> void:
 
 
 func _on_start_game_button_pressed() -> void:
+	Global.send_analytics("start_game")
 	Global.is_campaign = false
 	get_tree().change_scene_to_packed(Global.level_scene)
 

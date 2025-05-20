@@ -57,6 +57,8 @@ enum Enemies {SLIME}
 var enemy_properties: Dictionary[Enemies, Properties]  = {Enemies.SLIME : Properties.new(100, 3, 7, preload("uid://bm1ng04ojad8f"))}
 
 func load_metrika(counter_id: int):
+	if OS.get_name() != 'Web':
+		return	
 	var code := """
 	   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
 	   m[i].l=1*new Date();

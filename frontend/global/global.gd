@@ -31,7 +31,7 @@ var is_campaign: bool = false
 var analytics_id:
 	set(value):
 		analytics_id = int(value)
-		load_metrika(analytics_id)
+		#load_metrika(analytics_id)
 
 var java_script := JavaScriptBridge.get_interface("window")
 var volume: float = 0.5

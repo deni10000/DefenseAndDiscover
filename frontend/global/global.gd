@@ -34,7 +34,7 @@ var volume: float = 0.5
 
 func send_analytics(goal: String, params = {}):
 	if OS.get_name() == 'Web':
-		java_script.sendMetricGoal(goal, params)
+		java_script.sendMetricGoal(goal, JSON.stringify(params))
 
 class Properties:
 	var power: int

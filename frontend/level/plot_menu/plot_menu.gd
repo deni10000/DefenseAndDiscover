@@ -6,7 +6,7 @@ var label := %Label
 @onready
 var button := %Button
 
-var sprite_sheet = preload("uid://da73rh6u4u1te")
+var sprite_sheet = preload("uid://cn1lkflk7wv5s")
 var sprites
 
 #@export
@@ -19,7 +19,7 @@ var sprites
 	#show_text(debug_text)
 
 func _ready() -> void:
-	sprites = Global.slice_spritesheet(sprite_sheet, 1, 7)
+	sprites = Global.slice_spritesheet(sprite_sheet, 1, 6)
 	#show_text("Жил-был в старом лесу могучий дуб. Он стоял на холме у опушки, раскинув свои ветви к небу, как будто обнимал солнце. Его звали Мудрый Дуб — не потому что он умел говорить, а потому что веками наблюдал за всем, что происходило вокруг, и знал больше, чем кто-либо в лесу.")
 
 @onready
@@ -61,6 +61,7 @@ func show_text(text: String):
 		if text[i] == '.':
 			await get_tree().create_timer(4 * speed).timeout
 	
+	%TextureRect.texture = sprites[0]
 	button.visible = true
 	await button.pressed
 	visible = false

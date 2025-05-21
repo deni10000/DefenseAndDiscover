@@ -162,10 +162,13 @@ func _on_login_button_pressed() -> void:
 
 
 func _on_start_game_button_pressed() -> void:
+	#Global.send_analytics("start_game")
 	Global.is_campaign = false
 	get_tree().change_scene_to_packed(Global.level_scene)
 
 func _on_start_game_button_history_pressed() -> void:
+	#Global.send_analytics("start_game")
+	#Global.send_analytics("start_plot")
 	Global.is_campaign = true
 	get_tree().change_scene_to_packed(Global.level_scene)
 
@@ -232,6 +235,7 @@ func _on_confirmation_button_pressed() -> void:
 func _on_exit_button_pressed() -> void:
 	Http.token = ''
 	if OS.get_name() == 'Web':
+		Global.java_script.c
 		Global.java_script.setCookie("token", "", 0)
 	%Profile.visible = false
 

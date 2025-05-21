@@ -28,6 +28,7 @@ var tower_prices: Dictionary[Types, int] = {Types.ELECTRIC: electric_tower_price
 var tower_scenes: Dictionary[Types, PackedScene] = {Types.ELECTRIC: electric_tower , Types.ARCHER: archer_tower, Types.ART: art_tower, Types.TREE: tree_tower}
 var max_question_level := 5
 var is_campaign: bool = false
+var plot: Array
 
 
 var java_script := JavaScriptBridge.get_interface("window")
@@ -49,5 +50,21 @@ class Properties:
 enum Enemies {SLIME}
 var enemy_properties: Dictionary[Enemies, Properties]  = {Enemies.SLIME : Properties.new(100, 3, 7, preload("uid://bm1ng04ojad8f"))}
 
+func slice_spritesheet(texture: Texture2D, rows: int, columns: int) -> Array[Texture2D]:
+	var result: Array[Texture2D] = []
+	var frame_size = Vector2i(texture.get_size().x / columns, texture.get_size().y / rows)
+	for y in rows:
+		for x in columns:
+			var region := Rect2i(x * frame_size.x, y * frame_size.y, frame_size.x, frame_size.y)
+			var sub_texture := AtlasTexture.new()
+			sub_texture.atlas = texture
+			sub_texture.region = region
+			result.append(sub_texture)
+	
+	return result
+
 func _ready() -> void:
 	gold = 600
+	var file = FileAccess.open("res://plot.json", FileAccess.READ)
+	if file != null:
+		plot =  JSON.parse_string(file.get_as_text())

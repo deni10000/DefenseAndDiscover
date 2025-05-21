@@ -1,22 +1,45 @@
 extends Control
 class_name PlotMenu
-var speed := 0.02
+var speed := 0.025
 @onready
 var label := %Label
 @onready
 var button := %Button
 
+var sprite_sheet = preload("uid://da73rh6u4u1te")
+var sprites
+
+#@export
+#var debug_text: String
+#
+#@export_tool_button("Проверить текст")
+#var debug_buttob = debug_show
+#
+#func debug_show():
+	#show_text(debug_text)
+
 func _ready() -> void:
-	show_text("Жил-был в старом лесу могучий дуб. Он стоял на холме у опушки, раскинув свои ветви к небу, как будто обнимал солнце. Его звали Мудрый Дуб — не потому что он умел говорить, а потому что веками наблюдал за всем, что происходило вокруг, и знал больше, чем кто-либо в лесу.")
+	sprites = Global.slice_spritesheet(sprite_sheet, 1, 7)
+	#show_text("Жил-был в старом лесу могучий дуб. Он стоял на холме у опушки, раскинув свои ветви к небу, как будто обнимал солнце. Его звали Мудрый Дуб — не потому что он умел говорить, а потому что веками наблюдал за всем, что происходило вокруг, и знал больше, чем кто-либо в лесу.")
 
 @onready
 var player := %AudioStreamPlayer
 
+func play_sound(t, i):
+	if t not in '.- ,' and not player.playing:
+		#await get_tree().create_timer(0.01).timeout
+		player.pitch_scale = randf_range(0.55, 0.75)
+		%TextureRect.texture = sprites[i % len(sprites)]
+		player.play()
+	
+	
+
 func show_text(text: String):
+	visible = true
 	label.text = text
 	button.visible = true
 	await  %VBoxContainer.resized
-	await  %VBoxContainer.resized
+	#await  %VBoxContainer.resized
 	var size =  %VBoxContainer.size
 	label.text = ''
 	button.visible = false
@@ -26,7 +49,6 @@ func show_text(text: String):
 	Music.stop()
 	get_tree().paused = true
 
-	visible = true
 	var tween = get_tree().create_tween()
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	tween.tween_property(self, "modulate", Color(1, 1, 1, 1), 0.3).from(Color(1, 1, 1, 0))
@@ -34,16 +56,17 @@ func show_text(text: String):
 	await get_tree().create_timer(0.1).timeout
 	for i in range(text.length()):
 		label.text += text[i]
-
-		if text[i] != ' ' and not player.playing:
-			player.pitch_scale = randf_range(0.6, 0.8)
-			player.play()
-
+		play_sound(text[i], i)
 		await get_tree().create_timer(speed).timeout
+		if text[i] == '.':
+			await get_tree().create_timer(4 * speed).timeout
 	
 	button.visible = true
 	await button.pressed
-	get_tree().paused = false
 	visible = false
+	button.visible = false
+	label.text = ''
+	%VBoxContainer.reset_size()
+	get_tree().paused = false
 	Music.play()
 	

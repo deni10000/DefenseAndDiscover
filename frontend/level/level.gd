@@ -11,6 +11,8 @@ var viewport_height = ProjectSettings.get_setting("display/window/size/viewport_
 var MAX_RATIO = 16 / 9
 var MIN_RATIO = 16 / 9
 var skip_question: bool = false
+var plot := Global.plot
+
 
 @export var camera: Camera2D; 
 
@@ -35,6 +37,8 @@ func _ready() -> void:
 	Global.gold_changed.connect(update_gold_label)
 	%GoldInput.text = str(Global.gold)
 	hp = 30
+	if Global.is_campaign:
+		%PlotMenu.show_text(plot[0])
 
 func start_qestion(topic: String, is_ok: Signal, level: int):
 	var quest = %Question
@@ -165,11 +169,21 @@ func _on_place_for_tower_return_menu(control: Control) -> void:
 	%Control.add_child(control)
 
 
+func _on_wave_ended():
+	%StartWave.visible = true
+	wave += 1
+	Http.post_wave(wave)
+	if Global.is_campaign and wave < len(plot):
+		await %PlotMenu.show_text(plot[wave])
+		if wave == len(plot) - 1:
+			get_tree().paused = true
+			%WinMenu.visible = true
+			
+			
+
 func _on_path_2d_child_exiting_tree(node: Node) -> void:
 	if %Path2D.get_child_count() == 1:
-		%StartWave.visible = true
-		wave += 1
-		Http.post_wave(wave)
+		_on_wave_ended()
 
 
 

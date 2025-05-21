@@ -21,6 +21,7 @@ var hp:
 		%HpInput.text = str(value)
 		hp = value
 		if hp <= 0:
+			Global.send_analytics("defeat")
 			get_tree().paused = true
 			%DefeatMenu.visible = true
 
@@ -152,6 +153,7 @@ func _on_settings_button_pressed() -> void:
 
 
 func _on_exit_button_pressed() -> void:
+	Global.send_analytics("exit")
 	get_tree().paused = false
 	get_tree().change_scene_to_packed(Global.main_menu_scene)
 

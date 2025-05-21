@@ -11,6 +11,7 @@ var viewport_height = ProjectSettings.get_setting("display/window/size/viewport_
 var MAX_RATIO = 16 / 9
 var MIN_RATIO = 16 / 9
 var skip_question: bool = false
+var seconds_passed: int
 
 @export var camera: Camera2D; 
 
@@ -21,11 +22,19 @@ var hp:
 		%HpInput.text = str(value)
 		hp = value
 		if hp <= 0:
-			Global.send_analytics("defeat")
+			#Global.send_analytics("defeat")
 			get_tree().paused = true
 			%DefeatMenu.visible = true
 
 var camera_tween: Tween = null 
+
+func start_stopwatch():
+	var timer = Timer.new()
+	timer.process_mode = Node.PROCESS_MODE_PAUSABLE
+	timer.autostart = true
+	timer.timeout.connect(func(): seconds_passed += 1)
+	add_child(timer)
+
 func _ready() -> void:
 	Global.gold = 600
 	center_field()
@@ -36,6 +45,8 @@ func _ready() -> void:
 	Global.gold_changed.connect(update_gold_label)
 	%GoldInput.text = str(Global.gold)
 	hp = 30
+	start_stopwatch()
+	
 
 func start_qestion(topic: String, is_ok: Signal, level: int):
 	var quest = %Question
@@ -153,7 +164,7 @@ func _on_settings_button_pressed() -> void:
 
 
 func _on_exit_button_pressed() -> void:
-	Global.send_analytics("exit")
+	Global.send_analytics("exit", {"duration": seconds_passed})
 	get_tree().paused = false
 	get_tree().change_scene_to_packed(Global.main_menu_scene)
 

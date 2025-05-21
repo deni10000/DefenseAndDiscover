@@ -15,7 +15,6 @@ func  _ready() -> void:
 		var text = file.get_as_text()
 		var json = JSON.parse_string(text)
 		base_url = json['url']
-		Global.analytics_id = json['metrika_id']
 		print(base_url)
 	if OS.get_name() == 'Web':
 		print(JavaScriptBridge.eval("window.location.origin", true))

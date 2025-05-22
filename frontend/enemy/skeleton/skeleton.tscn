@@ -1,50 +1,52 @@
-[gd_scene load_steps=25 format=3 uid="uid://bcfbn4m7snohl"]
+[gd_scene load_steps=26 format=3 uid="uid://bcfbn4m7snohl"]
 
 [ext_resource type="PackedScene" uid="uid://dy4r1ip5lxp2r" path="res://enemy/base/enemy.tscn" id="1_cridm"]
 [ext_resource type="Texture2D" uid="uid://ugxgfncxa4n3" path="res://enemy/skeleton/skeletonOnlyWalk.png" id="2_cridm"]
+[ext_resource type="Texture2D" uid="uid://se1prunk3mxd" path="res://enemy/skeleton/skeleton.png" id="2_ty7q4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cridm"]
 radius = 15.0
 height = 70.0
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cridm"]
-load_path = "res://.godot/imported/skeleton.png-8c2a67f46c0d4e6c7cfaf46bd9c410aa.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cridm"]
-atlas = SubResource("CompressedTexture2D_cridm")
-region = Rect2(0, 48, 96, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ty7q4"]
-atlas = SubResource("CompressedTexture2D_cridm")
-region = Rect2(96, 48, 96, 48)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_8a38f"]
-atlas = SubResource("CompressedTexture2D_cridm")
-region = Rect2(192, 48, 96, 48)
+atlas = ExtResource("2_ty7q4")
+region = Rect2(0, 45, 46, 45)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aabbb"]
-atlas = SubResource("CompressedTexture2D_cridm")
-region = Rect2(288, 48, 96, 48)
+atlas = ExtResource("2_ty7q4")
+region = Rect2(46, 45, 46, 45)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r1v81"]
-atlas = SubResource("CompressedTexture2D_cridm")
-region = Rect2(384, 48, 96, 48)
+atlas = ExtResource("2_ty7q4")
+region = Rect2(92, 45, 46, 45)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jc0td"]
-atlas = SubResource("CompressedTexture2D_cridm")
-region = Rect2(480, 48, 96, 48)
+atlas = ExtResource("2_ty7q4")
+region = Rect2(138, 45, 46, 45)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bt4xv"]
-atlas = SubResource("CompressedTexture2D_cridm")
-region = Rect2(576, 48, 96, 48)
+atlas = ExtResource("2_ty7q4")
+region = Rect2(184, 45, 46, 45)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vvthx"]
-atlas = SubResource("CompressedTexture2D_cridm")
-region = Rect2(672, 48, 96, 48)
+atlas = ExtResource("2_ty7q4")
+region = Rect2(230, 45, 46, 45)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2c520"]
-atlas = SubResource("CompressedTexture2D_cridm")
-region = Rect2(768, 48, 96, 48)
+atlas = ExtResource("2_ty7q4")
+region = Rect2(276, 45, 46, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s35hg"]
+atlas = ExtResource("2_ty7q4")
+region = Rect2(322, 45, 46, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mldxi"]
+atlas = ExtResource("2_ty7q4")
+region = Rect2(368, 45, 46, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o14bw"]
+atlas = ExtResource("2_ty7q4")
+region = Rect2(414, 45, 46, 45)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2idp0"]
 atlas = ExtResource("2_cridm")
@@ -90,12 +92,6 @@ region = Rect2(405, 0, 45, 45)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cridm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ty7q4")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_8a38f")
 }, {
 "duration": 1.0,
@@ -115,8 +111,17 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2c520")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s35hg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mldxi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o14bw")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 10.0
 }, {
@@ -179,4 +184,3 @@ scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_8a38f")
 animation = &"move"
 autoplay = "move"
-frame_progress = 0.640511

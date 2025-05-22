@@ -39,7 +39,10 @@ func start_wave():
 			var en = enemy.scene.instantiate()
 			en.max_hp *= 1 + level * hp_increasing_per_level
 			add_enemy.emit(en)
-
+				
+			#wave_ended.emit()
+			#return
+			
 			# Генерируем случайную задержку для появления следующего врага
 			var random_delay = rng.randf_range(short_range_min, short_range_max)
 			timer.start(random_delay)

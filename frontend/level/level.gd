@@ -173,7 +173,7 @@ func _on_settings_button_pressed() -> void:
 
 
 func _on_exit_button_pressed() -> void:
-	Global.send_analytics("exit", {"duration": seconds_passed / 60})
+	Global.send_analytics("exit_plot" if Global.is_campaign else "exit", {"duration": seconds_passed / 60})
 	get_tree().paused = false
 	get_tree().change_scene_to_packed(Global.main_menu_scene)
 

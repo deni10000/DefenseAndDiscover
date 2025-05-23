@@ -88,20 +88,24 @@ grow_horizontal = 0
 layout_mode = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/VBoxContainer2/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/VBoxContainer2/Panel"]
+layout_mode = 2
+theme_override_constants/margin_top = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/VBoxContainer2/Panel/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer2/Panel/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer2/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/VBoxContainer2/Panel/VBoxContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/VBoxContainer2/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 6
 theme_override_constants/margin_right = 6
 
-[node name="Gold" type="Label" parent="CanvasLayer/Control/VBoxContainer2/Panel/VBoxContainer/HBoxContainer/MarginContainer"]
+[node name="Gold" type="Label" parent="CanvasLayer/Control/VBoxContainer2/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 0
@@ -110,7 +114,7 @@ text = "💰"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="GoldInput" type="Label" parent="CanvasLayer/Control/VBoxContainer2/Panel/VBoxContainer/HBoxContainer"]
+[node name="GoldInput" type="Label" parent="CanvasLayer/Control/VBoxContainer2/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -120,11 +124,11 @@ theme_override_constants/outline_size = 5
 autowrap_mode = 3
 text_overrun_behavior = 3
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer2/Panel/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer2/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="Hp" type="Label" parent="CanvasLayer/Control/VBoxContainer2/Panel/VBoxContainer/HBoxContainer2"]
+[node name="Hp" type="Label" parent="CanvasLayer/Control/VBoxContainer2/Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 60
@@ -132,7 +136,7 @@ text = "♥️"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HpInput" type="Label" parent="CanvasLayer/Control/VBoxContainer2/Panel/VBoxContainer/HBoxContainer2"]
+[node name="HpInput" type="Label" parent="CanvasLayer/Control/VBoxContainer2/Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -140,18 +144,37 @@ size_flags_vertical = 1
 theme_override_colors/font_color = Color(0.972549, 0.25098, 0.243137, 1)
 theme_override_constants/outline_size = 5
 
-[node name="MenuButton" type="Button" parent="CanvasLayer/Control/VBoxContainer2/Panel/VBoxContainer"]
+[node name="MenuButton" type="Button" parent="CanvasLayer/Control/VBoxContainer2/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 28
 text = "Меню"
 
-[node name="StartWave" type="Button" parent="CanvasLayer/Control/VBoxContainer2/Panel/VBoxContainer"]
+[node name="StartWave" type="Button" parent="CanvasLayer/Control/VBoxContainer2/Panel/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 28
 text = "Начать волну"
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control/VBoxContainer2"]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer2/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer2/PanelContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 34
+text = "Волна"
+
+[node name="WaveCount" type="Label" parent="CanvasLayer/Control/VBoxContainer2/PanelContainer/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 34
+text = "1"
+horizontal_alignment = 1
 
 [node name="GmPanel" type="PanelContainer" parent="CanvasLayer/Control/VBoxContainer2"]
 layout_mode = 2
@@ -198,6 +221,10 @@ horizontal_alignment = 1
 
 [node name="QuestionCheckBox" type="CheckBox" parent="CanvasLayer/Control/VBoxContainer2/GmPanel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+
+[node name="SkipWaveButton" type="Button" parent="CanvasLayer/Control/VBoxContainer2/GmPanel/VBoxContainer"]
+layout_mode = 2
+text = "пропустить волну"
 
 [node name="Button" type="Button" parent="CanvasLayer/Control"]
 process_mode = 3
@@ -427,10 +454,10 @@ theme_override_constants/outline_size = 10
 text = "Вы победили!"
 horizontal_alignment = 1
 
-[node name="RestartButton" type="Button" parent="CanvasLayer/Control/WinMenu/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="ContinueButton" type="Button" parent="CanvasLayer/Control/WinMenu/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 focus_mode = 0
-text = "Начать заново"
+text = "Продолжить"
 
 [node name="ExitButton" type="Button" parent="CanvasLayer/Control/WinMenu/PanelContainer/MarginContainer/VBoxContainer"]
 modulate = Color(0.840797, 0.12702, 0.0470296, 1)
@@ -552,11 +579,12 @@ volume_db = -15.0
 autoplay = true
 bus = &"Music"
 
-[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/Panel/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/Panel/VBoxContainer/StartWave" to="." method="start_wave"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/Panel/MarginContainer/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/Panel/MarginContainer/VBoxContainer/StartWave" to="." method="start_wave"]
 [connection signal="value_changed" from="CanvasLayer/Control/VBoxContainer2/GmPanel/VBoxContainer/HpSpinBox" to="." method="_on_hp_spin_box_value_changed"]
 [connection signal="value_changed" from="CanvasLayer/Control/VBoxContainer2/GmPanel/VBoxContainer/GoldSpinBox" to="." method="_on_gold_spin_box_value_changed"]
 [connection signal="toggled" from="CanvasLayer/Control/VBoxContainer2/GmPanel/VBoxContainer/HBoxContainer/QuestionCheckBox" to="." method="_on_question_check_box_toggled"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/GmPanel/VBoxContainer/SkipWaveButton" to="." method="_on_skip_wave_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Menu/PanelContainer/MarginContainer/HBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
@@ -564,7 +592,7 @@ bus = &"Music"
 [connection signal="pressed" from="CanvasLayer/Control/Menu/MenuCrossButton" to="." method="_on_menu_cross_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/DefeatMenu/PanelContainer/MarginContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/DefeatMenu/PanelContainer/MarginContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/WinMenu/PanelContainer/MarginContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/WinMenu/PanelContainer/MarginContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/WinMenu/PanelContainer/MarginContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="child_exiting_tree" from="Level/map/Path2D" to="." method="_on_path_2d_child_exiting_tree"]
 [connection signal="timeout" from="Level/EnemyTimer" to="." method="next_enemy"]

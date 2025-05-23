@@ -27,13 +27,13 @@ radius = 50.0
 [node name="TreeTower" instance=ExtResource("1_resfc")]
 script = ExtResource("2_bf1au")
 
-[node name="AttackArea" parent="." index="1"]
-scale = Vector2(2, 2)
-
-[node name="TowerSprite" parent="." index="2"]
+[node name="TowerSprite" parent="." index="1"]
 material = SubResource("ShaderMaterial_bf1au")
 sprite_frames = ExtResource("3_bf1au")
 autoplay = "default"
+
+[node name="AttackArea" parent="." index="2"]
+scale = Vector2(2, 2)
 
 [node name="Attack" type="Area2D" parent="." index="3"]
 unique_name_in_owner = true

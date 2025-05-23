@@ -26,6 +26,7 @@ var hp: float:
 			Global.gold += award
 			hp = 0
 			$Body.queue_free()
+			$HpBar.queue_free()
 			if texture.sprite_frames and texture.sprite_frames.has_animation("death"):
 				texture.play("death")
 				await texture.animation_finished

@@ -13,6 +13,7 @@ var MIN_RATIO = 16 / 9
 var skip_question: bool = false
 var seconds_passed: int
 var plot := Global.plot
+var wave_ended: bool = true
 
 
 @export var camera: Camera2D; 
@@ -49,6 +50,7 @@ func _ready() -> void:
 	hp = 30
 	start_stopwatch()
 	if Global.is_campaign:
+		await  get_tree().create_timer(0.1)
 		%PlotMenu.show_text(plot[0])
 
 func start_qestion(topic: String, is_ok: Signal, level: int):
@@ -111,9 +113,13 @@ func update_gold_label():
 	%GoldInput.text = str(Global.gold)
 
 func start_wave():
+	wave_ended = false
 	enemy_count = 0
 	%StartWave.visible = false
 	%Wave_generator.start_wave()
+	await  %Wave_generator.wave_ended
+	wave_ended = true
+	
 	
 
 func next_enemy():
@@ -167,7 +173,7 @@ func _on_settings_button_pressed() -> void:
 
 
 func _on_exit_button_pressed() -> void:
-	Global.send_analytics("exit", {"duration": seconds_passed})
+	Global.send_analytics("exit", {"duration": seconds_passed / 60})
 	get_tree().paused = false
 	get_tree().change_scene_to_packed(Global.main_menu_scene)
 
@@ -185,6 +191,7 @@ func _on_wave_ended():
 	%StartWave.visible = true
 	wave += 1
 	Http.post_wave(wave)
+	%WaveCount.text = str(wave + 1)
 	if Global.is_campaign and wave < len(plot):
 		await %PlotMenu.show_text(plot[wave])
 		if wave == len(plot) - 1:
@@ -194,7 +201,7 @@ func _on_wave_ended():
 
 
 func _on_path_2d_child_exiting_tree(node: Node) -> void:
-	if %Path2D.get_child_count() == 1:
+	if %Path2D.get_child_count() == 1 and wave_ended:
 		_on_wave_ended()
 
 
@@ -209,3 +216,14 @@ func _on_hp_spin_box_value_changed(value: float) -> void:
 
 func _on_gold_spin_box_value_changed(value: float) -> void:
 	Global.gold = int(value)
+
+
+func _on_continue_button_pressed() -> void:
+	%WinMenu.visible = false
+	get_tree().paused = false
+
+
+func _on_skip_wave_button_pressed() -> void:
+	if wave_ended:
+		%Wave_generator.start_wave(true)
+		_on_wave_ended()

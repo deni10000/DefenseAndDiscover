@@ -9,6 +9,8 @@ var button := %Button
 var sprite_sheet = preload("uid://cn1lkflk7wv5s")
 var sprites
 
+var flag = true
+
 #@export
 #var debug_text: String
 #
@@ -26,7 +28,7 @@ func _ready() -> void:
 var player := %AudioStreamPlayer
 
 func play_sound(t, i):
-	if t not in '.- ,' and not player.playing:
+	if t not in '.- ,!' and not player.playing:
 		#await get_tree().create_timer(0.01).timeout
 		player.pitch_scale = randf_range(0.55, 0.75)
 		%TextureRect.texture = sprites[i % len(sprites)]
@@ -35,15 +37,20 @@ func play_sound(t, i):
 	
 
 func show_text(text: String):
+	var min_sz = %PanelContainer.custom_minimum_size
 	visible = true
 	label.text = text
 	button.visible = true
-	await  %VBoxContainer.resized
+	if flag:
+		%VBoxContainer.reset_size()
+		flag = false
 	#await  %VBoxContainer.resized
-	var size =  %VBoxContainer.size
+	await  %PanelContainer.resized
+	var size =  %PanelContainer.size
+	
 	label.text = ''
 	button.visible = false
-	%VBoxContainer.size = size
+	%PanelContainer.custom_minimum_size = size
 	player.volume_db = Music.master_volume_db - 20
 	
 	Music.stop()
@@ -64,10 +71,11 @@ func show_text(text: String):
 	%TextureRect.texture = sprites[0]
 	button.visible = true
 	await button.pressed
-	visible = false
 	button.visible = false
 	label.text = ''
-	%VBoxContainer.reset_size()
+	%PanelContainer.custom_minimum_size = min_sz
+	await  %PanelContainer.resized
+	visible = false
 	get_tree().paused = false
 	Music.play()
 	

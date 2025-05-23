@@ -1,8 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://bcfbn4m7snohl"]
+[gd_scene load_steps=25 format=3 uid="uid://bcfbn4m7snohl"]
 
 [ext_resource type="PackedScene" uid="uid://dy4r1ip5lxp2r" path="res://enemy/base/enemy.tscn" id="1_cridm"]
-[ext_resource type="Texture2D" uid="uid://ugxgfncxa4n3" path="res://enemy/skeleton/skeletonOnlyWalk.png" id="2_cridm"]
-[ext_resource type="Texture2D" uid="uid://se1prunk3mxd" path="res://enemy/skeleton/skeleton.png" id="2_ty7q4"]
+[ext_resource type="Texture2D" uid="uid://ccky8ye0ggu8j" path="res://enemy/skeleton/skeletonOnlyWalk.png" id="2_cridm"]
+[ext_resource type="Texture2D" uid="uid://bdw5nwpytg7x5" path="res://enemy/skeleton/SkeletonOnlyDeath.png" id="2_ty7q4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cridm"]
 radius = 15.0
@@ -10,83 +10,79 @@ height = 70.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8a38f"]
 atlas = ExtResource("2_ty7q4")
-region = Rect2(0, 45, 46, 45)
+region = Rect2(0, 0, 59, 45)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aabbb"]
 atlas = ExtResource("2_ty7q4")
-region = Rect2(46, 45, 46, 45)
+region = Rect2(59, 0, 59, 45)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r1v81"]
 atlas = ExtResource("2_ty7q4")
-region = Rect2(92, 45, 46, 45)
+region = Rect2(118, 0, 59, 45)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jc0td"]
 atlas = ExtResource("2_ty7q4")
-region = Rect2(138, 45, 46, 45)
+region = Rect2(177, 0, 59, 45)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bt4xv"]
 atlas = ExtResource("2_ty7q4")
-region = Rect2(184, 45, 46, 45)
+region = Rect2(236, 0, 59, 45)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vvthx"]
 atlas = ExtResource("2_ty7q4")
-region = Rect2(230, 45, 46, 45)
+region = Rect2(295, 0, 59, 45)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2c520"]
 atlas = ExtResource("2_ty7q4")
-region = Rect2(276, 45, 46, 45)
+region = Rect2(354, 0, 59, 45)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s35hg"]
 atlas = ExtResource("2_ty7q4")
-region = Rect2(322, 45, 46, 45)
+region = Rect2(413, 0, 59, 45)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mldxi"]
 atlas = ExtResource("2_ty7q4")
-region = Rect2(368, 45, 46, 45)
+region = Rect2(472, 0, 59, 45)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_o14bw"]
-atlas = ExtResource("2_ty7q4")
-region = Rect2(414, 45, 46, 45)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ty7q4"]
+atlas = ExtResource("2_cridm")
+region = Rect2(0, 0, 48, 45)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2idp0"]
 atlas = ExtResource("2_cridm")
-region = Rect2(0, 0, 45, 45)
+region = Rect2(48, 0, 48, 45)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v15jv"]
 atlas = ExtResource("2_cridm")
-region = Rect2(45, 0, 45, 45)
+region = Rect2(96, 0, 48, 45)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c0wdl"]
 atlas = ExtResource("2_cridm")
-region = Rect2(90, 0, 45, 45)
+region = Rect2(144, 0, 48, 45)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fqi38"]
 atlas = ExtResource("2_cridm")
-region = Rect2(135, 0, 45, 45)
+region = Rect2(192, 0, 48, 45)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4en7e"]
 atlas = ExtResource("2_cridm")
-region = Rect2(180, 0, 45, 45)
+region = Rect2(240, 0, 48, 45)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mg30q"]
 atlas = ExtResource("2_cridm")
-region = Rect2(225, 0, 45, 45)
+region = Rect2(288, 0, 48, 45)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eisf7"]
 atlas = ExtResource("2_cridm")
-region = Rect2(270, 0, 45, 45)
+region = Rect2(336, 0, 48, 45)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rgen5"]
 atlas = ExtResource("2_cridm")
-region = Rect2(315, 0, 45, 45)
+region = Rect2(384, 0, 48, 45)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tyheg"]
 atlas = ExtResource("2_cridm")
-region = Rect2(360, 0, 45, 45)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_378ih"]
-atlas = ExtResource("2_cridm")
-region = Rect2(405, 0, 45, 45)
+region = Rect2(432, 0, 48, 45)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8a38f"]
 animations = [{
@@ -117,15 +113,15 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mldxi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_o14bw")
 }],
 "loop": false,
 "name": &"death",
 "speed": 10.0
 }, {
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ty7q4")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2idp0")
 }, {
@@ -152,9 +148,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tyheg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_378ih")
 }],
 "loop": true,
 "name": &"move",
@@ -182,5 +175,7 @@ shape = SubResource("CapsuleShape2D_cridm")
 position = Vector2(1, -19)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_8a38f")
-animation = &"move"
+animation = &"death"
 autoplay = "move"
+frame = 8
+frame_progress = 1.0

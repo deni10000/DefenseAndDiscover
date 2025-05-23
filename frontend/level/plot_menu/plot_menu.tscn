@@ -39,9 +39,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -500.0
-offset_top = -334.5
+offset_top = -518.0
 offset_right = 500.0
-offset_bottom = 226.5
+offset_bottom = 43.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = -33
@@ -55,9 +55,9 @@ texture = ExtResource("3_cnu5o")
 stretch_mode = 4
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(1000, 0)
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer"]
 layout_mode = 2

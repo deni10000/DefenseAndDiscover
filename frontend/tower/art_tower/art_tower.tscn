@@ -4,6 +4,22 @@
 [ext_resource type="Script" uid="uid://bidv1b4ghm63m" path="res://tower/art_tower/art_tower.gd" id="2_tq1yk"]
 [ext_resource type="SpriteFrames" uid="uid://cd8pkhjfrcqyk" path="res://tower/art_tower/art_tower.tres" id="3_tq1yk"]
 
+[sub_resource type="Shader" id="Shader_t748c"]
+code = "shader_type canvas_item;
+
+uniform float strength = 0.0;
+
+void fragment() {
+    COLOR = texture(TEXTURE, UV);
+    COLOR.rgb += vec3(strength);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tq1yk"]
+resource_local_to_scene = true
+shader = SubResource("Shader_t748c")
+shader_parameter/strength = 0.0
+
 [sub_resource type="Shader" id="Shader_tq1yk"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
@@ -41,26 +57,14 @@ shader_parameter/start_time = 0.0
 resource_local_to_scene = true
 load_path = "res://.godot/imported/circle-svgrepo-com.svg-efdaec912dccedeb13a728aa133e8620.ctex"
 
-[sub_resource type="Shader" id="Shader_t748c"]
-code = "shader_type canvas_item;
-
-uniform float strength = 0.0;
-
-void fragment() {
-    COLOR = texture(TEXTURE, UV);
-    COLOR.rgb += vec3(strength);
-}
-"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tq1yk"]
-resource_local_to_scene = true
-shader = SubResource("Shader_t748c")
-shader_parameter/strength = 0.0
-
 [node name="ArtTower" instance=ExtResource("1_rh3f1")]
 script = ExtResource("2_tq1yk")
 
-[node name="AttackArea" parent="." index="1"]
+[node name="TowerSprite" parent="." index="1"]
+material = SubResource("ShaderMaterial_tq1yk")
+sprite_frames = ExtResource("3_tq1yk")
+
+[node name="AttackArea" parent="." index="2"]
 scale = Vector2(2, 2)
 
 [node name="Shader" type="Sprite2D" parent="AttackArea" index="0"]
@@ -69,7 +73,3 @@ visible = false
 material = SubResource("ShaderMaterial_wvs4v")
 scale = Vector2(0.185, 0.185)
 texture = SubResource("CompressedTexture2D_wvs4v")
-
-[node name="TowerSprite" parent="." index="2"]
-material = SubResource("ShaderMaterial_tq1yk")
-sprite_frames = ExtResource("3_tq1yk")

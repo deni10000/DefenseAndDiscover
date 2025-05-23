@@ -8,6 +8,7 @@ var slow_time: float
 var slowing := 0.7
 var prev_pos := Vector2.ZERO
 var offset : int;
+var sm_delta: float
 @export var award : int = 8; #было 10
 
 @export var max_hp: float:
@@ -25,6 +26,7 @@ var hp: float:
 			Global.gold += award
 			hp = 0
 			$Body.queue_free()
+			$HpBar.queue_free()
 			if texture.sprite_frames and texture.sprite_frames.has_animation("death"):
 				texture.play("death")
 				await texture.animation_finished
@@ -62,6 +64,7 @@ func calculate_offset_vector():
 	h_offset = offset * normal.x
 	v_offset = offset * normal.y
 
+
 func mooving(delta):
 	slow_time = max(0, slow_time - delta)
 	var ds =  delta * speed
@@ -71,12 +74,21 @@ func mooving(delta):
 		progress += ds
 	calculate_offset_vector()
 	
-	if (prev_pos - global_position).x > 0:
-		$Texture.flip_h = true
-	else:
-		$Texture.flip_h = false
-	
-	prev_pos = global_position
+	sm_delta += delta
+	if sm_delta >= 0.1:
+		sm_delta -= 0.1
+		#var gl_ps = Vector2(global_position.x, -global_position.y)
+		#var deg = rad_to_deg((gl_ps - prev_pos).angle())
+		#if -85 <= deg and deg <= 85:
+			#$Texture.flip_h = false
+		#elif (-180 <= deg and deg <= -95) or (95 <= deg and deg <= 180):
+			#$Texture.flip_h = true
+		if (global_position - prev_pos).x > 0:
+			$Texture.flip_h = false
+		else:
+			$Texture.flip_h = true
+		
+		prev_pos = global_position
 
 
 func _physics_process(delta: float) -> void:

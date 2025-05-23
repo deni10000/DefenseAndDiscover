@@ -23,7 +23,9 @@ func _ready() -> void:
 	timer.one_shot = true
 	add_child(timer)
 
-func start_wave():
+
+
+func start_wave(only_generate = false):
 	var current_power = level * power_per_level + power
 	while current_power > 0:
 		var enemies_type := Global.Enemies.values()
@@ -38,17 +40,23 @@ func start_wave():
 		for i in range(count):
 			var en = enemy.scene.instantiate()
 			en.max_hp *= 1 + level * hp_increasing_per_level
-			add_enemy.emit(en)
-
+			if not only_generate:
+				add_enemy.emit(en)
+				
+			#wave_ended.emit()
+			#return
+			
 			# Генерируем случайную задержку для появления следующего врага
 			var random_delay = rng.randf_range(short_range_min, short_range_max)
-			timer.start(random_delay)
-			await timer.timeout  # Задержка между появлением врагов
+			if not only_generate:
+				timer.start(random_delay)
+				await timer.timeout  # Задержка между появлением врагов
 
 		current_power -= count * enemy.power
 		var wave_delay = rng.randf_range(long_range_min, long_range_max)
-		timer.start(wave_delay)
-		await timer.timeout
+		if not only_generate:
+			timer.start(wave_delay)
+			await timer.timeout
 
 	level += 1
 	wave_ended.emit()

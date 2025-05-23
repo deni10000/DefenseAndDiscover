@@ -20,6 +20,7 @@ expand_margin_bottom = 2.0
 bg_color = Color(1, 0, 0, 1)
 
 [node name="Enemy" type="PathFollow2D" node_paths=PackedStringArray("texture", "lightning") groups=["Enemy"]]
+z_as_relative = false
 y_sort_enabled = true
 rotates = false
 loop = false
@@ -28,10 +29,11 @@ texture = NodePath("Texture")
 lightning = NodePath("Texture/Lightning")
 
 [node name="HpBar" type="ProgressBar" parent="."]
+z_index = 1
 offset_left = 18.0
 offset_top = 4.0
-offset_right = 124.0
-offset_bottom = 68.0
+offset_right = 88.0
+offset_bottom = 12.0
 theme_override_styles/background = SubResource("StyleBoxFlat_e5eyy")
 theme_override_styles/fill = SubResource("StyleBoxFlat_4plym")
 value = 100.0
@@ -42,5 +44,7 @@ metadata/_edit_lock_ = true
 script = ExtResource("2_2aqp0")
 
 [node name="Texture" type="AnimatedSprite2D" parent="."]
+z_as_relative = false
+y_sort_enabled = true
 
 [node name="Lightning" type="AnimatedSprite2D" parent="Texture"]

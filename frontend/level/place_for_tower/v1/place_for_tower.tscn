@@ -65,6 +65,7 @@ animations = [{
 }]
 
 [node name="PlaceForTower" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_5b8io")
 
 [node name="Control" type="Control" parent="."]
@@ -170,6 +171,8 @@ shape = SubResource("CircleShape2D_fvx64")
 
 [node name="PlaceTexture" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
+z_as_relative = false
+y_sort_enabled = true
 position = Vector2(2, -5)
 scale = Vector2(0.9, 1)
 sprite_frames = SubResource("SpriteFrames_oougy")

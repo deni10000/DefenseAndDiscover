@@ -10,13 +10,13 @@ var audio_bus_idx : int = -1
 @export var audio_bus : StringName = &"Music"
 
 @export_group("Blending")
-@export var fade_out_duration : float = 0.5 :
+@export var fade_out_duration : float = 0 :
 	set(value):
 		fade_out_duration = value
 		if fade_out_duration < 0:
 			fade_out_duration = 0
 			
-@export var fade_in_duration : float = 0.5 :
+@export var fade_in_duration : float = 0 :
 	set(value):
 		fade_in_duration = value
 		if fade_in_duration < 0:

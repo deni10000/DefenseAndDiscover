@@ -186,7 +186,7 @@ layout_mode = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_xii2b")
 theme_override_font_sizes/font_size = 28
-text = "Цстановить hp:"
+text = "Установить hp:"
 horizontal_alignment = 1
 
 [node name="HpSpinBox" type="SpinBox" parent="CanvasLayer/Control/VBoxContainer2/GmPanel/VBoxContainer"]
@@ -198,7 +198,7 @@ alignment = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_xii2b")
 theme_override_font_sizes/font_size = 28
-text = "Цстановить 
+text = "Установить 
 золото:"
 horizontal_alignment = 1
 

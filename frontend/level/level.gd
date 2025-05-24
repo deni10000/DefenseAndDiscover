@@ -70,8 +70,8 @@ func start_qestion(topic: String, is_ok: Signal, level: int):
 func center_field():
 	var screen_size = get_viewport().get_visible_rect().size
 	#print(screen_size)
-	camera.limit_right = (viewport_width + screen_size.x) / 2 
-	camera.limit_top = viewport_height - screen_size.y
+	camera.limit_right = ((viewport_width + screen_size.x / camera.scale.x) / 2) 
+	camera.limit_top = (viewport_height - screen_size.y / camera.scale.y) 
 	
 var waves = [
 	[Global.Enemies.SLIME, Global.Enemies.SLIME],

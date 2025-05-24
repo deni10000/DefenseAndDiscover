@@ -172,6 +172,8 @@ var master_volume_db: float = -10:
 			AudioServer.set_bus_volume_db(audio_bus_idx, master_volume_db)
 
 func set_master_volume(linear):
+	if OS.get_name() == 'Web':
+		Global.java_script.setCookie("volume", linear, Http.cookie_time)
 	master_volume_db = linear_to_db(linear)
 
 func _enter_tree() -> void:

@@ -1,13 +1,13 @@
-[gd_resource type="Theme" load_steps=45 format=3 uid="uid://bbr70t6gbgc2m"]
+[gd_resource type="Theme" load_steps=44 format=3 uid="uid://bbr70t6gbgc2m"]
 
 [ext_resource type="Texture2D" uid="uid://d00ws7wljnit4" path="res://theme/UIpack_vector.svg" id="1"]
 [ext_resource type="Texture2D" uid="uid://cukb4mqk7d2wo" path="res://interface/new_compressed_texture_2d.tres" id="1_jexus"]
 [ext_resource type="FontFile" uid="uid://c7v76m4mxhpfx" path="res://theme/pixelcyr_normal.ttf" id="1_r2224"]
 [ext_resource type="FontFile" uid="uid://3rbcosvdyhmd" path="res://theme/kenvector_future.ttf" id="2"]
-[ext_resource type="Texture2D" uid="uid://b6m4s6bimy7fo" path="res://theme/focusbutton.png" id="3_ltdpg"]
+[ext_resource type="StyleBox" uid="uid://bmn6mn01kqqt" path="res://theme/hover_button.tres" id="3_ltdpg"]
 [ext_resource type="FontFile" uid="uid://1qmoiwwfgi76" path="res://theme/alagard-12px-unicode.ttf" id="3_ybv40"]
 [ext_resource type="StyleBox" uid="uid://qvbqayxaithc" path="res://theme/button_texture.tres" id="4_u4boy"]
-[ext_resource type="Texture2D" uid="uid://mhjip1daqyb" path="res://theme/PressButton.png" id="6_j4q4i"]
+[ext_resource type="StyleBox" uid="uid://2lriyojml01b" path="res://theme/pressed_button.tres" id="5_j4q4i"]
 [ext_resource type="FontFile" uid="uid://hu66wi2qdxpl" path="res://theme/Abaddon Bold.ttf" id="6_n7pmp"]
 [ext_resource type="StyleBox" uid="uid://bpdaxthmqoxif" path="res://theme/line_edit_texture.tres" id="6_u4boy"]
 [ext_resource type="StyleBox" uid="uid://b60dsl3pkqj70" path="res://theme/new_style_box_texture_2.tres" id="7_lyxrx"]
@@ -23,20 +23,6 @@ texture_margin_bottom = 14.2161
 region_rect = Rect2(211, 60, 190, 49)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ltdpg"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ltdpg"]
-texture = ExtResource("3_ltdpg")
-texture_margin_left = 16.0
-texture_margin_top = 12.0
-texture_margin_right = 16.0
-texture_margin_bottom = 12.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1nw8e"]
-texture = ExtResource("6_j4q4i")
-texture_margin_left = 16.0
-texture_margin_top = 12.0
-texture_margin_right = 16.0
-texture_margin_bottom = 12.0
 
 [sub_resource type="FontFile" id="31"]
 fallbacks = Array[Font]([ExtResource("2")])
@@ -203,6 +189,16 @@ region = Rect2(50, 644, 36, 36)
 atlas = ExtResource("1")
 region = Rect2(872, 504, 28, 42)
 
+[sub_resource type="Gradient" id="Gradient_ltdpg"]
+offsets = PackedFloat32Array(0.997821, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_j4q4i"]
+gradient = SubResource("Gradient_ltdpg")
+width = 2
+height = 13
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 1)
+
 [sub_resource type="StyleBoxTexture" id="17"]
 texture = ExtResource("1")
 texture_margin_left = 2.0
@@ -210,6 +206,7 @@ texture_margin_top = 2.0
 texture_margin_right = 2.0
 texture_margin_bottom = 2.0
 region_rect = Rect2(840, 316, 192, 6)
+modulate_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxEmpty" id="18"]
 
@@ -240,31 +237,7 @@ region = Rect2(1, 440, 36, 36)
 atlas = ExtResource("1")
 region = Rect2(0, 544, 36, 36)
 
-[sub_resource type="StyleBoxTexture" id="26"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-texture = ExtResource("1")
-texture_margin_left = 7.94429
-texture_margin_top = 9.53314
-texture_margin_right = 8.73872
-texture_margin_bottom = 13.9025
-region_rect = Rect2(1, 60, 190, 49)
-
-[sub_resource type="StyleBoxTexture" id="27"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-texture = ExtResource("1")
-texture_margin_left = 7.94429
-texture_margin_top = 9.53314
-texture_margin_right = 8.73872
-texture_margin_bottom = 13.9025
-expand_margin_top = 10.0
-expand_margin_bottom = 10.0
-region_rect = Rect2(122, 310, 100, 100)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j4q4i"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lc82i"]
 bg_color = Color(0.290278, 0.709973, 0, 1)
@@ -308,9 +281,9 @@ Button/constants/h_separation = 2
 Button/fonts/font = ExtResource("1_r2224")
 Button/styles/disabled = SubResource("1")
 Button/styles/focus = SubResource("StyleBoxEmpty_ltdpg")
-Button/styles/hover = SubResource("StyleBoxTexture_ltdpg")
+Button/styles/hover = ExtResource("3_ltdpg")
 Button/styles/normal = ExtResource("4_u4boy")
-Button/styles/pressed = SubResource("StyleBoxTexture_1nw8e")
+Button/styles/pressed = ExtResource("5_j4q4i")
 CheckBox/colors/font_color = Color(0, 0, 0, 1)
 CheckBox/colors/font_disabled_color = Color(0.9, 0.9, 0.9, 0.2)
 CheckBox/colors/font_hover_color = Color(0.34902, 0.34902, 0.34902, 1)
@@ -350,7 +323,7 @@ CheckButton/styles/pressed = null
 HSlider/icons/grabber = SubResource("16")
 HSlider/icons/grabber_disabled = null
 HSlider/icons/grabber_highlight = SubResource("16")
-HSlider/icons/tick = null
+HSlider/icons/tick = SubResource("GradientTexture2D_j4q4i")
 HSlider/styles/grabber_area = SubResource("17")
 HSlider/styles/grabber_area_highlight = SubResource("17")
 HSlider/styles/slider = SubResource("17")
@@ -378,7 +351,9 @@ LinkButton/colors/font_focus_color = Color(0.392157, 0.392157, 0.392157, 1)
 LinkButton/colors/font_hover_color = Color(0.393084, 0.393086, 0.393086, 1)
 OptionButton/colors/font_color = Color(0, 0, 0, 1)
 OptionButton/colors/font_disabled_color = Color(0.9, 0.9, 0.9, 0.2)
+OptionButton/colors/font_focus_color = Color(0, 0, 0, 1)
 OptionButton/colors/font_hover_color = Color(0.34902, 0.34902, 0.34902, 1)
+OptionButton/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 OptionButton/colors/font_pressed_color = Color(0, 0, 0, 1)
 OptionButton/constants/arrow_margin = 2
 OptionButton/constants/h_separation = 2
@@ -397,16 +372,17 @@ PopupMenu/colors/font_disabled_color = Color(0.4, 0.4, 0.4, 0.8)
 PopupMenu/colors/font_hover_color = Color(0.388235, 0.388235, 0.388235, 1)
 PopupMenu/constants/h_separation = 4
 PopupMenu/constants/vseparation = 32
-PopupMenu/fonts/font = SubResource("31")
+PopupMenu/font_sizes/font_size = 32
+PopupMenu/fonts/font = ExtResource("1_r2224")
 PopupMenu/icons/checked = SubResource("22")
 PopupMenu/icons/radio_checked = SubResource("23")
 PopupMenu/icons/radio_unchecked = SubResource("24")
 PopupMenu/icons/submenu = null
 PopupMenu/icons/unchecked = SubResource("25")
-PopupMenu/styles/hover = SubResource("26")
+PopupMenu/styles/hover = SubResource("StyleBoxEmpty_j4q4i")
 PopupMenu/styles/labeled_separator_left = null
 PopupMenu/styles/labeled_separator_right = null
-PopupMenu/styles/panel = SubResource("27")
+PopupMenu/styles/panel = ExtResource("4_u4boy")
 PopupMenu/styles/panel_disabled = null
 PopupMenu/styles/separator = null
 ProgressBar/styles/background = ExtResource("9_n7pmp")

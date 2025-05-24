@@ -65,7 +65,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"death",
-"speed": 8.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -92,6 +92,7 @@ animations = [{
 }]
 
 [node name="Fly" instance=ExtResource("1_xw3j5")]
+mooving_while_dead = true
 max_hp = 200.0
 
 [node name="HpBar" parent="." index="0"]
@@ -116,4 +117,5 @@ scale = Vector2(2.4, 2.4)
 sprite_frames = SubResource("SpriteFrames_3qkq1")
 animation = &"death"
 autoplay = "move"
-frame_progress = 0.667787
+frame = 5
+frame_progress = 1.0

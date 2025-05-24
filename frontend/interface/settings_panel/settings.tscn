@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dj334r3yagshk"]
+[gd_scene load_steps=6 format=3 uid="uid://dj334r3yagshk"]
 
 [ext_resource type="Script" uid="uid://biexh1gc8w687" path="res://interface/settings_panel/settings.gd" id="1_wnk05"]
 [ext_resource type="Shader" uid="uid://cwge4y7tj8vrt" path="res://interface/main_menu/blur.gdshader" id="1_yrhoc"]
 [ext_resource type="PackedScene" uid="uid://dmmbux1y4e8bw" path="res://interface/main_menu/cross_button.tscn" id="2_bc6wm"]
+[ext_resource type="FontFile" uid="uid://c7v76m4mxhpfx" path="res://theme/pixelcyr_normal.ttf" id="3_xs2xg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wwcsp"]
 shader = ExtResource("1_yrhoc")
@@ -40,57 +41,76 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.560784)
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -302.0
-offset_top = -224.0
-offset_right = 302.0
-offset_bottom = 224.0
+offset_left = -270.0
+offset_top = -148.5
+offset_right = 270.0
+offset_bottom = 148.5
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 
-[node name="Control" type="Control" parent="Panel"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 40.0
-grow_horizontal = 2
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
 
-[node name="VolumeLabel" type="Label" parent="Panel/Control"]
-layout_mode = 0
-offset_left = -228.0
-offset_top = 28.0
-offset_right = 128.0
-offset_bottom = 111.0
+[node name="Control" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 26
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/Control"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_bottom = -8
+
+[node name="VolumeLabel" type="Label" parent="Panel/MarginContainer/Control/MarginContainer"]
+layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "Громкость:"
 
-[node name="VolumeSlider" type="HSlider" parent="Panel/Control"]
+[node name="VolumeSlider" type="HSlider" parent="Panel/MarginContainer/Control"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = -236.0
-offset_top = 122.0
-offset_right = 116.0
-offset_bottom = 164.0
+layout_mode = 2
 max_value = 1.0
 step = 0.1
 tick_count = 11
 ticks_on_borders = true
 
-[node name="SettingsCrossButton" parent="Panel/Control" instance=ExtResource("2_bc6wm")]
-layout_mode = 1
-offset_left = 216.0
-offset_top = -24.0
-offset_right = 286.0
-offset_bottom = 46.0
+[node name="MarginContainer2" type="MarginContainer" parent="Panel/MarginContainer/Control"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_bottom = -8
 
-[connection signal="pressed" from="Panel/Control/SettingsCrossButton" to="." method="_on_settings_cross_button_pressed"]
+[node name="Label" type="Label" parent="Panel/MarginContainer/Control/MarginContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Выбрать язык:"
+
+[node name="OptionButton" type="OptionButton" parent="Panel/MarginContainer/Control"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_xs2xg")
+theme_override_font_sizes/font_size = 40
+selected = 0
+item_count = 1
+popup/item_0/text = "🇷🇺 Русский"
+popup/item_0/id = 0
+
+[node name="MarginContainer2" type="MarginContainer" parent="Panel"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/margin_top = -25
+theme_override_constants/margin_right = -16
+
+[node name="SettingsCrossButton" parent="Panel/MarginContainer2" instance=ExtResource("2_bc6wm")]
+layout_mode = 2
+
+[connection signal="pressed" from="Panel/MarginContainer2/SettingsCrossButton" to="." method="_on_settings_cross_button_pressed"]

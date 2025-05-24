@@ -10,6 +10,8 @@ var prev_pos := Vector2.ZERO
 var offset : int;
 var sm_delta: float
 @export var award : int = 8; #было 10
+@export var mooving_while_dead: bool
+var is_dead: bool
 
 @export var max_hp: float:
 	set(value):
@@ -23,6 +25,7 @@ var hp: float:
 			return
 		$HpBar.value = value
 		if value <= 0 and hp > 0:
+			is_dead = true
 			Global.gold += award
 			hp = 0
 			$Body.queue_free()
@@ -92,7 +95,8 @@ func mooving(delta):
 
 
 func _physics_process(delta: float) -> void:
-	mooving(delta)
+	if not is_dead or mooving_while_dead:
+		mooving(delta)
 	
 	
 

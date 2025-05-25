@@ -6,6 +6,7 @@ const MIN_LEN_PASSWORD_ERROR = "Пароль слишком короткий"
 const USERNAME_LEN_ERROR = "Никнейм не должен быть пустым"
 var email_regex :=  RegEx.new() 
 const MINIMUM_PASSWORD_LENGTH := 8
+var leaderBoardRows: Array[LeaderBoardRow]
 
 var email: String:
 	set(value):
@@ -23,14 +24,14 @@ var username: String:
 
 var row_count = 7
 func fill_leaderboard():
-	await update_user_data()
 	var res = await Http.get_waves()
 	#res = Http.LeaderBoardDto.new([{'username': 'alexagaggagagagag', 'countWave': 10}])
 	var leaderbord = %VBoxContainer
 	if res == null:
 		return
-	for node in leaderbord.find_children("", "LeaderBoardRow"):
-		leaderbord.remove_child(node)
+	for x in leaderBoardRows:
+		x.queue_free()
+	leaderBoardRows.clear()
 	res = res as Http.LeaderBoardDto
 	var flag = false
 	for i in range(min(row_count - 1, len(res.users))):
@@ -40,6 +41,7 @@ func fill_leaderboard():
 		if x.username == username:
 			row.set_bold()
 			flag = true
+		leaderBoardRows.append(row)
 		leaderbord.add_child(row)
 	var row: LeaderBoardRow = Global.leaderboard_row_secene.instantiate()
 	if len(res.users) < row_count:
@@ -54,6 +56,7 @@ func fill_leaderboard():
 				row.set_bold()
 				row.set_params(i + 1, x.username, x.count_wave)
 				break
+		leaderBoardRows.append(row)
 		leaderbord.add_child(row)
 	
 			
@@ -122,14 +125,14 @@ func _on_cross_button_pressed() -> void:
 	%Profile.visible = false
 
 func set_user_stats():
-	var res = await Http.get_user_stat(username)
+	var res = await Http.get_user_stat()
 	if res == null:
 		return
 	res = res as Http.StatsDto
-	%HistoryLine.text = res.history
-	%ScienceLine.text = res.science
-	%CultureLine.text = res.culture
-	%NatureLine.text = res.nature
+	%HistoryLine.value = str(res.history)
+	%ScienceLine.value = str(res.science)
+	%CultureLine.value = str(res.culture)
+	%NatureLine.value = str(res.nature)
 
 
 func _on_profile_button_pressed() -> void:
@@ -210,6 +213,7 @@ func _on_registration_button_pressed() -> void:
 	if 'error' not in ret:
 		%Registration.visible = false
 		%ConfirmationMenu.visible = true	
+		update_user_data()
 	disable_waiting()
 
 func show_success_notification():
@@ -233,10 +237,8 @@ func _on_confirmation_button_pressed() -> void:
 
 
 func _on_exit_button_pressed() -> void:
-	Http.token = ''
-	if OS.get_name() == 'Web':
-		Global.java_script.c
-		Global.java_script.setCookie("token", "", 0)
+	Http.exit()
+	fill_leaderboard()
 	%Profile.visible = false
 
 func is_valid_email(email: String) -> bool:
@@ -262,7 +264,8 @@ func _on_authorization_button_pressed() -> void:
 	enable_waiting()
 	var ret = await Http.login_user(%EmailLineEdit2.text, %PasswordLineEdit2.text)
 	if 'error' not in ret:
-		%Authorization.visible =false
+		%Authorization.visible = false
+		update_user_data()
 	disable_waiting()
 
 

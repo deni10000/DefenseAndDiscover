@@ -14,6 +14,7 @@ var skip_question: bool = false
 var seconds_passed: int
 var plot := Global.plot
 var wave_ended: bool = true
+var is_gamemaster: bool
 
 
 @export var camera: Camera2D; 
@@ -38,8 +39,16 @@ func start_stopwatch():
 	timer.timeout.connect(func(): seconds_passed += 1)
 	add_child(timer)
 
+func set_game_master():
+	var res = await Http.get_user()
+	if 'error' not in res:
+		is_gamemaster = res['gameMaster']
+		%GmPanel.visible = is_gamemaster
+
 func _ready() -> void:
 	Global.gold = 600
+	set_game_master()
+	
 	center_field()
 	for x in %Places.get_children():
 		x.start_question.connect(start_qestion)
@@ -190,7 +199,8 @@ func _on_place_for_tower_return_menu(control: Control) -> void:
 func _on_wave_ended():
 	%StartWave.visible = true
 	wave += 1
-	Http.post_wave(wave)
+	if not is_gamemaster:
+		Http.post_wave(wave)
 	%WaveCount.text = str(wave + 1)
 	if Global.is_campaign and wave < len(plot):
 		await %PlotMenu.show_text(plot[wave])

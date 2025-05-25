@@ -3,9 +3,9 @@ extends Node
 var base_url := "https://valyalshchikov.ru"
 var token := ''
 var user_name := ''
-var email = ''
 var cookie_time = 30
 const TIMEOUT_SECONDS := 4.0
+
 
 func  _ready() -> void:
 	var file = FileAccess.open("res://config.json", FileAccess.READ)
@@ -21,8 +21,6 @@ func  _ready() -> void:
 		var dop = Global.java_script.getCookie("token")
 		if dop != null:
 			token = dop
-		dop = Global.java_script.getCookie("email")
-		email = dop if dop != null else ''
 			
 
 func _create_http_request() -> HTTPRequest:
@@ -35,6 +33,8 @@ func _create_http_request() -> HTTPRequest:
 func _send_request(http_request: HTTPRequest, method: int, url: String, data: Dictionary = {}, auth: bool = false):
 	var headers := ["Content-Type: application/json"]
 	if auth:
+		if token == '':
+			return {'error':''}
 		headers.append("Authorization: Bearer %s" % token)
 
 	var body := JSON.stringify(data)
@@ -51,9 +51,7 @@ func _send_request(http_request: HTTPRequest, method: int, url: String, data: Di
 	var response_body = result[3].get_string_from_utf8()
 	
 	if response_code == 403:
-		token = ''
-		if OS.get_name() == 'Web':
-			Global.java_script.setCookie("token", "", 0)
+		exit()
 	
 	if response_code / 100 == 2:
 		var json = JSON.parse_string(response_body)
@@ -63,9 +61,14 @@ func _send_request(http_request: HTTPRequest, method: int, url: String, data: Di
 	return {'error':''}
 
 # ========== AUTH ==========
+func exit():
+	token = ''
+	user_name = ''
+	if OS.get_name() == 'Web':
+		Global.java_script.setCookie("token", "", 0)
+
 
 func register_user(email: String, username:String, password: String) -> Dictionary:
-	self.email = email 
 	return await _send_request(_create_http_request(), HTTPClient.METHOD_POST, "/api/v1/createUser", {
 		"email": email,
 		"password": password,
@@ -75,9 +78,7 @@ func register_user(email: String, username:String, password: String) -> Dictiona
 func set_cookie(token ,email):
 	if OS.get_name() == 'Web':
 		Global.java_script.setCookie("token", token, cookie_time)
-		Global.java_script.setCookie("email", email, cookie_time)
 	self.token = token
-	self.email = email
 	
 	
 
@@ -94,7 +95,6 @@ func confirm_user(email: String, username:String, password: String, code: String
 
 
 func login_user(email: String, password: String):
-	self.email = email
 	var response = await _send_request(_create_http_request(), HTTPClient.METHOD_POST, "/api/v1/login", {
 		"email": email,
 		"password": password
@@ -105,7 +105,13 @@ func login_user(email: String, password: String):
 
 
 # ========== USER ==========
+
 class StatsDto:
+	func get_zero_or_int_res(dct, st):
+		if st in dct:
+			return int(dct[st])
+		return 0
+	
 	var history: int
 	var science: int
 	var culture: int
@@ -114,24 +120,21 @@ class StatsDto:
 		var dct = {}
 		for x in json:
 			dct[x['topic']] = x['score']
-		history = int(dct['history'])
-		science = int(dct['science'])
-		culture = int(dct['culture'])
-		nature = int(dct['nature'])
+		history = get_zero_or_int_res(dct, 'history')
+		science = get_zero_or_int_res(dct, 'science')
+		culture = get_zero_or_int_res(dct, 'culture')
+		nature = get_zero_or_int_res(dct, 'nature')
 
-func get_user_stat(username):
-	var res = await  _send_request(_create_http_request(), HTTPClient.METHOD_GET, "/api/v1/getUserStat?username=" + username, {}, true)
+func get_user_stat():
+	await fill_user_name()
+	var res = await  _send_request(_create_http_request(), HTTPClient.METHOD_GET, "/api/v1/getUserStat?username=" + user_name, {}, true)
 	if 'error' in res:
 		return null
 	return StatsDto.new(res)	
 
 func post_wave(waves):
-	fill_user_name()
-	if user_name != '':
-		return
-	_send_request(_create_http_request(), HTTPClient.METHOD_POST, "/api/v1/postWave", {
-		"countWave": waves,
-		"username": user_name
+	_send_request(_create_http_request(), HTTPClient.METHOD_POST, "/api/v1/user/addWave", {
+		"waveCount": waves,
 	}, true)
 
 class UserScore:
@@ -139,7 +142,7 @@ class UserScore:
 	var count_wave: int
 	func _init(dct) -> void:
 		username = dct['username']
-		count_wave = int(dct['countWave'])
+		count_wave = int(dct['countWaves'])
 	
 
 class LeaderBoardDto:
@@ -149,14 +152,14 @@ class LeaderBoardDto:
 			users.append(UserScore.new(x))
 			
 func get_waves():
-	var res = await _send_request(_create_http_request(), HTTPClient.METHOD_GET, "/api/v1/getWaves", {})
+	var res = await _send_request(_create_http_request(), HTTPClient.METHOD_GET, "/api/v1/getWavesLeaderBoard", {})
 	if 'error' in res:
-		return null
+		return null	
 	return LeaderBoardDto.new(res)
 	
 	
 func get_user() -> Dictionary:
-	return await _send_request(_create_http_request(), HTTPClient.METHOD_POST, "/api/v1/getUser?email=" + email, {}, true)
+	return await _send_request(_create_http_request(), HTTPClient.METHOD_POST, "/api/v1/getUser", {}, true)
 
 func delete_user() -> Dictionary:
 	return await _send_request(_create_http_request(), HTTPClient.METHOD_DELETE, "/api/v1/user", {}, true)
@@ -178,7 +181,7 @@ class QuestionDto:
 		options = dct['options'] 
 
 func get_question(category: String, difficulty: int):
-	fill_user_name()
+	await fill_user_name()
 	var dct = await _send_request(_create_http_request(), HTTPClient.METHOD_POST, "/api/v1/getQuestion", {
 		'username': user_name,
 		'promt': {

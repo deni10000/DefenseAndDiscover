@@ -37,7 +37,7 @@ func _send_request(http_request: HTTPRequest, method: int, url: String, data: Di
 			return {'error':''}
 		headers.append("Authorization: Bearer %s" % token)
 
-	var body := JSON.stringify(data)
+	var body := JSON.stringify(data) if data else ""
 	var error := http_request.request(base_url + url, headers, method, body)
 	if error != OK:
 		http_request.queue_free()

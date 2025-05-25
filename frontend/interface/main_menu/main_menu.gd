@@ -285,5 +285,7 @@ func _on_change_password_cross_button_pressed() -> void:
 
 func _on_leader_bord_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index <= 2 and event.is_pressed():
-		%FullLeaderbord.show_leaderbord()
+		enable_waiting()
+		await  %FullLeaderbord.show_leaderbord()
+		disable_waiting()
 	

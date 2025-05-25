@@ -147,7 +147,7 @@ func _on_button_pressed() -> void:
 
 
 func _on_home_area_entered(area: Area2D) -> void:
-	hp -= 1
+	hp -= area.get_damage()
 	area.remove()
 
 

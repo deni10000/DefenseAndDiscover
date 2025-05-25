@@ -67,16 +67,18 @@ func update_user_data():
 			return
 		username = res['username']
 		email = res['email']
+	fill_leaderboard()
 
 
 func clear_lines():
 	for x in find_children("", "LineEdit"):
 		x.text = ''
 
+
 func _ready():
 	if Http.token != '':
 		%NotificationPanel.visible = false
-	fill_leaderboard()
+	update_user_data()
 	%TabContainer.set_tab_title(0, 'Профиль')
 	%TabContainer.set_tab_title(1, 'Статистика')
 	var tab_bar: TabBar = %TabContainer.get_tab_bar()

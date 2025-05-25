@@ -725,6 +725,7 @@ text = "Email:"
 
 [node name="EmailLineEdit2" type="LineEdit" parent="Authorization/Panel/MarginContainer/Control"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 61)
 layout_mode = 2
 context_menu_enabled = false
 language = "en"
@@ -740,6 +741,7 @@ text = "Пароль:"
 
 [node name="PasswordLineEdit2" type="LineEdit" parent="Authorization/Panel/MarginContainer/Control"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 61)
 layout_mode = 2
 max_length = 20
 context_menu_enabled = false
@@ -867,6 +869,7 @@ layout_mode = 2
 text = "Email:"
 
 [node name="LineEdit" type="LineEdit" parent="GetPassword/Panel/MarginContainer/Control"]
+custom_minimum_size = Vector2(0, 61)
 layout_mode = 2
 max_length = 20
 context_menu_enabled = false
@@ -975,6 +978,7 @@ text = "Email"
 
 [node name="EmailLineEdit" type="LineEdit" parent="Registration/Panel/MarginContainer/Control"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 61)
 layout_mode = 2
 context_menu_enabled = false
 
@@ -990,6 +994,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="LoginLineEdit" type="LineEdit" parent="Registration/Panel/MarginContainer/Control"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 61)
 layout_mode = 2
 max_length = 20
 context_menu_enabled = false
@@ -1006,6 +1011,7 @@ text = "Пароль"
 
 [node name="PasswordLineEdit" type="LineEdit" parent="Registration/Panel/MarginContainer/Control"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 61)
 layout_mode = 2
 max_length = 20
 context_menu_enabled = false
@@ -1122,6 +1128,7 @@ horizontal_alignment = 1
 
 [node name="ConfirmationLineEdit" type="LineEdit" parent="ConfirmationMenu/Panel/Control"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 61)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1444,6 +1451,7 @@ vertical_alignment = 1
 
 [node name="EmailLine" type="LineEdit" parent="Profile/TabContainer/MarginContainer/VBoxContainer/MarginContainer2"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 61)
 layout_mode = 2
 text = "deni.1000@ya.ru"
 editable = false
@@ -1469,6 +1477,7 @@ theme_override_fonts/font = ExtResource("5_7piqx")
 
 [node name="NicknameLine" type="LineEdit" parent="Profile/TabContainer/MarginContainer/VBoxContainer/MarginContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 61)
 layout_mode = 2
 text = "deni1000"
 editable = false
@@ -1650,6 +1659,7 @@ layout_mode = 2
 text = "старый пароль:"
 
 [node name="LineEdit" type="LineEdit" parent="ChangePassword/Panel/MarginContainer/Control"]
+custom_minimum_size = Vector2(0, 61)
 layout_mode = 2
 max_length = 20
 context_menu_enabled = false
@@ -1665,6 +1675,7 @@ layout_mode = 2
 text = "Новый пароль:"
 
 [node name="LineEdit2" type="LineEdit" parent="ChangePassword/Panel/MarginContainer/Control"]
+custom_minimum_size = Vector2(0, 61)
 layout_mode = 2
 max_length = 20
 context_menu_enabled = false

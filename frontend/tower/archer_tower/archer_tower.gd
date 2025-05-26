@@ -1,7 +1,7 @@
 extends Tower
 
 var arrow_class := Global.arrow
-var damage = 48 #было 50
+var damage = 42 #было 50
 var additional_price_to_up := 30
 var radius_attac = $AttackArea.get_overlapping_areas()
 

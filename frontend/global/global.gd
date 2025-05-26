@@ -10,10 +10,10 @@ var gold : int:
 	set(v):
 		gold = v
 		gold_changed.emit()
-var archer_tower_price : int = 135 #было 100
-var electric_tower_price : int = 165
+var archer_tower_price : int = 145 #было 100
+var electric_tower_price : int = 160
 var art_tower_price : int = 175 #было 150
-var tree_tower_price : int = 200
+var tree_tower_price : int = 190
 var archer_tower := preload("uid://dblmp648wldnf")
 var electric_tower := preload("uid://sqp3gbqgta6a")
 var art_tower := preload("uid://bdth5uwj86qyt")

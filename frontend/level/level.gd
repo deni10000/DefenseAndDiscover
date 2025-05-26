@@ -26,6 +26,7 @@ var hp:
 		%HpInput.text = str(value)
 		hp = value
 		if hp <= 0:
+			hp = 0
 			#Global.send_analytics("defeat")
 			get_tree().paused = true
 			%DefeatMenu.visible = true

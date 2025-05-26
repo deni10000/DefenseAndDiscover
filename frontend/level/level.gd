@@ -216,7 +216,7 @@ func _on_wave_ended():
 
 
 func _on_path_2d_child_exiting_tree(node: Node) -> void:
-	if %Path2D.get_child_count() == 1 and wave_ended:
+	if %Path2D.get_child_count() == 1 and wave_ended and hp > 0:
 		_on_wave_ended()
 
 

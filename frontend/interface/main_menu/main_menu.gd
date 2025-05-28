@@ -22,7 +22,7 @@ var email: String:
 		%EmailLine.text = value
 		email = value
 
-var row_count = 7
+var row_count = 6
 func fill_leaderboard():
 	var res = await Http.get_waves()
 	#res = Http.LeaderBoardDto.new([{'username': 'alexagaggagagagag', 'countWave': 10}])
@@ -46,7 +46,7 @@ func fill_leaderboard():
 	var row: LeaderBoardRow = Global.leaderboard_row_secene.instantiate()
 	if len(res.users) < row_count:
 		return
-	if flag:
+	if flag or username == '':
 		var x: Http.UserScore = res.users[row_count - 1]
 		row.set_params(row_count, x.username, x.count_wave)
 	else:
@@ -56,8 +56,8 @@ func fill_leaderboard():
 				row.set_bold()
 				row.set_params(i + 1, x.username, x.count_wave)
 				break
-		leaderBoardRows.append(row)
-		leaderbord.add_child(row)
+	leaderBoardRows.append(row)
+	leaderbord.add_child(row)
 	
 			
 func update_user_data():
@@ -93,6 +93,7 @@ func _ready():
 	email_regex.compile(r"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$")
 	for x in  find_children("", "CrossButton"):
 		x.pressed.connect(clear_lines)
+	Music.set_main_menu_music()
 	
 	
 	for node in get_tree().get_nodes_in_group("text_fields") + find_children("", "LineEdit"):
@@ -139,14 +140,14 @@ func set_user_stats():
 	if res == null:
 		return
 	res = res as Http.StatsDto
-	%HistoryLine.value = str(res.history)
-	%ScienceLine.value = str(res.science)
-	%CultureLine.value = str(res.culture)
-	%NatureLine.value = str(res.nature)
-	%HistoryLine.value2 = str(res.all_history)
-	%ScienceLine.value2 = str(res.all_science)
-	%CultureLine.value2 = str(res.all_culture)
-	%NatureLine.value2 = str(res.all_nature)
+	%HistoryLine.value2 = str(res.history)
+	%ScienceLine.value2 = str(res.science)
+	%CultureLine.value2 = str(res.culture)
+	%NatureLine.value2 = str(res.nature)
+	%HistoryLine.value = str(res.all_history)
+	%ScienceLine.value = str(res.all_science)
+	%CultureLine.value = str(res.all_culture)
+	%NatureLine.value = str(res.all_nature)
 
 
 func _on_profile_button_pressed() -> void:

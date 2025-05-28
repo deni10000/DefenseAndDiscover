@@ -15,9 +15,14 @@ func _ready() -> void:
 	for i in range(len(children)):
 		children[i].pressed.connect(_on_any_button_pressed.bind(i))
 
+func text_without_slash(text: String):
+	return text.replace("\\", "")
+
 func start_question(category: String, difficulty: int):
+	print('Start question')
 	get_tree().paused = true
 	var http_res = await Http.get_question(category, difficulty)
+	print('Get question: ', http_res)
 	if http_res == null:
 		question_completed.emit(Results.ConnectionProblem)
 		get_tree().paused = false
@@ -28,7 +33,7 @@ func start_question(category: String, difficulty: int):
 	for i in range(len(children)):
 		var button: Button = children[i]
 		button.text = http_res.options[i]
-	%Label.text = http_res.question
+	%Label.text = text_without_slash(http_res.question)
 	var prev_color = filling.bg_color
 	var tween := get_tree().create_tween()
 	tween.set_parallel()
@@ -44,11 +49,13 @@ func start_question(category: String, difficulty: int):
 	tween.tween_subtween(modulate_tween)
 	
 	var res = await button_pressed
+	print('Button pressed')
 	var choosen_question = ''
 	if res != -1:
 		choosen_question = http_res.options[res] 
 	tween.stop()
 	http_res = await Http.post_answer(http_res.qeustion_id, choosen_question)
+	print('Returned answer: ',http_res)
 	if http_res == null:
 		question_completed.emit(Results.ConnectionProblem)
 		get_tree().paused = false
@@ -74,9 +81,10 @@ func start_question(category: String, difficulty: int):
 	await timer.timeout
 	
 	visible = false
+	filling.bg_color = Color("4ab500")
 	for i in range(len(children)):
 		children[i].modulate = Color.WHITE
 	get_tree().paused = false
-	filling.bg_color = prev_color
 	question_completed.emit(result)
+	print("Question complited")
 	

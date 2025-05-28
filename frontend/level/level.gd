@@ -23,13 +23,13 @@ var wave = 0
 var enemy_count = 0
 var hp:
 	set(value):
-		%HpInput.text = str(value)
-		hp = value
-		if hp <= 0:
+		if value <= 0:
+			value = 0
 			#Global.send_analytics("defeat")
 			get_tree().paused = true
 			%DefeatMenu.visible = true
-
+		%HpInput.text = str(value)
+		hp = value
 var camera_tween: Tween = null 
 
 func start_stopwatch():
@@ -61,6 +61,7 @@ func _ready() -> void:
 	if Global.is_campaign:
 		await  get_tree().create_timer(0.1)
 		%PlotMenu.show_text(plot[0])
+	Music.set_level_music()
 
 func start_qestion(topic: String, is_ok: Signal, level: int):
 	var quest = %Question
@@ -215,7 +216,7 @@ func _on_wave_ended():
 
 
 func _on_path_2d_child_exiting_tree(node: Node) -> void:
-	if %Path2D.get_child_count() == 1 and wave_ended:
+	if %Path2D.get_child_count() == 1 and wave_ended and hp > 0:
 		_on_wave_ended()
 
 

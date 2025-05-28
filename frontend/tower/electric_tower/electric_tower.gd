@@ -5,8 +5,8 @@ var tween: Tween
 var dps = 100
 var MIN_DPS = 20 #было 10
 var MAX_DPS = 120
-var additional_price_to_up := 50
-const INCREASING_TIME = 4
+var additional_price_to_up := 40
+const INCREASING_TIME = 3.5
 
 var cooldown : float:
 	set(value):

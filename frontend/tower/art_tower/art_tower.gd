@@ -1,5 +1,5 @@
 extends Tower
-var dps = 22
+var dps = 24
 
 var tween: Tween
 var visiable = false

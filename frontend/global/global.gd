@@ -13,7 +13,7 @@ var gold : int:
 var archer_tower_price : int = 140 #было 100
 var electric_tower_price : int = 150
 var art_tower_price : int = 165 #было 150
-var tree_tower_price : int = 185
+var tree_tower_price : int = 170
 var archer_tower := preload("uid://dblmp648wldnf")
 var electric_tower := preload("uid://sqp3gbqgta6a")
 var art_tower := preload("uid://bdth5uwj86qyt")

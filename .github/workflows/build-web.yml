@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Create export directory
         run: mkdir -p frontend/build/web
@@ -38,7 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Create Android export directory
         run: mkdir -p frontend/build/android
@@ -52,9 +52,9 @@ jobs:
             godot --headless --verbose --export-debug "Android Debug" build/android/game-debug.apk
 
       - name: Upload Android artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name:  defenseAndDiscover
+          name:  defense-and-discover
           path: frontend/build/android/game-debug.apk
 
   deploy-web:

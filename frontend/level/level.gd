@@ -5,7 +5,6 @@ const CAMERA_ZOOM_DEFAULT : Vector2 = Vector2(1.0, 1.0)
 const CAMERA_ZOOM_MIN : Vector2 = Vector2(1, 1)
 const CAMERA_ZOOM_MAX : Vector2 = Vector2(2.0, 2.0)	
 const CAMERA_TWEEN_DURATION : float = 0.3
-const CAMERA_SPEED = 2000
 var viewport_width = ProjectSettings.get_setting("display/window/size/viewport_width")
 var viewport_height = ProjectSettings.get_setting("display/window/size/viewport_height")
 var MAX_RATIO = 16 / 9
@@ -128,14 +127,6 @@ func _physics_process(delta: float) -> void:
 	#print(camera.get_local_mouse_position(), viewport_size)
 	var mouse_pos := camera.get_local_mouse_position()
 	#print(mouse_pos)
-	if mouse_pos[0] < -(viewport_size.x / camera.zoom.x) / 2 + 10:
-		camera.position.x -= CAMERA_SPEED * delta / viewport_width * viewport_size.x
-	if mouse_pos[1] < -(viewport_size.y / camera.zoom.y) / 2 + 10:
-		camera.position.y -= CAMERA_SPEED * delta / viewport_height * viewport_size.y
-	if mouse_pos[0] > (viewport_size.x / camera.zoom.x) / 2 - 10:
-		camera.position.x += CAMERA_SPEED * delta / viewport_width * viewport_size.x
-	if mouse_pos[1] > (viewport_size.y / camera.zoom.y) / 2 - 10:
-		camera.position.y += CAMERA_SPEED * delta / viewport_height * viewport_size.y
 		
 
 func zoom_at_mouse(zoom) -> void:

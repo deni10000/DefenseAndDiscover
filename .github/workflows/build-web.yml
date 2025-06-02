@@ -49,13 +49,13 @@ jobs:
             -v "${{ github.workspace }}/frontend":/game \
             -w /game \
             barichello/godot-ci:4.4.1 \
-            godot --headless --verbose --export-debug "Android" build/android/game-debug.apk
+            godot --headless --verbose --export-debug "Android" build/android/defense-and-discover.apk
 
       - name: Upload Android artifact
         uses: actions/upload-artifact@v4
         with:
           name:  defense-and-discover
-          path: frontend/build/android/game-debug.apk
+          path: frontend/build/android/defense-and-discover.apk
 
   deploy-web:
     needs: build-web

@@ -77,7 +77,7 @@ func start_qestion(topic: String, is_ok: Signal, level: int):
 	else:
 		is_ok.emit(PlaceForTower.Result.CANCEL)
 	
-	
+
 
 func center_field():
 	var screen_size = get_viewport().get_visible_rect().size
@@ -104,11 +104,24 @@ func _input(event: InputEvent) -> void:
 				camera_tween.tween_method(zoom_at_mouse, camera.zoom, camera.zoom / (CAMERA_ZOOM_DEFAULT + CAMERA_ZOOM_SPEED), CAMERA_TWEEN_DURATION)
 	
 	if event is InputEventMagnifyGesture:
-		camera.zoom = (camera.zoom + Vector2(1, 1) * (event.factor - 1)).clamp(CAMERA_ZOOM_MIN, CAMERA_ZOOM_MAX)
+		zoom_to_point((camera.zoom + Vector2(1, 1) * (event.factor - 1)).clamp(CAMERA_ZOOM_MIN, CAMERA_ZOOM_MAX), event.position)
 	elif event is InputEventScreenDrag:
-		camera.position -= event.relative
-		
+		camera.position -= event.screen_relative / camera.zoom
+
+func fix_center():
+	var viewport_size = get_viewport().get_visible_rect().size
+	var half_size = viewport_size / (camera.zoom * 2)
+	
+	var pos = camera.global_position
+	pos.x = clamp(pos.x, camera.limit_left + half_size.x, camera.limit_right - half_size.x)
+	pos.y = clamp(pos.y, camera.limit_top + half_size.y, camera.limit_bottom - half_size.y)
+	camera.global_position = pos
+	
+
+	
 func _physics_process(delta: float) -> void:
+	#print(camera.get_screen_center_position() - Vector2(viewport_width, viewport_height) / 2 / camera.zoom)
+	fix_center.call_deferred()
 	center_field()
 	var viewport_size = get_viewport().size
 	#print(get_global_mouse_position(), get_viewport().get_visible_rect().size)
@@ -128,9 +141,19 @@ func _physics_process(delta: float) -> void:
 func zoom_at_mouse(zoom) -> void:
 	var world_before := get_global_mouse_position()
 	camera.zoom = zoom
+	center_field()
 	var world_after := get_global_mouse_position()
 	camera.position += (world_before - world_after)
 	
+func zoom_to_point(new_zoom: Vector2, point: Vector2):
+	var world_point_before = camera.get_screen_center_position() + (point - get_viewport_rect().size / 2) / camera.zoom
+	
+	camera.zoom = new_zoom
+	center_field()
+	
+	var world_point_after = camera.get_screen_center_position() + (point - get_viewport_rect().size / 2) / camera.zoom
+	
+	camera.global_position += world_point_before - world_point_after
 
 func update_gold_label():
 	%GoldInput.text = str(Global.gold)

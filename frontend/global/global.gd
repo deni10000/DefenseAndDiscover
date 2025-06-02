@@ -77,5 +77,6 @@ func _ready() -> void:
 	var file = FileAccess.open("res://plot.json", FileAccess.READ)
 	if file != null:
 		plot =  JSON.parse_string(file.get_as_text())
-	var config = ConfigFile.new()
-	config.save(CONFIG_PATH)
+	if not FileAccess.file_exists(Global.CONFIG_PATH):
+		var config = ConfigFile.new()
+		config.save(CONFIG_PATH)

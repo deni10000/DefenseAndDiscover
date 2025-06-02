@@ -13,7 +13,7 @@ func _ready() -> void:
 		var config = ConfigFile.new()
 		var err = config.load(Global.CONFIG_PATH)
 		if err == OK:
-			dop = config.get_value("session", "volume")
+			dop = config.get_value("session", "volume", null)
 	if dop != null:
 		Music.set_master_volume(float(dop))
 		%VolumeSlider.value = float(dop)

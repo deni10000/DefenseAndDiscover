@@ -49,7 +49,7 @@ jobs:
             -v "${{ github.workspace }}/frontend":/game \
             -w /game \
             barichello/godot-ci:4.4.1 \
-            godot --headless --verbose --export-debug "Android Debug" build/android/game-debug.apk
+            godot --headless --verbose --export-debug "Android" build/android/game-debug.apk
 
       - name: Upload Android artifact
         uses: actions/upload-artifact@v4

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dc256idbg6umu" path="res://level/level.gd" id="1_dbc2d"]
 [ext_resource type="Theme" uid="uid://bbr70t6gbgc2m" path="res://theme/maintheme.tres" id="2_44x8d"]
-[ext_resource type="PackedScene" uid="uid://b8kf561rc3uea" path="res://interface/question_panel/question.tscn" id="3_44x8d"]
+[ext_resource type="PackedScene" uid="uid://b8kf561rc3uea" path="res://level/question_panel/question.tscn" id="3_44x8d"]
 [ext_resource type="FontFile" uid="uid://1qmoiwwfgi76" path="res://theme/alagard-12px-unicode.ttf" id="3_xii2b"]
 [ext_resource type="Shader" uid="uid://cwge4y7tj8vrt" path="res://interface/main_menu/blur.gdshader" id="4_0v1st"]
 [ext_resource type="PackedScene" uid="uid://b0dgarfasdp6i" path="res://level/map/map.tscn" id="4_ivpvi"]

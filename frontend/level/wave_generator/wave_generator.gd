@@ -5,7 +5,7 @@ class_name Wave_generator
 var level = 1
 var power = 1250
 var power_per_level = 250 
-var hp_increasing_per_level = 0.23 
+var hp_increasing_per_level = 0.28
 var timer: Timer
 var short_range_min = 0.35 
 var short_range_max = 1.0  

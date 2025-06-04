@@ -1,7 +1,7 @@
 extends Control
 
 const ALLOWED_SPECIALS = "!@#$%^&*()_+-=[]{}|;:'\",.<>?/ "
-const NOT_ALLOWED_EMAIL_ERROR = "Неверный адресс электронной почты" 
+const NOT_ALLOWED_EMAIL_ERROR = "Неверный адрес электронной почты" 
 const MIN_LEN_PASSWORD_ERROR = "Пароль слишком короткий"
 const USERNAME_LEN_ERROR = "Никнейм не должен быть пустым"
 var email_regex :=  RegEx.new() 
@@ -55,7 +55,11 @@ func fill_leaderboard():
 			if x.username == username:
 				row.set_bold()
 				row.set_params(i + 1, x.username, x.count_wave)
+				flag = true
 				break
+	if not flag:
+		var x: Http.UserScore = res.users[row_count - 1]
+		row.set_params(row_count, x.username, x.count_wave)
 	leaderBoardRows.append(row)
 	leaderbord.add_child(row)
 	
@@ -86,6 +90,9 @@ func clear_lines():
 func _ready():
 	if Http.token != '':
 		%NotificationPanel.visible = false
+		%CookiePanelContainer.visible = false
+	if OS.get_name() == 'Android':
+		%CookiePanelContainer.visible = false
 	update_user_data()
 	%TabContainer.set_tab_title(0, 'Профиль')
 	%TabContainer.set_tab_title(1, 'Статистика')
@@ -219,9 +226,9 @@ func _on_registration_button_pressed() -> void:
 	elif not is_valid_username(%LoginLineEdit.text):
 		error = USERNAME_LEN_ERROR
 	
-	var error_label = %ErrorRegistrationLabel.text
+	var error_label = %ErrorRegistrationLabel
 	if error != '':
-		error_label = error
+		error_label.text = error
 		return
 	
 	enable_waiting()
@@ -231,10 +238,17 @@ func _on_registration_button_pressed() -> void:
 		%ConfirmationMenu.visible = true	
 		update_user_data()
 	else:
-		if ret['error'] == '':
-			error_label.text = 'Нет подключения к интернету'
-		else:
-			error_label.text = "Не удалось зарегистрировать пользователя"
+		var code = str(ret['error'])
+		match code:
+			'':
+				error_label.text = 'Нет подключения к интернету'
+			'400':
+				error_label.text = 'Никнейм уже занят'
+			'409':
+				error_label.text = 'Email уже занят'
+			_:
+				error_label.text = 'Не удалось зарегистрировать пользователя'
+			
 	disable_waiting()
 
 func show_success_notification():
@@ -292,12 +306,13 @@ func _on_authorization_button_pressed() -> void:
 		update_user_data()
 	else:
 		var code = str(ret['error'])
-		if code == '':
-			error_label.text = 'Нет подключения к интернету'
-		elif code == '422':
-			error_label.text = "Неверный email или пароль"
-		else:
-			error_label.text = "Не удалось авторизировать пользователя"
+		match code:
+			'':
+				error_label.text = 'Нет подключения к интернету'
+			'422':
+				error_label.text = "Неверный email или пароль"
+			_:
+				error_label.text = "Не удалось авторизовать пользователя"
 		
 		
 	disable_waiting()
@@ -395,3 +410,14 @@ func _on_change_password_button_pressed() -> void:
 func _on_change_password_pressed() -> void:
 	$Profile.visible = false
 	%ChangePassword.visible = true
+
+
+func _on_cookie_button_pressed() -> void:
+	%CookiePanelContainer.visible = false
+
+
+func _on_help_cross_button_pressed() -> void:
+	%Help.visible = false
+
+func _on_help_button_pressed() -> void:
+	%Help.visible = true

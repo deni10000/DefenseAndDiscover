@@ -5,7 +5,6 @@ const CAMERA_ZOOM_DEFAULT : Vector2 = Vector2(1.0, 1.0)
 const CAMERA_ZOOM_MIN : Vector2 = Vector2(1, 1)
 const CAMERA_ZOOM_MAX : Vector2 = Vector2(2.0, 2.0)	
 const CAMERA_TWEEN_DURATION : float = 0.3
-const CAMERA_SPEED = 1400
 var viewport_width = ProjectSettings.get_setting("display/window/size/viewport_width")
 var viewport_height = ProjectSettings.get_setting("display/window/size/viewport_height")
 var MAX_RATIO = 16 / 9
@@ -66,58 +65,86 @@ func _ready() -> void:
 func start_qestion(topic: String, is_ok: Signal, level: int):
 	var quest = %Question
 	if skip_question:
-		is_ok.emit.call_deferred(true)
+		is_ok.emit.call_deferred(PlaceForTower.Result.CORRECT)
 		return
 	quest.start_question(topic, level)
 	var res = await quest.question_completed
 	if res == quest.Results.Correct:
-		is_ok.emit(true)
+		is_ok.emit(PlaceForTower.Result.CORRECT)
+	elif res == quest.Results.Incorrect:
+		is_ok.emit(PlaceForTower.Result.INCORRECT)
 	else:
-		is_ok.emit(false)
+		is_ok.emit(PlaceForTower.Result.CANCEL)
 	
-	
+
 
 func center_field():
 	var screen_size = get_viewport().get_visible_rect().size
 	#print(screen_size)
-	camera.limit_right = ((viewport_width + screen_size.x / camera.scale.x) / 2) 
-	camera.limit_top = (viewport_height - screen_size.y / camera.scale.y) 
+	camera.limit_right = max(((viewport_width + screen_size.x / camera.zoom.x) / 2), viewport_width)
+	camera.limit_top = min((viewport_height - screen_size.y / camera.zoom.y), 0)
 	
 var waves = [
 	[Global.Enemies.SLIME, Global.Enemies.SLIME],
 	[Global.Enemies.SLIME, Global.Enemies.SLIME, Global.Enemies.SLIME, Global.Enemies.SLIME, Global.Enemies.SLIME, Global.Enemies.SLIME, Global.Enemies.SLIME, Global.Enemies.SLIME, Global.Enemies.SLIME ]
 ]
 
-var i = 0
-func _process(delta: float) -> void:
-	var viewport_size = get_viewport().size
-	i += 1
-	if i % 100 == 0:
-		i = 0
-		#print(get_global_mouse_position(), get_viewport().get_visible_rect().size)
-		#print(camera.get_local_mouse_position(), viewport_size)
+
+func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("zoom_in"):
 		if (camera.zoom < CAMERA_ZOOM_MAX):
 			if (camera_tween == null or not camera_tween.is_running()):
 				camera_tween = create_tween()
-				camera_tween.tween_property(camera, "zoom", camera.zoom * (CAMERA_ZOOM_DEFAULT + CAMERA_ZOOM_SPEED),CAMERA_TWEEN_DURATION)
+				camera_tween.tween_method(zoom_at_mouse, camera.zoom, camera.zoom * (CAMERA_ZOOM_DEFAULT + CAMERA_ZOOM_SPEED), CAMERA_TWEEN_DURATION)
 	elif Input.is_action_just_pressed("zoom_out"):
 		if (camera.zoom > CAMERA_ZOOM_MIN):
 			if (camera_tween == null or not camera_tween.is_running()):
 				camera_tween = create_tween()
-				camera_tween.tween_property(camera, "zoom", camera.zoom / (CAMERA_ZOOM_DEFAULT + CAMERA_ZOOM_SPEED),CAMERA_TWEEN_DURATION)
+				camera_tween.tween_method(zoom_at_mouse, camera.zoom, camera.zoom / (CAMERA_ZOOM_DEFAULT + CAMERA_ZOOM_SPEED), CAMERA_TWEEN_DURATION)
+	
+	if event is InputEventMagnifyGesture:
+		zoom_to_point((camera.zoom + Vector2(1, 1) * (event.factor - 1)).clamp(CAMERA_ZOOM_MIN, CAMERA_ZOOM_MAX), event.position)
+	elif event is InputEventScreenDrag:
+		camera.position -= event.screen_relative / camera.zoom
+
+func fix_center():
+	var viewport_size = get_viewport().get_visible_rect().size
+	var half_size = viewport_size / (camera.zoom * 2)
+	
+	var pos = camera.global_position
+	pos.x = clamp(pos.x, camera.limit_left + half_size.x, camera.limit_right - half_size.x)
+	pos.y = clamp(pos.y, camera.limit_top + half_size.y, camera.limit_bottom - half_size.y)
+	camera.global_position = pos
+	
+
+	
+func _physics_process(delta: float) -> void:
+	#print(camera.get_screen_center_position() - Vector2(viewport_width, viewport_height) / 2 / camera.zoom)
+	fix_center.call_deferred()
+	center_field()
+	var viewport_size = get_viewport().size
+	#print(get_global_mouse_position(), get_viewport().get_visible_rect().size)
+	#print(camera.get_local_mouse_position(), viewport_size)
 	var mouse_pos := camera.get_local_mouse_position()
 	#print(mouse_pos)
-	if mouse_pos[0] < -(viewport_size.x / camera.zoom.x) / 2 + 10:
-		camera.position.x -= CAMERA_SPEED * delta / camera.zoom.x / viewport_width * viewport_size.x
-	if mouse_pos[1] < -(viewport_size.y / camera.zoom.y) / 2 + 10:
-		camera.position.y -= CAMERA_SPEED * delta / camera.zoom.y / viewport_height * viewport_size.y
-	if mouse_pos[0] > (viewport_size.x / camera.zoom.x) / 2 - 10:
-		camera.position.x += CAMERA_SPEED * delta / camera.zoom.x / viewport_width * viewport_size.x
-	if mouse_pos[1] > (viewport_size.y / camera.zoom.y) / 2 - 10:
-		camera.position.y += CAMERA_SPEED * delta / camera.zoom.y / viewport_height * viewport_size.y
 		
-		
+
+func zoom_at_mouse(zoom) -> void:
+	var world_before := get_global_mouse_position()
+	camera.zoom = zoom
+	center_field()
+	var world_after := get_global_mouse_position()
+	camera.position += (world_before - world_after)
+	
+func zoom_to_point(new_zoom: Vector2, point: Vector2):
+	var world_point_before = camera.get_screen_center_position() + (point - get_viewport_rect().size / 2) / camera.zoom
+	
+	camera.zoom = new_zoom
+	center_field()
+	
+	var world_point_after = camera.get_screen_center_position() + (point - get_viewport_rect().size / 2) / camera.zoom
+	
+	camera.global_position += world_point_before - world_point_after
 
 func update_gold_label():
 	%GoldInput.text = str(Global.gold)
@@ -204,6 +231,7 @@ func _on_place_for_tower_return_menu(control: Control) -> void:
 func _on_wave_ended():
 	%StartWave.visible = true
 	wave += 1
+	Global.gold += Global.gold_after_wave
 	if not is_gamemaster:
 		Http.post_wave(wave)
 	%WaveCount.text = str(wave + 1)
@@ -242,3 +270,13 @@ func _on_skip_wave_button_pressed() -> void:
 	if wave_ended:
 		%Wave_generator.start_wave(true)
 		_on_wave_ended()
+
+
+func _on_help_cross_button_pressed() -> void:
+	%Help.visible = false
+	get_tree().paused = false
+
+
+func _on_help_button_pressed() -> void:
+	%Help.visible = true
+	get_tree().paused = true

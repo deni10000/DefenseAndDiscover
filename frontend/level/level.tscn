@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dc256idbg6umu" path="res://level/level.gd" id="1_dbc2d"]
 [ext_resource type="Theme" uid="uid://bbr70t6gbgc2m" path="res://theme/maintheme.tres" id="2_44x8d"]
-[ext_resource type="PackedScene" uid="uid://b8kf561rc3uea" path="res://interface/question_panel/question.tscn" id="3_44x8d"]
+[ext_resource type="PackedScene" uid="uid://b8kf561rc3uea" path="res://level/question_panel/question.tscn" id="3_44x8d"]
 [ext_resource type="FontFile" uid="uid://1qmoiwwfgi76" path="res://theme/alagard-12px-unicode.ttf" id="3_xii2b"]
 [ext_resource type="Shader" uid="uid://cwge4y7tj8vrt" path="res://interface/main_menu/blur.gdshader" id="4_0v1st"]
 [ext_resource type="PackedScene" uid="uid://b0dgarfasdp6i" path="res://level/map/map.tscn" id="4_ivpvi"]
@@ -20,7 +20,7 @@ shader_parameter/lod = 2.0
 [sub_resource type="Curve2D" id="Curve2D_6gtgk"]
 bake_interval = 1.0
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 342.521, 1172.88, 0, 0, 0, 0, 343.674, 309.076, -29.6159, 17.8807, 29.6159, -17.8807, 375.966, 192.596, 0, 0, 0, 0, 491.293, 173, 0, 0, 0, 0, 1560.37, 173, -17.2841, -17.1102, 17.2841, 17.1102, 1633.03, 187.983, 0, 0, 0, 0, 1650.33, 230.654, 0, 0, 0, 0, 1645.72, 374.813, 20.7548, -10.1462, -20.7548, 10.1462, 1620.34, 410.564, 0, 0, 0, 0, 1570.75, 422.097, 0, 0, 0, 0, 704, 420, 14.5228, -15.7684, -14.5228, 15.7684, 645.831, 440.549, 0, 0, 0, 0, 628.532, 500.519, 0, 0, 0, 0, 640.065, 671.203, -16.507, -12.5953, 16.507, 12.5953, 664.283, 700.035, 0, 0, 0, 0, 769.231, 709.261, 0, 0, 0, 0, 1567.29, 703.495, -18.5626, -12.4016, 18.5626, 12.4016, 1624.96, 712.721, 0, 0, 0, 0, 1649.18, 755.392, 0, 0, 0, 0, 1644.56, 847.653, 17.0738, -8.64151, -17.0738, 8.64151, 1616.88, 890.324, 0, 0, 0, 0, 1535, 896.091, 0, 0, 0, 0, 783.07, 891.477, 26.038, -22.7357, -26.038, 22.7357, 675.816, 908.776, 0, 0, 0, 0, 645.831, 979.126, 0, 0, 0, 0, 646.984, 1193.63)
+"points": PackedVector2Array(0, 0, 0, 0, 342.521, 1172.88, 0, 0, 0, 0, 343.674, 309.076, -29.6159, 17.8807, 29.6159, -17.8807, 375.966, 192.596, 0, 0, 0, 0, 491.293, 173, 0, 0, 0, 0, 1560.37, 173, -17.2841, -17.1102, 17.2841, 17.1102, 1633.03, 187.983, 0, 0, 0, 0, 1650.33, 230.654, 0, 0, 0, 0, 1645.72, 374.813, 17.7483, -9.14402, -17.7483, 9.14402, 1621.5, 411.717, 0, 0, 0, 0, 1555.76, 423.25, 0, 0, 0, 0, 704, 420, 14.5228, -15.7684, -14.5228, 15.7684, 645.831, 440.549, 0, 0, 0, 0, 628.532, 500.519, 0, 0, 0, 0, 637.758, 667.743, -20.2718, -14.1012, 20.2718, 14.1012, 663.13, 702.341, 0, 0, 0, 0, 769.231, 709.261, 0, 0, 0, 0, 1567.29, 703.495, -18.5626, -12.4016, 18.5626, 12.4016, 1624.96, 712.721, 0, 0, 0, 0, 1649.18, 755.392, 0, 0, 0, 0, 1644.56, 847.653, 17.0738, -8.64151, -17.0738, 8.64151, 1616.88, 890.324, 0, 0, 0, 0, 1535, 896.091, 0, 0, 0, 0, 783.07, 891.477, 26.038, -22.7357, -26.038, 22.7357, 675.816, 908.776, 0, 0, 0, 0, 645.831, 979.126, 0, 0, 0, 0, 646.984, 1193.63)
 }
 point_count = 26
 
@@ -33,12 +33,11 @@ script = ExtResource("1_dbc2d")
 camera = NodePath("Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, 2)
 limit_left = 0
 limit_top = 0
 limit_right = 1920
 limit_bottom = 1080
-position_smoothing_enabled = true
+editor_draw_limits = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -53,6 +52,19 @@ grow_vertical = 2
 size_flags_horizontal = 4
 mouse_filter = 2
 theme = ExtResource("2_44x8d")
+
+[node name="HelpButton" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -391.0
+offset_top = 13.0
+offset_right = -321.0
+offset_bottom = 83.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 40
+text = "?"
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control"]
 layout_mode = 1
@@ -474,6 +486,63 @@ layout_mode = 2
 focus_mode = 0
 text = "Выйти "
 
+[node name="Help" type="Control" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control/Help"]
+material = SubResource("ShaderMaterial_6gtgk")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.560784)
+
+[node name="Help" type="PanelContainer" parent="CanvasLayer/Control/Help"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control/Help/Help"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Нажмите на флажок, выберите      башню и ответьте на вопрос, чтобы её построить.
+
+Если нажать на башню, то её можно улучшить или разрушить, вернув часть потраченных денег.
+
+Когда вы будете готовы к обороне, нажмите на кнопку «Начать волну»."
+fit_content = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Control/Help/Help"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+mouse_filter = 0
+theme_override_constants/margin_top = -32
+theme_override_constants/margin_right = -28
+
+[node name="HelpCrossButton" parent="CanvasLayer/Control/Help/Help/MarginContainer2" instance=ExtResource("5_6gtgk")]
+layout_mode = 2
+focus_mode = 1
+
 [node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer"]
 visible = false
 show_behind_parent = true
@@ -489,6 +558,7 @@ size = Vector2i(1920, 1083)
 render_target_update_mode = 0
 
 [node name="Plot" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="PlotMenu" parent="Plot" instance=ExtResource("8_rhqlf")]
 unique_name_in_owner = true
@@ -587,8 +657,10 @@ position = Vector2(431, 712)
 [node name="Wave_generator" type="Node" parent="Level"]
 unique_name_in_owner = true
 script = ExtResource("4_vkbyq")
+seed = 1
 metadata/_custom_type_script = "uid://m1vo0myw6iol"
 
+[connection signal="pressed" from="CanvasLayer/Control/HelpButton" to="." method="_on_help_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/Panel/MarginContainer/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer2/Panel/MarginContainer/VBoxContainer/StartWave" to="." method="start_wave"]
 [connection signal="value_changed" from="CanvasLayer/Control/VBoxContainer2/GmPanel/VBoxContainer/HpSpinBox" to="." method="_on_hp_spin_box_value_changed"]
@@ -604,6 +676,7 @@ metadata/_custom_type_script = "uid://m1vo0myw6iol"
 [connection signal="pressed" from="CanvasLayer/Control/DefeatMenu/PanelContainer/MarginContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/WinMenu/PanelContainer/MarginContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/WinMenu/PanelContainer/MarginContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Help/Help/MarginContainer2/HelpCrossButton" to="." method="_on_help_cross_button_pressed"]
 [connection signal="child_exiting_tree" from="Level/map/Path2D" to="." method="_on_path_2d_child_exiting_tree"]
 [connection signal="timeout" from="Level/EnemyTimer" to="." method="next_enemy"]
 [connection signal="area_entered" from="Level/Home" to="." method="_on_home_area_entered"]

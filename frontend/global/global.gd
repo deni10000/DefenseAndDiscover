@@ -10,10 +10,10 @@ var gold : int:
 	set(v):
 		gold = v
 		gold_changed.emit()
-var archer_tower_price : int = 145 #было 100
-var electric_tower_price : int = 160
-var art_tower_price : int = 175 #было 150
-var tree_tower_price : int = 190
+var archer_tower_price : int = 140 #было 100
+var electric_tower_price : int = 150
+var art_tower_price : int = 160 #было 150
+var tree_tower_price : int = 170
 var archer_tower := preload("uid://dblmp648wldnf")
 var electric_tower := preload("uid://sqp3gbqgta6a")
 var art_tower := preload("uid://bdth5uwj86qyt")
@@ -29,7 +29,7 @@ var tower_scenes: Dictionary[Types, PackedScene] = {Types.ELECTRIC: electric_tow
 var max_question_level := 5
 var is_campaign: bool = false
 var plot: Array
-var gold_after_wave: int = 100
+var gold_after_wave: int = 75
 
 var java_script := JavaScriptBridge.get_interface("window")
 var volume: float = 0.5
@@ -53,10 +53,10 @@ class Properties:
 	
 enum Enemies {FLY, SLIME, SKELETON, MUSHROOM_GOLEM}
 var enemy_properties: Dictionary[Enemies, Properties]  = {
-	Enemies.SLIME: Properties.new(150, 3, 6, preload("uid://bm1ng04ojad8f")),
-	Enemies.FLY: Properties.new(100, 5, 9, preload("uid://841ivpjbv8wr")),
-	Enemies.SKELETON: Properties.new(250, 2, 5, preload("uid://bcfbn4m7snohl")),
-	Enemies.MUSHROOM_GOLEM: Properties.new(500, 1, 2, preload("uid://k1oxy458hcmj"))
+	Enemies.SLIME: Properties.new(250, 3, 6, preload("uid://bm1ng04ojad8f")),
+	Enemies.FLY: Properties.new(150, 5, 9, preload("uid://841ivpjbv8wr")),
+	Enemies.SKELETON: Properties.new(390, 2, 5, preload("uid://bcfbn4m7snohl")),
+	Enemies.MUSHROOM_GOLEM: Properties.new(583, 1, 2, preload("uid://k1oxy458hcmj"))
 	}
 
 func slice_spritesheet(texture: Texture2D, rows: int, columns: int) -> Array[Texture2D]:

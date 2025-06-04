@@ -291,10 +291,9 @@ animations = [{
 }]
 
 [node name="Skeleton" instance=ExtResource("1_cridm")]
-speed = 75
-award = 15
+speed = 68
 damage = 3
-max_hp = 900.0
+max_hp = 560.0
 
 [node name="HpBar" parent="." index="0"]
 offset_left = -40.0

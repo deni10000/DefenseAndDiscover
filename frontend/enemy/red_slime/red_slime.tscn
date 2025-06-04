@@ -10,6 +10,8 @@ radius = 9.0
 [node name="RedSlime" instance=ExtResource("1_e8y4p")]
 script = ExtResource("2_bajju")
 speed = 65
+award = 6
+damage = 3
 max_hp = 380.0
 
 [node name="HpBar" parent="." index="0"]

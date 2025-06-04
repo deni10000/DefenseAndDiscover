@@ -3,12 +3,12 @@ class_name Wave_generator
 
 @export var seed : int
 var level = 1
-var power = 1150
+var power = 1250
 var power_per_level = 250 
-var hp_increasing_per_level = 0.20 
+var hp_increasing_per_level = 0.23 
 var timer: Timer
 var short_range_min = 0.35 
-var short_range_max = 0.65  
+var short_range_max = 1.0  
 var long_range_min = 1.1
 var long_range_max = 1.5
 

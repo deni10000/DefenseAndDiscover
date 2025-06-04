@@ -29,7 +29,7 @@ var tower_scenes: Dictionary[Types, PackedScene] = {Types.ELECTRIC: electric_tow
 var max_question_level := 5
 var is_campaign: bool = false
 var plot: Array
-var gold_after_wave: int = 65
+var gold_after_wave: int = 75
 
 var java_script := JavaScriptBridge.get_interface("window")
 var volume: float = 0.5
